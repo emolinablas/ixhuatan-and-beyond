@@ -28,7 +28,7 @@ interface TripContextType {
   resetToDefaults: () => void;
 }
 
-const STORAGE_KEY = 'ixhuatan_trip_data_v7';
+const STORAGE_KEY = 'ixhuatan_trip_data_v8';
 
 const sanitizeSantaMaria = (data: TripDataState): TripDataState => {
   const jsonStr = JSON.stringify(data);
@@ -70,7 +70,7 @@ export const TripProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [state, setState] = useState<TripDataState>(() => {
     try {
       // Purge all legacy localStorage keys to eradicate old cached strings
-      ['ixhuatan_trip_data_v1', 'ixhuatan_trip_data_v2', 'ixhuatan_trip_data_v3', 'ixhuatan_trip_data_v4'].forEach(key => {
+      ['ixhuatan_trip_data_v1', 'ixhuatan_trip_data_v2', 'ixhuatan_trip_data_v3', 'ixhuatan_trip_data_v4', 'ixhuatan_trip_data_v5', 'ixhuatan_trip_data_v6', 'ixhuatan_trip_data_v7'].forEach(key => {
         try { localStorage.removeItem(key); } catch {}
       });
 

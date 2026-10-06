@@ -386,7 +386,7 @@ export const initialOptions: TripOption[] = [
     babyNotesEn: 'Ideal for 7-month-old Emily. Minimal car time, pleasant temperature, comfortable hotels with cribs.',
     seniorNotes: 'Excelente para Bruce, Norma, Isabel, Jonchito y Lidia. Termales relajantes en Santa Teresa y caminos planos.',
     seniorNotesEn: 'Superb for Bruce, Norma, Isabel, Jonchito & Lidia. Gentle strolls and relaxing thermal pools.',
-    votes: 4
+    votes: 0
   },
   {
     id: 'opt-thanksgiving-riodulce',
@@ -426,7 +426,7 @@ export const initialOptions: TripOption[] = [
     babyNotesEn: 'Chiquimula overnight makes the road trip gentle for baby Emily. Bring stroller mosquito netting.',
     seniorNotes: 'Muy agradable. Paseos en lancha seguros y sentados. Hoteles con piscinas y buena sombra.',
     seniorNotesEn: 'Very enjoyable. Gentle seated boat cruises. Hotels with relaxing pools and shaded grounds.',
-    votes: 5
+    votes: 0
   },
   {
     id: 'opt-thanksgiving-hibrido',
@@ -461,7 +461,7 @@ export const initialOptions: TripOption[] = [
     babyNotesEn: 'Tougher on a 7-month baby due to frequent car transitions.',
     seniorNotes: 'Exige mayor resistencia física por los cambios de hospedaje.',
     seniorNotesEn: 'Requires more physical stamina due to frequent hotel packing.',
-    votes: 1
+    votes: 0
   },
 
   // DECEMBER OPTIONS (Dec 3 night - Dec 7)
@@ -501,7 +501,7 @@ export const initialOptions: TripOption[] = [
     babyNotesEn: 'Extremely comfortable for Emily. Baby carrier recommended for Antigua cobblestones.',
     seniorNotes: 'Perfecto para personas de 60-75 años. Hoteles accesibles, paseos tranquilos y jardines floridos.',
     seniorNotesEn: 'Perfect for ages 60-75. Accessible grounds, peaceful boat ride, zero strenuous climbs.',
-    votes: 6
+    votes: 0
   },
   {
     id: 'opt-december-semuc-antigua',
@@ -538,7 +538,7 @@ export const initialOptions: TripOption[] = [
     babyNotesEn: 'Challenging for 7-month baby due to bumpy 4x4 pickup ride and humidity.',
     seniorNotes: 'Exige alta movilidad en escalones de roca húmedos; puede fatigar a personas de 70+.',
     seniorNotesEn: 'Demands high agility on wet rock stairs; likely fatiguing for travelers in their 70s.',
-    votes: 2
+    votes: 0
   }
 ];
 
@@ -1673,8 +1673,5 @@ export const initialTripState: TripDataState = {
   options: initialOptions,
   days: initialDays,
   packingItems: initialPackingItems,
-  userVotes: {
-    'opt-thanksgiving-elsalvador': true,
-    'opt-december-atitlan-antigua': true
-  }
+  userVotes: {}
 };
