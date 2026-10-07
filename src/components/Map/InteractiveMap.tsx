@@ -186,32 +186,63 @@ const ROUTE_DEFINITIONS: RouteDefinition[] = [
   },
   {
     id: 'opt-thanksgiving-hibrido',
-    name: 'Thanksgiving: Opción 3 (Ruta Combinada)',
-    nameEn: 'Thanksgiving: Option 3 (Hybrid Route)',
+    name: 'Thanksgiving: Opción 3 (Gran Circuito Combinado)',
+    nameEn: 'Thanksgiving: Option 3 (Grand Combined Circuit)',
     phase: 'thanksgiving',
     color: '#8b5cf6', // Violet
     lineCoordinates: [
-      [-90.2708, 14.1906],
-      [-89.8486, 13.8703], // Ataco
-      [-89.4500, 14.3000], // Metapán / Anguiatú
-      [-89.5458, 14.7981], // Chiquimula
-      [-89.0028, 15.6547], // Río Dulce
-      [-90.2708, 14.1906]
+      [-90.2708, 14.1906], // Ixhuatán
+      [-89.9800, 14.0200], // Frontera Valle Nuevo
+      [-89.8486, 13.8703], // Ataco (Ruta de las Flores)
+      [-89.5539, 13.8697], // Lago de Coatepeque
+      [-89.4500, 14.3000], // Frontera Anguiatú / Metapán
+      [-89.5458, 14.7981], // Chiquimula (Grand Caporal)
+      [-89.0028, 15.6547], // Río Dulce (Nana Juana)
+      [-88.7500, 15.8286], // Livingston (por agua)
+      [-89.0028, 15.6547], // Retorno Río Dulce
+      [-90.2708, 14.1906]  // Retorno Ixhuatán
     ],
-    totalTime: '8h 30m acumuladas',
-    totalDistance: '420 km',
-    roadQuality: 'Ruta circular con mayor tiempo en carretera',
-    roadQualityEn: 'Circuit route with more driving hours',
-    stopIds: ['ixhuatan', 'ruta-flores', 'chiquimula', 'rio-dulce'],
+    totalTime: '12.5h acumuladas en 4 etapas',
+    totalDistance: '540 km',
+    roadQuality: 'Carreteras asfaltadas internacionales (CA-8, CA-12, CA-10 y CA-9 Norte)',
+    roadQualityEn: 'International paved highways (CA-8, CA-12, CA-10 & CA-9 North)',
+    stopIds: ['ixhuatan', 'ruta-flores', 'coatepeque', 'chiquimula', 'rio-dulce'],
     segments: [
       {
         from: 'Santa María Ixhuatán',
-        to: 'Ataco ➔ Chiquimula ➔ Río Dulce',
-        time: 'Múltiples tramos',
-        distance: '420 km',
-        notes: 'Permite conocer El Salvador y luego subir hacia el Caribe.',
-        notesEn: 'Combines El Salvador mountain towns and Caribbean river waterways.',
-        coordinates: [-89.65, 14.35]
+        to: 'Ataco & Lago de Coatepeque',
+        time: '2h 15m',
+        distance: '110 km',
+        notes: 'Paso por frontera Valle Nuevo, casona en Ataco y cena frente al Lago de Coatepeque.',
+        notesEn: 'Border crossing at Valle Nuevo, boutique stay in Ataco and lakeview dining at Coatepeque.',
+        coordinates: [-89.84, 13.87]
+      },
+      {
+        from: 'El Salvador',
+        to: 'Chiquimula (Hotel Grand Caporal)',
+        time: '3h 30m',
+        distance: '165 km',
+        notes: 'Reingreso a Guatemala por la frontera de Anguiatú (Metapán), directo hacia Chiquimula para descansar.',
+        notesEn: 'Re-entry to Guatemala via Anguiatú border crossing (Metapán), driving straight to Chiquimula.',
+        coordinates: [-89.48, 14.50]
+      },
+      {
+        from: 'Chiquimula',
+        to: 'Río Dulce (Nana Juana Marina)',
+        time: '2h 45m',
+        distance: '140 km',
+        notes: 'Descenso hacia la cuenca del Caribe y puente de Río Dulce hacia marina con caminerías planas.',
+        notesEn: 'Descent to Caribbean basin and iconic Rio Dulce bridge to accessible marina resort.',
+        coordinates: [-89.25, 15.40]
+      },
+      {
+        from: 'Río Dulce',
+        to: 'Santa María Ixhuatán',
+        time: '6h 00m',
+        distance: '315 km',
+        notes: 'Retorno panorámico por CA-9 Norte hacia el sur de Santa Rosa.',
+        notesEn: 'Scenic return journey south along CA-9 North highway back to Santa Rosa.',
+        coordinates: [-89.65, 14.95]
       }
     ]
   },

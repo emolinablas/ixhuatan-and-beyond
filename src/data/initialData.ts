@@ -452,38 +452,48 @@ export const initialOptions: TripOption[] = [
   {
     id: 'opt-thanksgiving-hibrido',
     phase: 'thanksgiving',
-    title: 'Opción 3: Ruta Combinada o Plan B Pacífico (Monterrico)',
-    titleEn: 'Option 3: Hybrid Blend or Pacific Plan B (Monterrico)',
-    tagline: 'Ruta extendida oriente o alternativa de emergencia sin estrés en la playa a 1h 25m',
-    taglineEn: 'Extended eastern circuit or emergency zero-stress Pacific beach Plan B (1h 25m drive)',
-    dateRange: '25 Nov – 30 Nov (6 días)',
-    dateRangeEn: 'Nov 25 – Nov 30 (6 days)',
+    title: 'Opción 3: Gran Circuito Combinado (Ruta de las Flores + Chiquimula & Río Dulce)',
+    titleEn: 'Option 3: Grand Combined Circuit (Ruta de las Flores + Chiquimula & Río Dulce)',
+    tagline: 'El itinerario más completo: montaña y termales en Ataco + banquete en Coatepeque + piscinas en Grand Caporal y lancha en Río Dulce',
+    taglineEn: 'The ultimate all-inclusive circuit: mountain hot springs in Ataco + Coatepeque lake dining + Grand Caporal pools & Río Dulce boat cruise',
+    dateRange: '25 Nov – 30 Nov (6 días / 5 noches)',
+    dateRangeEn: 'Nov 25 – Nov 30 (6 days / 5 nights)',
     durationDays: 6,
-    destinations: ['ruta-flores', 'chiquimula', 'rio-dulce'],
+    destinations: ['ruta-flores', 'coatepeque', 'chiquimula', 'rio-dulce'],
     crewSummary: 'Grupo familiar completo (10 personas): Ever, Cori, Isabella, Emily (7 meses), Jonchito, Lidia, Doña Isabel, Nely, Bruce y Norma.',
     crewSummaryEn: 'Full family crew (10 people): Ever, Cori, Isabella, Emily (7 months), Jonchito, Lidia, Isabel, Nely, Bruce & Norma.',
     pros: [
-      'Permite combinar la montaña salvadoreña y la selva caribeña de Izabal si se busca máxima variedad.',
-      'PLAN B PACÍFICO: Si se descarta El Salvador por pasaportes y Río Dulce por distancia, la costa de Monterrico / Las Lisas está a solo 1h 25m de carretera plana sin esfuerzo.'
+      'Itinerario total "lo mejor de dos mundos": Combina en un solo viaje el clima fresco de montaña y aguas termales de El Salvador con la exuberante selva tropical y canales caribeños de Río Dulce.',
+      'Días 1 a 3 en El Salvador: Hospedaje en Casa Degraciela (Ataco, 100% en planta baja sin gradas), relajación en Termales de Santa Teresa y cena/almuerzo de Thanksgiving en la terraza de Cardedeu frente al Lago de Coatepeque.',
+      'Cruce fronterizo circular eficiente: Salida por Valle Nuevo y reingreso a Guatemala por la frontera de Anguiatú (Metapán ➔ Chiquimula) para avanzar hacia el oriente sin repetir caminos.',
+      'Días 4 a 6 en Oriente y Caribe: Noche de descanso en Hotel Grand Caporal (Chiquimula) con cortes de carne y piscinas, seguido de suites con A/C en Nana Juana Marina y navegación privada en lancha techada por el Cañón de Río Dulce hacia Livingston.',
+      'Máxima diversidad fotográfica y cultural: Pueblos coloniales con murales de café, gastronomía salvadoreña, cultura garífuna caribeña y fortaleza colonial de San Felipe del siglo XVII.'
     ],
     prosEn: [
-      'Allows experiencing both Salvadoran mountain towns and Izabal’s Caribbean jungle if maximum variety is desired.',
-      'PACIFIC PLAN B: If El Salvador is ruled out due to passports and Río Dulce due to distance, Monterrico / Las Lisas is just 1h 25m on flat highway.'
+      'Ultimate "best of both worlds" journey: Combines in a single vacation the cool mountain breezes and volcanic hot springs of El Salvador with the lush rainforest and Caribbean waters of Río Dulce.',
+      'Days 1 to 3 in El Salvador: Boutique stay at Casa Degraciela (Ataco, 100% ground floor), soothing thermal pools at Santa Teresa, and Thanksgiving feast on Cardedeu\'s upper deck overlooking Lake Coatepeque.',
+      'Efficient circular border routing: Cross into El Salvador via Valle Nuevo and re-enter Guatemala via Anguiatú border (Metapán ➔ Chiquimula), cutting north without backtracking.',
+      'Days 4 to 6 in Eastern Guatemala & Caribbean: Refreshing rest stop at Hotel Grand Caporal (Chiquimula) with steaks and pools, followed by A/C marina suites at Nana Juana and private boat cruise through Río Dulce Gorge to Livingston.',
+      'Peak visual and cultural variety: Colonial painted coffee towns, pupusas, Garifuna coastal culture, and 17th-century Spanish fortress.'
     ],
     considerations: [
-      'El circuito híbrido El Salvador + Río Dulce suma más de 12 horas acumuladas en carretera, excesivo para Emily y abuelos.',
-      'Empacar y desempacar continuamente en 3 o 4 hoteles diferentes.'
+      'Alta demanda de manejo: Suma ~12.5 horas acumuladas de carretera divididas en 4 etapas principales a lo largo de los 6 días.',
+      'Múltiples cambios de hotel: Requiere empacar y registrarse en 3 hospedajes diferentes (Ataco, Chiquimula y Río Dulce).',
+      'Requisito obligatorio de pasaportes: Al entrar a El Salvador, Emily (7 meses) e Isabella requieren pasaportes vigentes y Bruce y Norma $12 USD en efectivo para la tarjeta de turismo.',
+      '💡 Alternativa de contingencia (Plan B Opcional): Si antes de viajar los pasaportes presentan retrasos o la familia prefiere evitar tantas horas de carretera, este circuito puede pivotar opcionalmente a un plan 100% relajado en la playa del Pacífico (Monterrico / Las Lisas a solo 1h 25m de carretera plana sin fronteras).'
     ],
     considerationsEn: [
-      'Hybrid El Salvador + Río Dulce circuit accumulates 12+ hours driving, excessive for baby Emily and seniors.',
-      'Continuous packing and unpacking across 3 to 4 different hotels.'
+      'Substantial driving commitment: Totals ~12.5 cumulative road hours divided into 4 main stages across 6 days.',
+      'Multiple hotel check-ins: Requires packing and unpacking across 3 distinct lodges (Ataco, Chiquimula, and Río Dulce).',
+      'Mandatory passports for El Salvador: Emily (7 months) and Isabella require valid passports, plus $12 USD cash each for Bruce & Norma.',
+      '💡 Optional Contingency (Plan B): If passports face unexpected delays or the family prefers zero road fatigue, this circuit can effortlessly pivot to a relaxing Pacific beach stay (Monterrico / Las Lisas at just 1h 25m flat highway with no border requirements).'
     ],
-    driveSummary: 'Circuito amplio con más de 12 horas en carretera, o solo 1h 25m si se opta por Plan B de playa.',
-    driveSummaryEn: 'Wide circuit with 12+ driving hours, or just 1h 25m if pivoting to Pacific beach Plan B.',
-    babyNotes: 'La ruta híbrida completa es muy agotadora para Emily; el Plan B de playa en cambio es sumamente amigable.',
-    babyNotesEn: 'Full hybrid route is exhausting for Emily; conversely, Pacific beach Plan B is exceptionally gentle.',
-    seniorNotes: 'Alta demanda física por cambios continuos de vehículo y hoteles en la ruta combinada.',
-    seniorNotesEn: 'High physical demand due to frequent transitions in vehicle and hotels on the combined route.',
+    driveSummary: 'Circuito circular amplio (~12.5 hrs acumuladas): Ixhuatán ➔ Ataco (2.5h) ➔ Chiquimula vía Anguiatú (3.5h) ➔ Río Dulce (3h) ➔ Ixhuatán (6h).',
+    driveSummaryEn: 'Comprehensive circular circuit (~12.5 cumulative driving hrs): Ixhuatán ➔ Ataco (2.5h) ➔ Chiquimula via Anguiatú (3.5h) ➔ Río Dulce (3h) ➔ Ixhuatán (6h).',
+    babyNotes: 'Exigente para la bebé Emily (7 meses) por los 3 cambios de hotel y tiempos prolongados en silla de auto. Se sugieren paradas de descanso cada 1.5 a 2 horas.',
+    babyNotesEn: 'Demanding for 7-month Emily due to 3 hotel transitions and extended car-seat time. Rest stops every 1.5 to 2 hours are strongly recommended.',
+    seniorNotes: 'Para Bruce, Norma, Jonchito, Lidia e Isabel: Es la aventura más completa e impactante, pero requiere buena energía para los traslados y empacar ligero entre hoteles.',
+    seniorNotesEn: 'For Bruce, Norma, Jonchito, Lidia & Isabel: The most comprehensive and rewarding adventure, but requires solid stamina for road stages and light packing between hotels.',
     votes: 0
   },
 
