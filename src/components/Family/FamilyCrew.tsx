@@ -12,6 +12,8 @@ export const FamilyCrew: React.FC = () => {
       ageBadge: language === 'es' ? '70s • Aventureros' : '70s • Adventurers',
       avatar: '🇺🇸',
       bgGradient: 'from-blue-500 to-indigo-600',
+      tripParticipation: language === 'es' ? '🚀 Viaja en ambos: Thanksgiving & Diciembre' : '🚀 Traveling on both: Thanksgiving & December',
+      isCoreSix: true,
       description: language === 'es'
         ? 'Amigos queridos que viajan desde EE.UU. Listos para maravillarse con los volcanes, el lago y compartir el calor de la familia guatemalteca.'
         : 'Cherished friends visiting from the US. Ready to experience majestic volcanoes, Lake Atitlán, and warm Guatemalan hospitality.',
@@ -23,6 +25,8 @@ export const FamilyCrew: React.FC = () => {
       ageBadge: language === 'es' ? 'Ixhuatán, Santa Rosa' : 'Ixhuatán, Santa Rosa',
       avatar: '🏡',
       bgGradient: 'from-emerald-500 to-teal-600',
+      tripParticipation: language === 'es' ? '🚀 Viaja en ambos: Thanksgiving & Diciembre' : '🚀 Traveling on both: Thanksgiving & December',
+      isCoreSix: true,
       description: language === 'es'
         ? 'Los creadores de esta experiencia inolvidable. Abren las puertas de su hogar y organizan cada detalle con amor.'
         : 'The architects of this unforgettable adventure. Opening their family home and curating every route with love.',
@@ -34,6 +38,8 @@ export const FamilyCrew: React.FC = () => {
       ageBadge: language === 'es' ? 'Isabella & Emily (7 meses)' : 'Isabella & Emily (7 months)',
       avatar: '👶',
       bgGradient: 'from-pink-500 to-rose-500',
+      tripParticipation: language === 'es' ? '🚀 Viaja en ambos: Thanksgiving & Diciembre' : '🚀 Traveling on both: Thanksgiving & December',
+      isCoreSix: true,
       description: language === 'es'
         ? 'Isabella llena de energía y juegos; Emily en su primer gran viaje familiar descubriendo el mundo en brazos de todos.'
         : 'Isabella spreading pure joy and games; baby Emily on her first grand family journey discovering the world.',
@@ -45,6 +51,8 @@ export const FamilyCrew: React.FC = () => {
       ageBadge: language === 'es' ? '60s • Tradición y Familia' : '60s • Tradition & Family',
       avatar: '👵',
       bgGradient: 'from-amber-500 to-orange-600',
+      tripParticipation: language === 'es' ? '🦃 Thanksgiving • 🏡 Descanso en Ixhuatán en Diciembre' : '🦃 Thanksgiving • 🏡 Resting in Ixhuatán in December',
+      isCoreSix: false,
       description: language === 'es'
         ? 'Pilar del hogar, expertos en cocina tradicional, calidez familiar y anécdotas de la región.'
         : 'Heart of the household, master chefs of traditional recipes, warm smiles, and local storytelling.',
@@ -56,6 +64,8 @@ export const FamilyCrew: React.FC = () => {
       ageBadge: language === 'es' ? '70s • Sabiduría' : '70s • Wisdom & Grace',
       avatar: '🌸',
       bgGradient: 'from-purple-500 to-violet-600',
+      tripParticipation: language === 'es' ? '🦃 Thanksgiving • 🏡 Descanso en Ixhuatán en Diciembre' : '🦃 Thanksgiving • 🏡 Resting in Ixhuatán in December',
+      isCoreSix: false,
       description: language === 'es'
         ? 'Presencia dulce y llena de paz, disfrutando cada comida, paisaje y momento junto a sus hijos y nietas.'
         : 'Sweet, peaceful presence, savoring every garden, lake panorama, and precious moment with children and grandchildren.',
@@ -67,6 +77,8 @@ export const FamilyCrew: React.FC = () => {
       ageBadge: language === 'es' ? 'Alegre y Atenta' : 'Cheerful & Helpful',
       avatar: '✨',
       bgGradient: 'from-cyan-500 to-blue-600',
+      tripParticipation: language === 'es' ? '🦃 Thanksgiving • 🏡 Descanso en Ixhuatán en Diciembre' : '🦃 Thanksgiving • 🏡 Resting in Ixhuatán in December',
+      isCoreSix: false,
       description: language === 'es'
         ? 'Siempre lista para colaborar con las niñas, apoyar en la logística y disfrutar los paseos en familia.'
         : 'Always ready to lend a loving hand with the girls, support trip logistics, and share laughs along the way.',
@@ -105,6 +117,30 @@ export const FamilyCrew: React.FC = () => {
         </div>
       </div>
 
+      {/* Trip Crew Breakdown Banner */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-5 rounded-3xl bg-slate-50 border border-slate-200/90 text-xs">
+        <div className="p-3.5 rounded-2xl bg-white border border-slate-200/70 space-y-1">
+          <span className="font-extrabold text-emerald-700 block text-sm">
+            🦃 {language === 'es' ? 'Viaje de Thanksgiving (25 - 30 Nov)' : 'Thanksgiving Getaway (Nov 25 - 30)'}
+          </span>
+          <p className="text-slate-600 leading-relaxed text-[11px]">
+            {language === 'es'
+              ? 'Viajamos los 10 integrantes: Bruce, Norma, Ever, Cori, Isabella, Emily, Jonchito, Lidia, Doña Isabel y Nely.'
+              : 'All 10 members travel together: Bruce, Norma, Ever, Cori, Isabella, Emily, Jonchito, Lidia, Isabel & Nely.'}
+          </p>
+        </div>
+        <div className="p-3.5 rounded-2xl bg-white border border-slate-200/70 space-y-1">
+          <span className="font-extrabold text-indigo-700 block text-sm">
+            ⛰️ {language === 'es' ? 'Escapada de Diciembre (3 - 7 Dic)' : 'December Getaway (Dec 3 - 7)'}
+          </span>
+          <p className="text-slate-600 leading-relaxed text-[11px]">
+            {language === 'es'
+              ? 'Viajan 6 personas: Bruce, Norma, Ever, Cori, Isabella y Emily. Los abuelos y Nely se quedan descansando en el hogar en Santa María Ixhuatán.'
+              : 'Core crew of 6 travels: Bruce, Norma, Ever, Cori, Isabella & baby Emily. Remaining family rests comfortably at home in Santa María Ixhuatán.'}
+          </p>
+        </div>
+      </div>
+
       {/* Members Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {members.map((m, idx) => (
@@ -125,6 +161,16 @@ export const FamilyCrew: React.FC = () => {
               <div className="mt-3">
                 <h3 className="text-lg font-extrabold text-slate-900">{m.name}</h3>
                 <span className="text-xs font-bold text-emerald-600">{m.role}</span>
+              </div>
+
+              <div className="mt-2.5">
+                <span className={`inline-block text-[11px] font-semibold px-2.5 py-1 rounded-xl border ${
+                  m.isCoreSix
+                    ? 'bg-emerald-50 text-emerald-800 border-emerald-200/80'
+                    : 'bg-amber-50 text-amber-900 border-amber-200/80'
+                }`}>
+                  {m.tripParticipation}
+                </span>
               </div>
 
               <p className="text-xs text-slate-600 leading-relaxed mt-2.5">

@@ -28,7 +28,7 @@ interface TripContextType {
   resetToDefaults: () => void;
 }
 
-const STORAGE_KEY = 'ixhuatan_trip_data_v8';
+const STORAGE_KEY = 'ixhuatan_trip_data_v9';
 
 const sanitizeSantaMaria = (data: TripDataState): TripDataState => {
   const jsonStr = JSON.stringify(data);
@@ -37,7 +37,7 @@ const sanitizeSantaMaria = (data: TripDataState): TripDataState => {
     .replace(/San\+Juan\+Ixhuatan/g, 'Santa+Maria+Ixhuatan');
   const sanitized = JSON.parse(fixedStr) as TripDataState;
   
-  // Guarantee base destination always has Santa María Ixhuatán and merge rich placesToVisit if needed
+  // Guarantee base destination always has Santa María Ixhuatán and sync coordinates for Los Amates
   if (sanitized.destinations) {
     sanitized.destinations = sanitized.destinations.map(d => {
       const initialD = initialDestinations.find(init => init.id === d.id);
@@ -58,9 +58,41 @@ const sanitizeSantaMaria = (data: TripDataState): TripDataState => {
           wazeUrl: 'https://waze.com/ul?q=Santa+Maria+Ixhuatan'
         };
       }
+      if (d.id === 'los-amates') {
+        const initialAmates = initialDestinations.find(init => init.id === 'los-amates');
+        if (initialAmates) {
+          return {
+            ...d,
+            coordinates: initialAmates.coordinates,
+            googleMapsUrl: initialAmates.googleMapsUrl,
+            wazeUrl: initialAmates.wazeUrl,
+            roadQuality: initialAmates.roadQuality,
+            region: initialAmates.region,
+            regionEn: initialAmates.regionEn,
+          };
+        }
+      }
       return d;
     });
   }
+
+  // Guarantee options have crewSummary & seniorNotes synced
+  if (sanitized.options) {
+    sanitized.options = sanitized.options.map(opt => {
+      const initOpt = initialTripState.options.find(o => o.id === opt.id);
+      if (initOpt) {
+        return {
+          ...opt,
+          crewSummary: initOpt.crewSummary,
+          crewSummaryEn: initOpt.crewSummaryEn,
+          seniorNotes: initOpt.seniorNotes,
+          seniorNotesEn: initOpt.seniorNotesEn,
+        };
+      }
+      return opt;
+    });
+  }
+
   return sanitized;
 };
 
@@ -70,7 +102,7 @@ export const TripProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [state, setState] = useState<TripDataState>(() => {
     try {
       // Purge all legacy localStorage keys to eradicate old cached strings
-      ['ixhuatan_trip_data_v1', 'ixhuatan_trip_data_v2', 'ixhuatan_trip_data_v3', 'ixhuatan_trip_data_v4', 'ixhuatan_trip_data_v5', 'ixhuatan_trip_data_v6', 'ixhuatan_trip_data_v7'].forEach(key => {
+      ['ixhuatan_trip_data_v1', 'ixhuatan_trip_data_v2', 'ixhuatan_trip_data_v3', 'ixhuatan_trip_data_v4', 'ixhuatan_trip_data_v5', 'ixhuatan_trip_data_v6', 'ixhuatan_trip_data_v7', 'ixhuatan_trip_data_v8'].forEach(key => {
         try { localStorage.removeItem(key); } catch {}
       });
 

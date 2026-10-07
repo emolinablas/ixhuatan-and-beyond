@@ -1,5 +1,5 @@
 import React from 'react';
-import { ThumbsUp, Check, Baby, Heart, ShieldCheck, AlertCircle, Sparkles, MapPin } from 'lucide-react';
+import { ThumbsUp, Check, Baby, Heart, ShieldCheck, AlertCircle, Sparkles, MapPin, Users } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 import { useTrip } from '../../context/TripContext';
 import { TripOption } from '../../types/trip';
@@ -38,7 +38,7 @@ export const OptionsComparator: React.FC<OptionsComparatorProps> = ({ onSelectDe
         )}
 
         {/* Title & Tagline */}
-        <div className="mt-1 mb-4">
+        <div className="mt-1 mb-3">
           <div className="flex items-center justify-between gap-2">
             <span className="text-xs font-bold text-emerald-700 bg-emerald-100/80 px-2.5 py-0.5 rounded-lg">
               📅 {language === 'es' ? option.dateRange : option.dateRangeEn}
@@ -55,6 +55,19 @@ export const OptionsComparator: React.FC<OptionsComparatorProps> = ({ onSelectDe
             {language === 'es' ? option.tagline : option.taglineEn}
           </p>
         </div>
+
+        {/* Traveling Crew */}
+        {option.crewSummary && (
+          <div className="p-3 rounded-2xl bg-indigo-50/70 border border-indigo-200/70 text-xs mb-3 space-y-1">
+            <div className="font-bold text-indigo-950 flex items-center gap-1.5">
+              <Users className="w-4 h-4 text-indigo-600 shrink-0" />
+              <span>{language === 'es' ? '👥 Pasajeros / Tripulantes:' : '👥 Traveling Crew:'}</span>
+            </div>
+            <p className="text-indigo-900/90 text-[11px] leading-relaxed">
+              {language === 'es' ? option.crewSummary : option.crewSummaryEn}
+            </p>
+          </div>
+        )}
 
         {/* Drive & Road Comfort */}
         <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200/80 text-xs mb-4 space-y-1">

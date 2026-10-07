@@ -50,13 +50,14 @@ const ROUTE_DEFINITIONS: RouteDefinition[] = [
       [-90.4833, 13.8833], // Monterrico
       [-90.3800, 14.1000],
       [-90.2708, 14.1906], // Ixhuatán
-      [-90.3167, 14.2333], // Cataratas Los Amates
-      [-90.2708, 14.1906]  // Ixhuatán
+      [-90.2450, 14.1200], // Descenso rural hacia Río Margaritas
+      [-90.2135, 14.0515], // Cataratas Los Amates (El Salto)
+      [-90.2708, 14.1906]  // Retorno Ixhuatán
     ],
-    totalTime: '1h 50m a playa',
+    totalTime: '1h 50m a playa • 1h a cascadas',
     totalDistance: '92 km',
-    roadQuality: 'Carretera asfaltada en buen estado hacia la costa',
-    roadQualityEn: 'Paved highway in good condition toward coast',
+    roadQuality: 'Carretera asfaltada hacia playa; terracería 4x4 hacia cataratas',
+    roadQualityEn: 'Paved highway toward coast; unpaved 4x4 trail to waterfall',
     stopIds: ['ixhuatan', 'monterrico', 'los-amates'],
     segments: [
       {
@@ -70,12 +71,12 @@ const ROUTE_DEFINITIONS: RouteDefinition[] = [
       },
       {
         from: 'Santa María Ixhuatán',
-        to: 'Cataratas Los Amates',
-        time: '45m',
-        distance: '18 km',
-        notes: 'Carretera local de montaña. Acceso a anfiteatro de cascada virgen.',
-        notesEn: 'Local mountain route. Access to pristine waterfall canyon.',
-        coordinates: [-90.29, 14.21]
+        to: 'Cataratas Los Amates (El Salto)',
+        time: '1h 00m (4x4)',
+        distance: '22 km',
+        notes: 'Descenso hacia el cañón del Río Margaritas. Tramo final de terracería y cruces de río que requiere vehículo 4x4.',
+        notesEn: 'Descent toward Río Margaritas canyon. Final dirt road and river crossings requiring 4x4 vehicle.',
+        coordinates: [-90.23, 14.10]
       }
     ]
   },

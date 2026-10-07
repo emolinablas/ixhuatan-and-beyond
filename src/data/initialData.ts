@@ -95,31 +95,32 @@ export const initialDestinations: TripDestination[] = [
   },
   {
     id: 'los-amates',
-    name: 'Cataratas Los Amates',
-    nameEn: 'Los Amates Waterfalls',
-    region: 'Ixhuatán, Santa Rosa',
-    regionEn: 'Ixhuatán, Santa Rosa',
-    coordinates: [-90.3167, 14.2333],
+    name: 'Cataratas Los Amates (El Salto)',
+    nameEn: 'Los Amates Waterfalls (El Salto)',
+    region: 'San Juan Tecuaco / Santa Rosa',
+    regionEn: 'San Juan Tecuaco / Santa Rosa',
+    coordinates: [-90.2135, 14.0515], // Coordenada real OpenStreetMap: 14.0515389° N, -90.2135500° W (Río Margaritas)
     stayDuration: 'Excursión de día (22 Nov)',
     stayDurationEn: 'Day Excursion (Nov 22)',
-    description: 'Impresionante caída de agua natural de más de 35 metros rodeada de exuberante vegetación y pozas de agua cristalina.',
-    descriptionEn: 'Breathtaking 115-foot natural cascade surrounded by lush tropical jungle and pristine fresh-water pools.',
+    description: 'Impresionante caída de agua natural de más de 35 a 50 metros sobre el cañón del Río Margaritas, rodeada de cañones de piedra y pozas de agua cristalina.',
+    descriptionEn: 'Monumental 115-to-160 foot natural cascading waterfalls over the Río Margaritas river canyon, with pristine freshwater pools.',
     imageUrl: 'https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?auto=format&fit=crop&w=800&q=80',
-    googleMapsUrl: 'https://maps.google.com/?q=Cataratas+Los+Amates+Santa+Rosa+Guatemala',
+    googleMapsUrl: 'https://maps.google.com/?q=14.051539,-90.213550',
+    wazeUrl: 'https://waze.com/ul?ll=14.051539,-90.213550&navigate=yes',
     climate: 'temperate',
-    driveHoursFromIxhuatan: 0.8,
-    roadQuality: 'mixed_curves',
+    driveHoursFromIxhuatan: 1.0,
+    roadQuality: 'rough_4x4',
     babyFriendlyScore: 3,
     seniorFriendlyScore: 3,
-    highlights: ['Catarata virgen monumental', 'Pozas naturales refrescantes', 'Orgullo natural de Ixhuatán'],
-    highlightsEn: ['Towering pristine waterfall', 'Refreshing mountain pools', 'Ixhuatán natural treasure'],
+    highlights: ['El Niágara de Guatemala (35-50m)', 'Pozas naturales de agua fresca', 'Cañón del Río Margaritas en 4x4'],
+    highlightsEn: ['Guatemala’s Niagara (115-160ft)', 'Refreshing natural river pools', 'Río Margaritas canyon 4x4 adventure'],
     placesToVisit: [
-      { id: 'p-amat-1', name: 'Anfiteatro de la Catarata Principal', nameEn: 'Main Waterfall Basin', description: 'La majestuosa cortina de agua de 35 metros con brisa refrescante.' },
-      { id: 'p-amat-2', name: 'Pozas de Baño Naturales', nameEn: 'Natural River Pools', description: 'Pozas de agua tibia cristalina rodeadas de cañones de piedra.' },
-      { id: 'p-amat-3', name: 'Área de Picnic Campestre', nameEn: 'Riverside Country Picnic Area', description: 'Sombra natural perfecta para almorzar en familia con música suave.' }
+      { id: 'p-amat-1', name: 'Anfiteatro de la Catarata Principal', nameEn: 'Main Waterfall Basin', description: 'La majestuosa cortina de agua de más de 35 metros con brisa refrescante.' },
+      { id: 'p-amat-2', name: 'Pozas de Baño Naturales', nameEn: 'Natural River Pools', description: 'Pozas de agua cristalina ideales para refrescarse rodeadas de cañones de roca.' },
+      { id: 'p-amat-3', name: 'Área de Picnic Campestre', nameEn: 'Riverside Country Picnic Area', description: 'Sombra natural perfecta para almorzar en familia a la orilla del río.' }
     ],
     intermediateStops: [
-      { id: 'i-amat-1', name: 'Sendero rural de Santa María Ixhuatán', nameEn: 'Scenic Rural Country Road', description: 'Paso por fincas ganaderas y cafetaleras con vistas a las montañas.', driveTimeBadge: '⏱️ 35 min en auto' }
+      { id: 'i-amat-1', name: 'Ruta 4x4 y cruces de río hacia El Salto', nameEn: '4x4 Trail & River Crossings to Falls', description: 'Descenso rural por terracería hacia la Aldea El Zapote y cañón del río.', driveTimeBadge: '⏱️ 45 min en 4x4' }
     ]
   },
   {
@@ -360,6 +361,8 @@ export const initialOptions: TripOption[] = [
     durationDays: 6,
     destinations: ['ruta-flores', 'coatepeque'],
     isRecommendedForFamily: true,
+    crewSummary: 'Grupo familiar completo (10 personas): Ever, Cori, Isabella, Emily (7 meses), Jonchito, Lidia, Doña Isabel, Nely, Bruce y Norma.',
+    crewSummaryEn: 'Full family crew (10 people): Ever, Cori, Isabella, Emily (7 months), Jonchito, Lidia, Isabel, Nely, Bruce & Norma.',
     pros: [
       'Trayecto muy cercano desde Ixhuatán (solo 2 - 2.5 horas hasta Ataco).',
       'Excelente estado de carreteras completamente asfaltadas.',
@@ -400,6 +403,8 @@ export const initialOptions: TripOption[] = [
     durationDays: 6,
     destinations: ['chiquimula', 'rio-dulce'],
     isRecommendedForFamily: true,
+    crewSummary: 'Grupo familiar completo (10 personas): Ever, Cori, Isabella, Emily (7 meses), Jonchito, Lidia, Doña Isabel, Nely, Bruce y Norma.',
+    crewSummaryEn: 'Full family crew (10 people): Ever, Cori, Isabella, Emily (7 months), Jonchito, Lidia, Isabel, Nely, Bruce & Norma.',
     pros: [
       'La noche intermedia en Chiquimula (Grand Caporal) divide el trayecto perfectamente.',
       'Hacienda Tijax es una joya comprobada: cabañas sobre la selva, piscina y marina.',
@@ -439,6 +444,8 @@ export const initialOptions: TripOption[] = [
     dateRangeEn: 'Nov 25 – Nov 30 (6 days)',
     durationDays: 6,
     destinations: ['ruta-flores', 'chiquimula', 'rio-dulce'],
+    crewSummary: 'Grupo familiar completo (10 personas): Ever, Cori, Isabella, Emily (7 meses), Jonchito, Lidia, Doña Isabel, Nely, Bruce y Norma.',
+    crewSummaryEn: 'Full family crew (10 people): Ever, Cori, Isabella, Emily (7 months), Jonchito, Lidia, Isabel, Nely, Bruce & Norma.',
     pros: [
       'Permite saborear un poco de ambos destinos en un solo itinerario.',
       'Variedad de climas y paisajes.'
@@ -477,6 +484,8 @@ export const initialOptions: TripOption[] = [
     durationDays: 4,
     destinations: ['atitlan', 'antigua'],
     isRecommendedForFamily: true,
+    crewSummary: 'Grupo de 6 personas: Solo Ever, Cori, Isabella, bebé Emily, Bruce y Norma. (Jonchito, Lidia, Doña Isabel y Nely descansan en el hogar en Ixhuatán).',
+    crewSummaryEn: 'Core crew of 6: Only Ever, Cori, Isabella, baby Emily, Bruce & Norma. (Remaining family rests at home in Ixhuatán).',
     pros: [
       'Carretera 100% asfaltada y trayectos moderados (2.5 a 3.5 hrs).',
       'Bruce y Norma expresaron inclinación por esta opción ("easier for Cori and Emily").',
@@ -499,8 +508,8 @@ export const initialOptions: TripOption[] = [
     driveSummaryEn: 'Ixhuatán -> Antigua (2.4 hrs) -> Panajachel (2 hrs). Very comfortable.',
     babyNotes: 'Muy cómoda para Emily. Usar portabebé ergonómico en las calles empedradas de Antigua.',
     babyNotesEn: 'Extremely comfortable for Emily. Baby carrier recommended for Antigua cobblestones.',
-    seniorNotes: 'Perfecto para personas de 60-75 años. Hoteles accesibles, paseos tranquilos y jardines floridos.',
-    seniorNotesEn: 'Perfect for ages 60-75. Accessible grounds, peaceful boat ride, zero strenuous climbs.',
+    seniorNotes: 'Diseñado para el confort de Bruce y Norma (en sus 70s): paseos planos en Casa Santo Domingo y San Juan La Laguna, lancha tranquila y sin caminatas extenuantes.',
+    seniorNotesEn: 'Tailored for Bruce & Norma’s comfort (in their 70s): flat gardens at Casa Santo Domingo, gentle boat to San Juan, and zero strenuous climbs.',
     votes: 0
   },
   {
@@ -514,6 +523,8 @@ export const initialOptions: TripOption[] = [
     dateRangeEn: 'Dec 3 (evening) – Dec 7 (4 nights / 4 days)',
     durationDays: 4,
     destinations: ['semuc'],
+    crewSummary: 'Grupo de 6 personas: Solo Ever, Cori, Isabella, bebé Emily, Bruce y Norma. (Jonchito, Lidia, Doña Isabel y Nely descansan en el hogar en Ixhuatán).',
+    crewSummaryEn: 'Core crew of 6: Only Ever, Cori, Isabella, baby Emily, Bruce & Norma. (Remaining family rests at home in Ixhuatán).',
     pros: [
       'Uno de los monumentos naturales más asombrosos del planeta.',
       'Agua cristalina templada para nadar en pozas escalonadas.'
@@ -536,8 +547,8 @@ export const initialOptions: TripOption[] = [
     driveSummaryEn: '7.5+ hours driving with bumpy unpaved 4x4 sections.',
     babyNotes: 'Duro para una bebé de 7 meses por la vibración del 4x4 y calor húmedo.',
     babyNotesEn: 'Challenging for 7-month baby due to bumpy 4x4 pickup ride and humidity.',
-    seniorNotes: 'Exige alta movilidad en escalones de roca húmedos; puede fatigar a personas de 70+.',
-    seniorNotesEn: 'Demands high agility on wet rock stairs; likely fatiguing for travelers in their 70s.',
+    seniorNotes: 'Muy exigente para Bruce y Norma (en sus 70s): trayecto largo, escalones húmedos resbaladizos y 45 min en pick-up 4x4 sobre terracería ruda.',
+    seniorNotesEn: 'Extremely demanding for Bruce & Norma (in their 70s): lengthy drive, wet slippery limestone stairs, and a rough 45-min bumpy 4x4 pickup ride.',
     votes: 0
   }
 ];
@@ -1131,8 +1142,8 @@ export const initialDays: DayPlan[] = [
     date: '2026-12-03',
     dateFormatted: 'Jue, 03 Dic',
     dateFormattedEn: 'Thu, Dec 03',
-    title: 'Salida por la noche hacia la Escapada de Diciembre',
-    titleEn: 'Evening departure for December Getaway',
+    title: 'Salida por la noche hacia la Escapada de Diciembre (Grupo de 6)',
+    titleEn: 'Evening departure for December Getaway (Core Crew of 6)',
     locationId: 'antigua',
     locationName: 'Ixhuatán -> Antigua / Destino',
     phase: 'december',
@@ -1143,8 +1154,8 @@ export const initialDays: DayPlan[] = [
         timeLabel: '18:30',
         title: 'Salida nocturna para evitar tráfico',
         titleEn: 'Evening drive avoiding city traffic',
-        description: 'Viaje fresco y tranquilo hacia Antigua Guatemala para pasar la primera noche.',
-        descriptionEn: 'Cool, pleasant night drive up into the highlands to overnight in colonial Antigua.',
+        description: 'Viaje fresco y tranquilo hacia Antigua Guatemala para pasar la primera noche. Grupo de viaje (6 personas): Ever, Cori, Isabella, bebé Emily, Bruce y Norma. Los abuelos Jonchito, Lidia, Doña Isabel y Nely se quedan descansando cómodamente en casa en Santa María Ixhuatán.',
+        descriptionEn: 'Cool, pleasant night drive up into the highlands to overnight in colonial Antigua. Travel crew (6 people): Ever, Cori, Isabella, baby Emily, Bruce, and Norma. Grandparents Jonchito, Lidia, Isabel, and Nely remain relaxing comfortably at home in Santa María Ixhuatán.',
         tag: 'logistics'
       }
     ]
@@ -1254,10 +1265,10 @@ export const initialDays: DayPlan[] = [
     date: '2026-12-07',
     dateFormatted: 'Lun, 07 Dic',
     dateFormattedEn: 'Mon, Dec 07',
-    title: 'Despedida del Altiplano y regreso a Ixhuatán',
-    titleEn: 'Farewell to Highlands & return home to Ixhuatán',
+    title: 'Despedida del Altiplano y regreso a Santa María Ixhuatán',
+    titleEn: 'Farewell to Highlands & return home to Santa María Ixhuatán',
     locationId: 'ixhuatan',
-    locationName: 'Atitlán -> Ixhuatán',
+    locationName: 'Atitlán -> Santa María Ixhuatán',
     isKeyMilestone: true,
     milestoneBadge: '🏡 Regreso a Base',
     milestoneBadgeEn: '🏡 Back to Base',
@@ -1269,8 +1280,8 @@ export const initialDays: DayPlan[] = [
         timeLabel: '10:30',
         title: 'Desayuno frente al lago y viaje de regreso a Santa Rosa',
         titleEn: 'Lakefront breakfast & return journey to Santa Rosa',
-        description: 'Retorno seguro y cómodo hacia Ixhuatán.',
-        descriptionEn: 'Safe, smooth drive back down to Ixhuatán for the final restful days.',
+        description: 'Retorno seguro y cómodo hacia Santa María Ixhuatán para reencontrarse con Jonchito, Lidia, Doña Isabel y Nely para los días finales de descanso y convivencia.',
+        descriptionEn: 'Safe, smooth drive back down to Santa María Ixhuatán to reunite with Jonchito, Lidia, Isabel, and Nely for the final restful days together.',
         tag: 'logistics'
       }
     ]

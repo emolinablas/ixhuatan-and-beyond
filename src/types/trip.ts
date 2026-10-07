@@ -63,6 +63,8 @@ export interface TripOption {
   durationDays: number;
   destinations: string[]; // destination IDs
   isRecommendedForFamily?: boolean;
+  crewSummary?: string;
+  crewSummaryEn?: string;
   pros: string[];
   prosEn: string[];
   considerations: string[];
