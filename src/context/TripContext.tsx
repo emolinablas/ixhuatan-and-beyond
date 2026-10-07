@@ -28,7 +28,7 @@ interface TripContextType {
   resetToDefaults: () => void;
 }
 
-const STORAGE_KEY = 'ixhuatan_trip_data_v9';
+const STORAGE_KEY = 'ixhuatan_trip_data_v10';
 
 const sanitizeSantaMaria = (data: TripDataState): TripDataState => {
   const jsonStr = JSON.stringify(data);
@@ -76,8 +76,15 @@ const sanitizeSantaMaria = (data: TripDataState): TripDataState => {
     });
   }
 
-  // Guarantee options have crewSummary & seniorNotes synced
+  // Guarantee options have crewSummary, destinations & all latest options merged
   if (sanitized.options) {
+    const existingIds = new Set(sanitized.options.map(o => o.id));
+    initialTripState.options.forEach(initOpt => {
+      if (!existingIds.has(initOpt.id)) {
+        sanitized.options.push(initOpt);
+      }
+    });
+
     sanitized.options = sanitized.options.map(opt => {
       const initOpt = initialTripState.options.find(o => o.id === opt.id);
       if (initOpt) {
@@ -87,6 +94,15 @@ const sanitizeSantaMaria = (data: TripDataState): TripDataState => {
           crewSummaryEn: initOpt.crewSummaryEn,
           seniorNotes: initOpt.seniorNotes,
           seniorNotesEn: initOpt.seniorNotesEn,
+          title: initOpt.title,
+          titleEn: initOpt.titleEn,
+          tagline: initOpt.tagline,
+          taglineEn: initOpt.taglineEn,
+          pros: initOpt.pros,
+          prosEn: initOpt.prosEn,
+          considerations: initOpt.considerations,
+          considerationsEn: initOpt.considerationsEn,
+          destinations: initOpt.destinations,
         };
       }
       return opt;
@@ -102,7 +118,7 @@ export const TripProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [state, setState] = useState<TripDataState>(() => {
     try {
       // Purge all legacy localStorage keys to eradicate old cached strings
-      ['ixhuatan_trip_data_v1', 'ixhuatan_trip_data_v2', 'ixhuatan_trip_data_v3', 'ixhuatan_trip_data_v4', 'ixhuatan_trip_data_v5', 'ixhuatan_trip_data_v6', 'ixhuatan_trip_data_v7', 'ixhuatan_trip_data_v8'].forEach(key => {
+      ['ixhuatan_trip_data_v1', 'ixhuatan_trip_data_v2', 'ixhuatan_trip_data_v3', 'ixhuatan_trip_data_v4', 'ixhuatan_trip_data_v5', 'ixhuatan_trip_data_v6', 'ixhuatan_trip_data_v7', 'ixhuatan_trip_data_v8', 'ixhuatan_trip_data_v9'].forEach(key => {
         try { localStorage.removeItem(key); } catch {}
       });
 

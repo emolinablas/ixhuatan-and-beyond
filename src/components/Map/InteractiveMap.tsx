@@ -311,6 +311,73 @@ const ROUTE_DEFINITIONS: RouteDefinition[] = [
         coordinates: [-90.15, 15.50]
       }
     ]
+  },
+  {
+    id: 'opt-december-hibrido',
+    name: 'Diciembre: Opción C (Híbrido: Atitlán & Semuc Champey)',
+    nameEn: 'December: Option C (Hybrid: Atitlán & Semuc Champey)',
+    phase: 'december',
+    color: '#9333ea', // Purple
+    lineCoordinates: [
+      [-90.2708, 14.1906], // Santa María Ixhuatán
+      [-90.4500, 14.3500],
+      [-90.7333, 14.5586], // Antigua Guatemala
+      [-90.9500, 14.6500], // Tecpán / Chimaltenango
+      [-91.2000, 14.7333], // Panajachel / Lago de Atitlán
+      [-90.9500, 14.6500], // Retorno Chimaltenango
+      [-90.3500, 14.6500], // CA-9 Norte Atlántico bypass
+      [-90.0500, 14.9000], // El Rancho
+      [-90.2500, 15.2500], // Purulhá
+      [-90.3708, 15.4708], // Cobán
+      [-89.9622, 15.5342], // Semuc Champey & Lanquín
+      [-90.3708, 15.4708], // Retorno Cobán
+      [-90.0500, 14.9000], // El Rancho
+      [-90.3500, 14.6500],
+      [-90.2708, 14.1906]  // Retorno Santa María Ixhuatán
+    ],
+    totalTime: '13h 30m acumuladas de carretera',
+    totalDistance: '620 km',
+    roadQuality: 'Combinación de autopistas asfaltadas, curvas de montaña y terracería 4x4',
+    roadQualityEn: 'Mix of smooth highways, winding mountain curves, and bumpy 4x4 dirt trails',
+    stopIds: ['ixhuatan', 'antigua', 'atitlan', 'semuc'],
+    segments: [
+      {
+        from: 'Santa María Ixhuatán',
+        to: 'Antigua Guatemala & Lago de Atitlán',
+        time: '4h 15m',
+        distance: '190 km',
+        notes: 'Paso por Antigua Guatemala y ascenso panorámico al Lago de Atitlán con vistas a los volcanes.',
+        notesEn: 'Pass through colonial Antigua and scenic ascent to Lake Atitlán volcano views.',
+        coordinates: [-90.85, 14.60]
+      },
+      {
+        from: 'Lago de Atitlán',
+        to: 'Cobán (Alta Verapaz)',
+        time: '5h 30m',
+        distance: '240 km',
+        notes: 'Travesía transversal cruzando hacia el norte por El Rancho y los bosques nubosos de Purulhá.',
+        notesEn: 'Cross-country journey heading north via El Rancho and Purulhá cloud forests.',
+        coordinates: [-90.50, 15.05]
+      },
+      {
+        from: 'Cobán',
+        to: 'Semuc Champey & Lanquín',
+        time: '2h 00m',
+        distance: '65 km (4x4)',
+        notes: 'Descenso en pick-up 4x4 por camino empinado de terracería hacia las pozas turquesas.',
+        notesEn: 'Bumpy 4x4 pickup ride down steep gravel road to limestone turquoise pools.',
+        coordinates: [-90.15, 15.50]
+      },
+      {
+        from: 'Semuc Champey',
+        to: 'Santa María Ixhuatán (Retorno)',
+        time: '6h 45m',
+        distance: '335 km',
+        notes: 'Retorno seguro hacia el sur por la Carretera al Atlántico CA-9 Norte hacia Santa Rosa.',
+        notesEn: 'Direct return drive south via CA-9 North highway back down to Santa Rosa.',
+        coordinates: [-90.20, 14.80]
+      }
+    ]
   }
 ];
 
@@ -435,6 +502,8 @@ export const InteractiveMap: React.FC = () => {
           isDimmed = !['ixhuatan', 'antigua', 'atitlan'].includes(dest.id);
         } else if (activeRouteFilter === 'opt-december-semuc-antigua') {
           isDimmed = !['ixhuatan', 'semuc'].includes(dest.id);
+        } else if (activeRouteFilter === 'opt-december-hibrido') {
+          isDimmed = !['ixhuatan', 'antigua', 'atitlan', 'semuc'].includes(dest.id);
         } else if (activeRouteFilter === 'route-base-pacific') {
           isDimmed = !['ixhuatan', 'monterrico', 'los-amates', 'aeropuerto'].includes(dest.id);
         }
@@ -806,6 +875,18 @@ export const InteractiveMap: React.FC = () => {
                 🚤 {language === 'es' ? 'Thanksgiving: Río Dulce' : 'Thanksgiving: Río Dulce'}
               </button>
 
+              {/* Thanksgiving: Option 3 Híbrido */}
+              <button
+                onClick={() => handleSelectRouteFilter('opt-thanksgiving-hibrido')}
+                className={`px-3 py-1 rounded-xl text-xs font-bold whitespace-nowrap transition-all ${
+                  activeRouteFilter === 'opt-thanksgiving-hibrido'
+                    ? 'bg-violet-600 text-white shadow-sm'
+                    : 'text-slate-700 hover:bg-violet-50'
+                }`}
+              >
+                🔀 {language === 'es' ? 'Thanksgiving: Híbrido' : 'Thanksgiving: Hybrid'}
+              </button>
+
               {/* December: Option A Atitlán & Antigua */}
               <button
                 onClick={() => handleSelectRouteFilter('opt-december-atitlan-antigua')}
@@ -828,6 +909,18 @@ export const InteractiveMap: React.FC = () => {
                 }`}
               >
                 🌿 {language === 'es' ? 'Dic: Semuc Champey' : 'Dec: Semuc Champey'}
+              </button>
+
+              {/* December: Option C Híbrido Atitlán & Semuc */}
+              <button
+                onClick={() => handleSelectRouteFilter('opt-december-hibrido')}
+                className={`px-3 py-1 rounded-xl text-xs font-bold whitespace-nowrap transition-all ${
+                  activeRouteFilter === 'opt-december-hibrido'
+                    ? 'bg-purple-600 text-white shadow-sm'
+                    : 'text-slate-700 hover:bg-purple-50'
+                }`}
+              >
+                ✨ {language === 'es' ? 'Dic: Híbrido (Atitlán + Semuc)' : 'Dec: Hybrid (Atitlán + Semuc)'}
               </button>
             </div>
 

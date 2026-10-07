@@ -550,6 +550,47 @@ export const initialOptions: TripOption[] = [
     seniorNotes: 'Muy exigente para Bruce y Norma (en sus 70s): trayecto largo, escalones húmedos resbaladizos y 45 min en pick-up 4x4 sobre terracería ruda.',
     seniorNotesEn: 'Extremely demanding for Bruce & Norma (in their 70s): lengthy drive, wet slippery limestone stairs, and a rough 45-min bumpy 4x4 pickup ride.',
     votes: 0
+  },
+  {
+    id: 'opt-december-hibrido',
+    phase: 'december',
+    title: 'Opción C: Gran Ruta Híbrida (Atitlán, Antigua & Semuc Champey)',
+    titleEn: 'Option C: Grand Hybrid Circuit (Atitlán, Antigua & Semuc Champey)',
+    tagline: 'Lo mejor de dos mundos: la magia volcánica del lago y las pozas turquesas en la selva',
+    taglineEn: 'The best of both worlds: volcanic lake vistas and pristine turquoise jungle pools',
+    dateRange: '3 Dic (noche) – 7 Dic (4 noches / 4 días)',
+    dateRangeEn: 'Dec 3 (evening) – Dec 7 (4 nights / 4 days)',
+    durationDays: 4,
+    destinations: ['atitlan', 'antigua', 'semuc'],
+    crewSummary: 'Grupo de 6 personas: Solo Ever, Cori, Isabella, bebé Emily, Bruce y Norma. (Jonchito, Lidia, Doña Isabel y Nely descansan en el hogar en Ixhuatán).',
+    crewSummaryEn: 'Core crew of 6: Only Ever, Cori, Isabella, baby Emily, Bruce & Norma. (Remaining family rests at home in Ixhuatán).',
+    pros: [
+      'Permite experimentar la diversidad geográfica total de Guatemala: altiplano y selva kárstica.',
+      'Visita los dos monumentos naturales más famosos del país en un solo itinerario.',
+      'Paseo escénico en lancha en Lago de Atitlán más baño en las pozas turquesas de Semuc Champey.'
+    ],
+    prosEn: [
+      'Experience Guatemala’s entire natural spectrum: volcanic highlands and lush karst jungle.',
+      'Visit the two most legendary natural wonders of the country in one grand adventure.',
+      'Private scenic boat cruise on Lake Atitlán plus swimming in Semuc’s tiered turquoise pools.'
+    ],
+    considerations: [
+      'Itinerario muy exigente en carretera (~13+ horas acumuladas en vehículo).',
+      'Cambios frecuentes de hospedaje (Antigua / Panajachel / Cobán / Lanquín).',
+      'Tramo rudo en pick-up 4x4 de terracería hacia Semuc Champey.'
+    ],
+    considerationsEn: [
+      'Very demanding road schedule (~13+ total cumulative hours driving).',
+      'Frequent packing and hotel transitions across highlands and rainforest.',
+      'Rough, bumpy 4x4 pickup stretch on unpaved gravel road into Semuc.'
+    ],
+    driveSummary: 'Circuito amplio: Ixhuatán ➔ Antigua/Atitlán (4h) ➔ Cobán (5.5h) ➔ Semuc (2h 4x4) ➔ Ixhuatán (6.5h).',
+    driveSummaryEn: 'Extensive circuit: Ixhuatán ➔ Antigua/Atitlán (4h) ➔ Cobán (5.5h) ➔ Semuc (2h 4x4) ➔ Ixhuatán (6.5h).',
+    babyNotes: 'Muy pesado para la bebé Emily (7 meses) por las largas horas sentada en el carro y cambios térmicos.',
+    babyNotesEn: 'Heavy toll on 7-month Emily due to extensive car-seat time and varying temperature swings.',
+    seniorNotes: 'Alta exigencia física para Bruce y Norma (en sus 70s): muchas horas de carretera con curvas de montaña, caminos rústicos y caminatas en roca húmeda.',
+    seniorNotesEn: 'High physical stamina needed for Bruce & Norma (in their 70s): lengthy winding drives, bumpy 4x4 trails, and slick wet limestone surfaces.',
+    votes: 0
   }
 ];
 
