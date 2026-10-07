@@ -288,8 +288,8 @@ const ROUTE_DEFINITIONS: RouteDefinition[] = [
     ],
     totalTime: '7h 30m de trayecto',
     totalDistance: '340 km',
-    roadQuality: 'Carretera con muchas curvas y tramo final de terracería en pick-up 4x4',
-    roadQualityEn: 'Winding mountain curves & rough unpaved 4x4 pickup final stretch',
+    roadQuality: 'Carretera asfaltada (tramo Lanquín-Semuc pavimentado con concreto hidráulico), pero con fuertes pendientes >20%',
+    roadQualityEn: 'Paved highway (Lanquín-Semuc stretch newly paved with concrete), but with steep 20%+ mountain grades',
     stopIds: ['ixhuatan', 'semuc'],
     segments: [
       {
@@ -305,9 +305,9 @@ const ROUTE_DEFINITIONS: RouteDefinition[] = [
         from: 'Cobán',
         to: 'Semuc Champey & Lanquín',
         time: '2h 00m',
-        distance: '65 km (4x4)',
-        notes: 'Tramo de curvas pronunciadas y terracería empinada en pick-up 4x4 hasta las pozas turquesas.',
-        notesEn: 'Steep gravel road with bumpy 4x4 ride down into the limestone river valley.',
+        distance: '65 km',
+        notes: 'Descenso con curvas pronunciadas y pavimento de concreto hidráulico reciente con pendientes fuertes hasta las pozas turquesas.',
+        notesEn: 'Descent with sharp curves and recently completed hydraulic concrete pavement with steep grades down to the turquoise pools.',
         coordinates: [-90.15, 15.50]
       }
     ]
@@ -337,8 +337,8 @@ const ROUTE_DEFINITIONS: RouteDefinition[] = [
     ],
     totalTime: '13h 30m acumuladas de carretera',
     totalDistance: '620 km',
-    roadQuality: 'Combinación de autopistas asfaltadas, curvas de montaña y terracería 4x4',
-    roadQualityEn: 'Mix of smooth highways, winding mountain curves, and bumpy 4x4 dirt trails',
+    roadQuality: 'Combinación de autopistas asfaltadas y concreto hidráulico, con curvas de montaña y 13+ horas de manejo',
+    roadQualityEn: 'Mix of smooth highways and hydraulic concrete pavement, with mountain switchbacks and 13+ hours driving',
     stopIds: ['ixhuatan', 'antigua', 'atitlan', 'semuc'],
     segments: [
       {

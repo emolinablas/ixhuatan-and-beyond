@@ -28,7 +28,7 @@ interface TripContextType {
   resetToDefaults: () => void;
 }
 
-const STORAGE_KEY = 'ixhuatan_trip_data_v11';
+const STORAGE_KEY = 'ixhuatan_trip_data_v12';
 
 const sanitizeSantaMaria = (data: TripDataState): TripDataState => {
   const jsonStr = JSON.stringify(data);
@@ -42,35 +42,12 @@ const sanitizeSantaMaria = (data: TripDataState): TripDataState => {
     sanitized.destinations = sanitized.destinations.map(d => {
       const initialD = initialDestinations.find(init => init.id === d.id);
       if (initialD) {
-        if (!d.placesToVisit || d.placesToVisit.length === 0) {
-          d.placesToVisit = initialD.placesToVisit;
-        }
-        if (!d.intermediateStops || d.intermediateStops.length === 0) {
-          d.intermediateStops = initialD.intermediateStops;
-        }
-      }
-      if (d.id === 'ixhuatan') {
         return {
           ...d,
-          name: 'Santa María Ixhuatán (Base)',
-          nameEn: 'Santa María Ixhuatán (Home Base)',
-          googleMapsUrl: 'https://maps.google.com/?q=Santa+Maria+Ixhuatan+Santa+Rosa+Guatemala',
-          wazeUrl: 'https://waze.com/ul?q=Santa+Maria+Ixhuatan'
+          ...initialD,
+          placesToVisit: initialD.placesToVisit,
+          intermediateStops: initialD.intermediateStops
         };
-      }
-      if (d.id === 'los-amates') {
-        const initialAmates = initialDestinations.find(init => init.id === 'los-amates');
-        if (initialAmates) {
-          return {
-            ...d,
-            coordinates: initialAmates.coordinates,
-            googleMapsUrl: initialAmates.googleMapsUrl,
-            wazeUrl: initialAmates.wazeUrl,
-            roadQuality: initialAmates.roadQuality,
-            region: initialAmates.region,
-            regionEn: initialAmates.regionEn,
-          };
-        }
       }
       return d;
     });
@@ -94,6 +71,10 @@ const sanitizeSantaMaria = (data: TripDataState): TripDataState => {
           crewSummaryEn: initOpt.crewSummaryEn,
           seniorNotes: initOpt.seniorNotes,
           seniorNotesEn: initOpt.seniorNotesEn,
+          babyNotes: initOpt.babyNotes,
+          babyNotesEn: initOpt.babyNotesEn,
+          driveSummary: initOpt.driveSummary,
+          driveSummaryEn: initOpt.driveSummaryEn,
           title: initOpt.title,
           titleEn: initOpt.titleEn,
           tagline: initOpt.tagline,
@@ -106,6 +87,16 @@ const sanitizeSantaMaria = (data: TripDataState): TripDataState => {
         };
       }
       return opt;
+    });
+  }
+
+  // Guarantee packing items include newly added urgent checklist items
+  if (sanitized.packingItems) {
+    const existingPackIds = new Set(sanitized.packingItems.map(p => p.id));
+    initialTripState.packingItems.forEach(initPack => {
+      if (!existingPackIds.has(initPack.id)) {
+        sanitized.packingItems.unshift(initPack);
+      }
     });
   }
 
@@ -132,7 +123,7 @@ export const TripProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [state, setState] = useState<TripDataState>(() => {
     try {
       // Purge all legacy localStorage keys to eradicate old cached strings
-      ['ixhuatan_trip_data_v1', 'ixhuatan_trip_data_v2', 'ixhuatan_trip_data_v3', 'ixhuatan_trip_data_v4', 'ixhuatan_trip_data_v5', 'ixhuatan_trip_data_v6', 'ixhuatan_trip_data_v7', 'ixhuatan_trip_data_v8', 'ixhuatan_trip_data_v9', 'ixhuatan_trip_data_v10'].forEach(key => {
+      ['ixhuatan_trip_data_v1', 'ixhuatan_trip_data_v2', 'ixhuatan_trip_data_v3', 'ixhuatan_trip_data_v4', 'ixhuatan_trip_data_v5', 'ixhuatan_trip_data_v6', 'ixhuatan_trip_data_v7', 'ixhuatan_trip_data_v8', 'ixhuatan_trip_data_v9', 'ixhuatan_trip_data_v10', 'ixhuatan_trip_data_v11'].forEach(key => {
         try { localStorage.removeItem(key); } catch {}
       });
 

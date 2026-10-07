@@ -132,26 +132,29 @@ export const initialDestinations: TripDestination[] = [
     coordinates: [-89.8486, 13.8703],
     stayDuration: 'Parte de Opción El Salvador (25 - 30 Nov)',
     stayDurationEn: 'Part of El Salvador Option (Nov 25 - 30)',
-    description: 'Pueblos coloniales coloridos, murales vibrantes, clima fresco de montaña, plantaciones de café y calles adoquinadas. Muy seguro y a corta distancia de la frontera.',
-    descriptionEn: 'Charming colonial mountain towns, vibrant murals, crisp highland air, world-class coffee estates, and gentle cobblestone streets. Very close to the border.',
+    description: 'Pueblos coloniales coloridos, murales vibrantes, clima fresco de montaña, plantaciones de café y casonas históricas llanas. Hospedaje estelar en Casa Degraciela: 100% en planta baja sin gradas, ideal para los 10.',
+    descriptionEn: 'Charming colonial mountain towns, vibrant murals, crisp highland air, coffee estates, and gentle ground-floor historic manors. Stellar stay at Casa Degraciela: 100% single-level with zero stairs, ideal for all 10.',
     imageUrl: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=800&q=80',
     googleMapsUrl: 'https://maps.google.com/?q=Concepcion+de+Ataco+El+Salvador',
     wazeUrl: 'https://waze.com/ul?q=Concepcion+de+Ataco',
+    lodgingName: 'Casa Degraciela Hotel Boutique (Ataco)',
+    lodgingUrl: 'https://maps.google.com/?q=Casa+Degraciela+Concepcion+de+Ataco',
     climate: 'highland_cool',
-    driveHoursFromIxhuatan: 2.3,
+    driveHoursFromIxhuatan: 3.2,
     roadQuality: 'paved_smooth',
-    babyFriendlyScore: 4,
-    seniorFriendlyScore: 4,
-    highlights: ['Murales artísticos de Ataco', 'Cafeterías de especialidad', 'Termales de Santa Teresa'],
-    highlightsEn: ['Artistic murals of Ataco', 'Specialty coffee shops', 'Santa Teresa natural hot springs'],
+    babyFriendlyScore: 5,
+    seniorFriendlyScore: 5,
+    highlights: ['Casa Degraciela 100% en planta baja', 'Murales artísticos de Ataco', 'Termales de Santa Teresa (36-38°C)'],
+    highlightsEn: ['Casa Degraciela 100% single floor', 'Artistic murals of Ataco', 'Santa Teresa thermal pools (36-38°C)'],
     placesToVisit: [
-      { id: 'p-ataco-1', name: 'Termales de Santa Teresa (Ahuachapán)', nameEn: 'Santa Teresa Geothermal Hot Springs', description: 'Aguas termales minerales tibias y piscinas relajantes. Muy suave y seguro para los abuelos y la bebé.', googleMapsUrl: 'https://maps.google.com/?q=Termales+de+Santa+Teresa+Ahuachapan' },
+      { id: 'p-ataco-degraciela', name: 'Casa Degraciela Hotel Boutique', nameEn: 'Casa Degraciela Boutique Hotel', description: 'Casona colonial histórica de 150 años, 100% en planta baja sin gradas, jardines llanos y privacidad total para 10 personas.', googleMapsUrl: 'https://maps.google.com/?q=Casa+Degraciela+Concepcion+de+Ataco' },
+      { id: 'p-ataco-1', name: 'Termales de Santa Teresa (Ahuachapán)', nameEn: 'Santa Teresa Geothermal Hot Springs', description: 'Aguas termales minerales tibias con acceso vehicular directo hasta las piscinas principales y pasamanos seguros.', googleMapsUrl: 'https://maps.google.com/?q=Termales+de+Santa+Teresa+Ahuachapan' },
       { id: 'p-ataco-2', name: 'Pueblo Colonial de Concepción de Ataco', nameEn: 'Concepción de Ataco Historic Center', description: 'Caminar por calles con murales pintados a mano, tiendas de telares en telar de palanca y cafeterías.', googleMapsUrl: 'https://maps.google.com/?q=Concepcion+de+Ataco+El+Salvador' },
       { id: 'p-ataco-3', name: 'Laberinto de Albania (Apaneca)', nameEn: 'Albania Cypress Labyrinth', description: 'El laberinto vegetal más grande de Centroamérica, miradores y columpio panorámico.', googleMapsUrl: 'https://maps.google.com/?q=Cafe+Albania+Apaneca' },
-      { id: 'p-ataco-4', name: 'Juayúa & Chorros de la Calera', nameEn: 'Juayúa & Waterfalls', description: 'Pueblo vecino famoso por su feria gastronómica de fin de semana.' }
+      { id: 'p-ataco-4', name: 'Finca El Carmen Estate (Ataco)', nameEn: 'El Carmen Coffee Estate', description: 'Beneficio tradicional de café con patios de secado completamente planos y degustación de café con vista panorámica.' }
     ],
     intermediateStops: [
-      { id: 'i-ataco-1', name: 'Paso Fronterizo Valle Nuevo / Las Chinamas', nameEn: 'Valle Nuevo Border Crossing', description: 'Trámite migratorio ágil con pasaporte / DPI. Puente internacional sobre el río Paz.', driveTimeBadge: '⏱️ 1h 45m desde Ixhuatán' },
+      { id: 'i-ataco-1', name: 'Paso Fronterizo Valle Nuevo / Las Chinamas', nameEn: 'Valle Nuevo Border Crossing', description: 'Trámite migratorio: Bruce y Norma pagan $12 USD en efectivo (Tarjeta de Turismo). Emily e Isabella requieren pasaporte vigente. Alternativa ágil: Frontera San Cristóbal.', driveTimeBadge: '⏱️ 1h 45m desde Ixhuatán' },
       { id: 'i-ataco-2', name: 'Ahuachapán (Mirador y Parque)', nameEn: 'Ahuachapán Town Square', description: 'Parada para cambio de moneda si se requiere o probar pupusas salvadoreñas.' }
     ]
   },
@@ -164,20 +167,21 @@ export const initialDestinations: TripDestination[] = [
     coordinates: [-89.5539, 13.8697],
     stayDuration: 'Paseo & Almuerzo Panorámico',
     stayDurationEn: 'Scenic Cruise & Lakeside Dining',
-    description: 'Espectacular lago en el cráter de un volcán con aguas azul turquesa, restaurantes sobre terrazas de madera y paseos tranquilos en lancha o pontón.',
-    descriptionEn: 'Stunning volcanic crater lake with turquoise-blue waters, delightful overwater deck restaurants, and gentle boat cruises.',
+    description: 'Espectacular lago en el cráter de un volcán con aguas azul turquesa. Cardedeu Bistro y La Pampa ofrecen terrazas superiores con vistas increíbles para la cena de Acción de Gracias.',
+    descriptionEn: 'Stunning volcanic crater lake with turquoise-blue waters. Cardedeu Bistro and La Pampa offer upper deck lakefront panoramas ideal for Thanksgiving feast.',
     imageUrl: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=800&q=80',
     googleMapsUrl: 'https://maps.google.com/?q=Lago+de+Coatepeque+El+Salvador',
+    lodgingName: 'Cardedeu Residence / Villas del Lago',
     climate: 'temperate',
-    driveHoursFromIxhuatan: 3.2,
+    driveHoursFromIxhuatan: 3.5,
     roadQuality: 'paved_smooth',
     babyFriendlyScore: 5,
     seniorFriendlyScore: 5,
-    highlights: ['Vistas increíbles al volcán', 'Almuerzo en terraza lacustre', 'Excelente para abuelos y bebé'],
-    highlightsEn: ['Spectacular volcano panoramas', 'Overwater dining', 'Gentle for seniors and baby'],
+    highlights: ['Cena de Acción de Gracias frente al volcán', 'Terrazas superiores junto al parqueo', 'Paseo suave en pontón techado'],
+    highlightsEn: ['Thanksgiving feast with volcano views', 'Upper decks adjacent to parking', 'Gentle covered pontoon cruise'],
     placesToVisit: [
-      { id: 'p-coat-1', name: 'Restaurante Cardedeu / Rancho Alegre', nameEn: 'Cardedeu / Rancho Alegre Lakeside Dining', description: 'Terrazas de madera directamente sobre el agua con vista panorámica al volcán.', googleMapsUrl: 'https://maps.google.com/?q=Cardedeu+Residence+Lago+Coatepeque' },
-      { id: 'p-coat-2', name: 'Paseo en Pontón Privado', nameEn: 'Private Scenic Pontoon Cruise', description: 'Paseo suave y sentado alrededor de la isla Teopán por aguas calmas de color turquesa.' },
+      { id: 'p-coat-1', name: 'Cardedeu Bistro / La Pampa Coatepeque', nameEn: 'Cardedeu Bistro / La Pampa Lakeside Dining', description: 'Terrazas techadas en el nivel superior contiguas al parqueo (evitando escalinatas hacia el agua). Vista panorámica insuperable al volcán para la cena festiva.', googleMapsUrl: 'https://maps.google.com/?q=Cardedeu+Residence+Lago+Coatepeque' },
+      { id: 'p-coat-2', name: 'Paseo en Pontón Privado Techado', nameEn: 'Private Covered Pontoon Cruise', description: 'Paseo suave, plano y sentado alrededor de la isla Teopán por aguas calmas de color turquesa.' },
       { id: 'p-coat-3', name: 'Mirador de la Carretera Panorámica', nameEn: 'Crater Rim Scenic Overlook', description: 'Punto alto para fotos de toda la caldera volcánica.' }
     ],
     intermediateStops: [
@@ -217,28 +221,29 @@ export const initialDestinations: TripDestination[] = [
   },
   {
     id: 'rio-dulce',
-    name: 'Río Dulce & Hacienda Tijax',
-    nameEn: 'Río Dulce & Hacienda Tijax',
+    name: 'Río Dulce & Nana Juana Marina',
+    nameEn: 'Río Dulce & Nana Juana Marina',
     region: 'Izabal, Guatemala',
     regionEn: 'Izabal, Guatemala',
     coordinates: [-89.0028, 15.6547],
     stayDuration: '3 Noches en Paraíso Ecológico',
     stayDurationEn: '3 Nights Eco-Paradise Stay',
-    description: 'Selva tropical exuberante, canales navegables, Castillo de San Felipe y cabañas ecológicas en Hacienda Tijax con senderos de madera sobre el agua, piscina y marina privada.',
-    descriptionEn: 'Lush tropical jungle, calm winding waterways, 17th-century Spanish fort, and Hacienda Tijax eco-lodges with wooden boardwalks over wetlands, pool, and marina.',
+    description: 'Selva tropical exuberante, canales navegables y Castillo de San Felipe. Nana Juana Marina ofrece caminerías 100% planas de concreto ideales para carriola y abuelos, suites con A/C potente y piscina tipo laguna. (Alternativa rústica: Hacienda Tijax con senderos de madera sobre humedales).',
+    descriptionEn: 'Lush tropical jungle, calm winding waterways, and San Felipe fortress. Nana Juana Marina offers 100% flat concrete walkways ideal for strollers and seniors, robust A/C, and lagoon pool. (Rustic alternative: Hacienda Tijax eco-lodges with raised boardwalks).',
     imageUrl: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80',
-    googleMapsUrl: 'https://maps.google.com/?q=Hacienda+Tijax+Eco+Lodge+Marina+Rio+Dulce',
-    lodgingName: 'Hacienda Tijax Ecolodge & Marina',
-    lodgingUrl: 'https://maps.google.com/?q=Hacienda+Tijax+Eco+Lodge+Marina+Rio+Dulce',
+    googleMapsUrl: 'https://maps.google.com/?q=Nana+Juana+Marina+Hotel+Rio+Dulce',
+    lodgingName: 'Nana Juana Marina & Resort (o Hacienda Tijax)',
+    lodgingUrl: 'https://maps.google.com/?q=Nana+Juana+Marina+Hotel+Rio+Dulce',
     climate: 'jungle_hot',
-    driveHoursFromIxhuatan: 6.2,
+    driveHoursFromIxhuatan: 7.5,
     roadQuality: 'paved_smooth',
     babyFriendlyScore: 4,
     seniorFriendlyScore: 4,
-    highlights: ['Tour en lancha por el Cañón', 'Castillo de San Felipe', 'Livingston y cultura garífuna'],
-    highlightsEn: ['Río Dulce Canyon boat tour', 'San Felipe Spanish Fortress', 'Livingston Garifuna culture'],
+    highlights: ['Caminerías planas y A/C en Nana Juana', 'Paseo privado en lancha por el Cañón', 'Castillo colonial de San Felipe de Lara'],
+    highlightsEn: ['Flat concrete paths & A/C at Nana Juana', 'Private boat cruise through the canyon', 'San Felipe historic Spanish fort'],
     placesToVisit: [
-      { id: 'p-rio-1', name: 'Hacienda Tijax Ecolodge', nameEn: 'Hacienda Tijax Nature Reserve', description: 'Senderos de pasarelas de madera sobre los humedales, avistamiento de aves, piscina y marina.', googleMapsUrl: 'https://maps.google.com/?q=Hacienda+Tijax+Eco+Lodge+Marina+Rio+Dulce' },
+      { id: 'p-rio-1', name: 'Nana Juana Marina & Resort', nameEn: 'Nana Juana Marina & Resort', description: 'Caminerías planas de concreto, suites con excelente A/C, piscina tipo laguna y marina privada. Máxima comodidad para carriola y abuelos.', googleMapsUrl: 'https://maps.google.com/?q=Nana+Juana+Marina+Hotel+Rio+Dulce' },
+      { id: 'p-rio-1b', name: 'Hacienda Tijax Ecolodge (Visita / Almuerzo)', nameEn: 'Hacienda Tijax Nature Reserve & Dining', description: 'Senderos de pasarelas de madera sobre humedales, avistamiento de aves y almuerzo rústico selvático.', googleMapsUrl: 'https://maps.google.com/?q=Hacienda+Tijax+Eco+Lodge+Marina+Rio+Dulce' },
       { id: 'p-rio-2', name: 'Castillo de San Felipe de Lara', nameEn: 'San Felipe Spanish Fortress (1651)', description: 'Fortaleza histórica con cañones españoles protegiendo la entrada del Lago de Izabal contra piratas.', googleMapsUrl: 'https://maps.google.com/?q=Castillo+de+San+Felipe+de+Lara' },
       { id: 'p-rio-3', name: 'Cañón de Río Dulce en Lancha Techada', nameEn: 'Río Dulce Canyon Private Boat Tour', description: 'Navegar entre acantilados de roca kárstica de 100m cubiertos de bromelias y enredaderas gigantes.' },
       { id: 'p-rio-4', name: 'Livingston & Cultura Garífuna', nameEn: 'Livingston Garifuna Coastal Village', description: 'Pueblo afrocaribeño accesible solo por agua. Probar el delicioso Tapado y pan de coco.', googleMapsUrl: 'https://maps.google.com/?q=Livingston+Izabal' },
@@ -258,23 +263,24 @@ export const initialDestinations: TripDestination[] = [
     coordinates: [-90.7333, 14.5586],
     stayDuration: '1 - 2 Noches / Escapada',
     stayDurationEn: '1 - 2 Nights / Getaway',
-    description: 'Joya colonial Patrimonio de la Humanidad UNESCO. Calles empedradas, iglesias barrocas, vistas a los volcanes de Agua y Fuego, cafés de clase mundial y Museo Casa Santo Domingo.',
-    descriptionEn: 'UNESCO World Heritage colonial jewel. Cobblestone avenues, baroque ruins, Agua & Fuego volcano backdrops, world-class coffee shops, and Casa Santo Domingo Museum.',
+    description: 'Joya colonial Patrimonio de la Humanidad UNESCO. Calles empedradas, iglesias barrocas y vistas a volcanes. Conexión rápida desde Ixhuatán vía autopista VAS (~2h 15m) y Hotel Casa Santo Domingo con rampas suaves 100% accesibles.',
+    descriptionEn: 'UNESCO World Heritage colonial jewel. Cobblestone avenues, baroque ruins, and volcano views. Quick night drive from Ixhuatán via VAS bypass (~2h 15m) and Hotel Casa Santo Domingo with 100% gentle ramp accessibility.',
     imageUrl: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=80',
     googleMapsUrl: 'https://maps.google.com/?q=Antigua+Guatemala',
     wazeUrl: 'https://waze.com/ul?q=Antigua+Guatemala',
-    lodgingName: 'Hotel Casa Santo Domingo / Posada Boutique',
+    lodgingName: 'Hotel Museo Casa Santo Domingo',
+    lodgingUrl: 'https://maps.google.com/?q=Hotel+Museo+Casa+Santo+Domingo',
     climate: 'highland_cool',
-    driveHoursFromIxhuatan: 2.4,
+    driveHoursFromIxhuatan: 2.25,
     roadQuality: 'paved_smooth',
     babyFriendlyScore: 4,
     seniorFriendlyScore: 5,
-    highlights: ['Arco de Santa Catalina', 'Cerro de la Cruz accesible', 'Santo Domingo jardines y museos'],
-    highlightsEn: ['Santa Catalina Arch', 'Accessible Cerro de la Cruz viewpoint', 'Santo Domingo gardens & museums'],
+    highlights: ['Arco de Santa Catalina', 'Cerro de la Cruz accesible', 'Casa Santo Domingo con rampas suaves'],
+    highlightsEn: ['Santa Catalina Arch', 'Accessible Cerro de la Cruz viewpoint', 'Casa Santo Domingo gentle ramps'],
     placesToVisit: [
       { id: 'p-ant-1', name: 'Calle del Arco & Arco de Santa Catalina', nameEn: 'Santa Catalina Arch Landmark', description: 'La postal icónica de Guatemala con el Volcán de Agua al fondo y carruajes coloniales.', googleMapsUrl: 'https://maps.google.com/?q=Santa+Catalina+Arch+Antigua' },
       { id: 'p-ant-2', name: 'Cerro de la Cruz (Mirador Remodelado)', nameEn: 'Cerro de la Cruz Accessible Viewpoint', description: 'Nuevo paseo con rampas amplias de madera 100% accesibles para carriola de bebé y personas mayores.', googleMapsUrl: 'https://maps.google.com/?q=Cerro+de+la+Cruz+Antigua+Guatemala' },
-      { id: 'p-ant-3', name: 'Hotel Museo Casa Santo Domingo', nameEn: 'Casa Santo Domingo Museum & Gardens', description: 'Antiguo convento dominico convertido en museo de arte colonial, jardines con guacamayas y paseos llanos.', googleMapsUrl: 'https://maps.google.com/?q=Hotel+Museo+Casa+Santo+Domingo' },
+      { id: 'p-ant-3', name: 'Hotel Museo Casa Santo Domingo', nameEn: 'Casa Santo Domingo Museum & Gardens', description: 'Antiguo convento dominico convertido en museo de arte colonial, jardines con guacamayas y 100% rampas accesibles para carriola y abuelos.', googleMapsUrl: 'https://maps.google.com/?q=Hotel+Museo+Casa+Santo+Domingo' },
       { id: 'p-ant-4', name: 'Parque Central & Fuente de las Sirenas', nameEn: 'Central Plaza & Mermaid Fountain', description: 'Corazón de la ciudad colonial rodeado de palacios y sombra fresca de árboles centenarios.' }
     ],
     intermediateStops: [
@@ -291,22 +297,23 @@ export const initialDestinations: TripDestination[] = [
     coordinates: [-91.2000, 14.7333],
     stayDuration: '2 - 3 Noches',
     stayDurationEn: '2 - 3 Nights',
-    description: 'Considerado el lago más bello del mundo. Rodeado por 3 volcanes majestuosos y pueblos mayas tz’utujil y kaqchikel con telares artesanales, galerías y senderos floridos.',
-    descriptionEn: 'Revered as the most beautiful lake on Earth. Framed by 3 majestic volcanoes and Mayan villages rich in handwoven textiles, art galleries, and vibrant coffee culture.',
+    description: 'Considerado el lago más bello del mundo. Rodeado por 3 volcanes majestuosos. Hotel Atitlán ofrece jardines botánicos planos y piscina climatizada al aire libre (esencial ante los vientos frescos del Xocomil de diciembre).',
+    descriptionEn: 'Revered as the most beautiful lake on Earth. Framed by 3 majestic volcanoes. Hotel Atitlán features flat botanical gardens and a heated outdoor pool (vital against brisk December Xocomil winds).',
     imageUrl: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=800&q=80',
     googleMapsUrl: 'https://maps.google.com/?q=Panajachel+Lake+Atitlan+Guatemala',
     wazeUrl: 'https://waze.com/ul?q=Panajachel+Guatemala',
-    lodgingName: 'Hotel Atitlán / Porta Hotel del Lago',
+    lodgingName: 'Hotel Atitlán (Jardines & Piscina Climatizada)',
+    lodgingUrl: 'https://maps.google.com/?q=Hotel+Atitlan+Panajachel',
     climate: 'highland_cool',
     driveHoursFromIxhuatan: 4.0,
     roadQuality: 'paved_smooth',
     babyFriendlyScore: 5,
     seniorFriendlyScore: 5,
-    highlights: ['Jardines botánicos en Panajachel', 'Lancha privada a San Juan La Laguna', 'Mirador Kaqasiiwan con rampas'],
-    highlightsEn: ['Panajachel botanical gardens', 'Private scenic boat to San Juan', 'Kaqasiiwan gentle walkway'],
+    highlights: ['Jardines botánicos y piscina climatizada', 'Lancha privada a San Juan La Laguna', 'Tuc-tuc en muelle para cero esfuerzo'],
+    highlightsEn: ['Botanical gardens & heated pool', 'Private scenic boat to San Juan', 'Tuc-tuc at dock for effortless access'],
     placesToVisit: [
-      { id: 'p-atit-1', name: 'Jardines Botánicos de Hotel Atitlán (Panajachel)', nameEn: 'Hotel Atitlán Lakefront Botanical Gardens', description: 'Jardines de rosas, orquídeas y azaleas con pavos reales junto a la orilla del lago.', googleMapsUrl: 'https://maps.google.com/?q=Hotel+Atitlan+Panajachel' },
-      { id: 'p-atit-2', name: 'San Juan La Laguna (Cooperativa de Tejedoras)', nameEn: 'San Juan Mayan Weaving Cooperative', description: 'Demostración de hilado de algodón natural y tintes orgánicos con cortezas y plantas.', googleMapsUrl: 'https://maps.google.com/?q=San+Juan+La+Laguna' },
+      { id: 'p-atit-1', name: 'Jardines Botánicos & Piscina Climatizada (Hotel Atitlán)', nameEn: 'Hotel Atitlán Botanical Gardens & Heated Pool', description: 'Jardines de rosas, orquídeas y pavos reales con caminerías planas junto al lago y piscina climatizada exterior.', googleMapsUrl: 'https://maps.google.com/?q=Hotel+Atitlan+Panajachel' },
+      { id: 'p-atit-2', name: 'San Juan La Laguna (Cooperativa de Tejedoras)', nameEn: 'San Juan Mayan Weaving Cooperative', description: 'Demostración de hilado y tintes orgánicos. Tip clave: tomar tuc-tuc en el muelle (Q5-Q10) para subir cómodamente a la cooperativa sin subir la cuesta a pie.', googleMapsUrl: 'https://maps.google.com/?q=San+Juan+La+Laguna' },
       { id: 'p-atit-3', name: 'Taller de Chocolate y Miel Maya de Abeja Melipona', nameEn: 'Artisanal Cacao & Melipona Honey Tour', description: 'Degustación de chocolate ceremonial y propiedades medicinales de la miel maya sin aguijón.' },
       { id: 'p-atit-4', name: 'Santa Catarina Palopó (Casas Azules)', nameEn: 'Santa Catarina Palopó Painted Village', description: 'Pueblo pintoresco donde las familias decoraron sus fachadas con motivos de güipiles tradicionales.' }
     ],
@@ -324,17 +331,18 @@ export const initialDestinations: TripDestination[] = [
     coordinates: [-89.9622, 15.5342],
     stayDuration: 'Opción de Aventura (Cobán)',
     stayDurationEn: 'Adventure Option (Cobán)',
-    description: 'Monumento natural de terrazas escalonadas de caliza con pozas de agua turquesa sobre el río Cahabón subterráneo. Naturaleza virgen impresionante.',
-    descriptionEn: 'A natural limestone bridge forming turquoise cascading pools perched above the subterranean Cahabón river. True virgin jungle splendor.',
+    description: 'Monumento natural con pozas de agua turquesa sobre el río Cahabón subterráneo. ACTUALIZACIÓN DE RUTA: La carretera Lanquín-Semuc (~12 km) fue pavimentada recientemente con concreto hidráulico (ya no es terracería de piedras), aunque conserva pendientes empinadas (+20%) y curvas estrechas. Dentro del parque, el mirador tiene más de 450 gradas y la roca caliza mojada es muy resbaladiza. Atención médica: hospital de Cobán a 3.5 - 4 horas.',
+    descriptionEn: 'Natural limestone bridge with cascading turquoise pools. ROUTE UPDATE: The 12 km Lanquín-Semuc road was recently paved with hydraulic concrete (no longer rough gravel), but features steep 20%+ mountain gradients and narrow turns. Inside the reserve, the overlook has 450+ stairs and wet limestone is extremely slippery. Nearest hospital in Cobán is 3.5 - 4h away.',
     imageUrl: 'https://images.unsplash.com/photo-1508672019048-805b876b67e2?auto=format&fit=crop&w=800&q=80',
     googleMapsUrl: 'https://maps.google.com/?q=Semuc+Champey+Lanquin+Guatemala',
+    lodgingName: 'Hotel Park Cobán / Guayaha Lanquín (Familiar)',
     climate: 'jungle_hot',
     driveHoursFromIxhuatan: 7.5,
-    roadQuality: 'rough_4x4',
+    roadQuality: 'mixed_curves',
     babyFriendlyScore: 2,
     seniorFriendlyScore: 2,
-    highlights: ['Pozas turquesas naturales', 'Grutas de Lanquín', 'Selva tropical intacta'],
-    highlightsEn: ['Natural turquoise pools', 'Lanquín sacred bat caves', 'Untouched tropical rainforest'],
+    highlights: ['Pozas turquesas naturales', 'Carretera Lanquín-Semuc pavimentada con concreto', 'Aviso: caliza resbaladiza y 4h a hospital'],
+    highlightsEn: ['Natural turquoise pools', 'Lanquín-Semuc road paved with concrete', 'Caution: slippery limestone & 4h to hospital'],
     placesToVisit: [
       { id: 'p-sem-1', name: 'Pozas Turquesas Naturales de Semuc Champey', nameEn: 'Semuc Champey Turquoise Cascades', description: 'Terrazas naturales de piedra caliza con agua tibia cristalina que se escalonan en piscinas naturales.', googleMapsUrl: 'https://maps.google.com/?q=Semuc+Champey' },
       { id: 'p-sem-2', name: 'Grutas Sagradas de Lanquín', nameEn: 'Lanquín Sacred Bat Caverns', description: 'Caverna iluminada por donde emerge un río subterráneo sagrado maya.', googleMapsUrl: 'https://maps.google.com/?q=Grutas+de+Lanquin' },
@@ -354,8 +362,8 @@ export const initialOptions: TripOption[] = [
     phase: 'thanksgiving',
     title: 'Opción 1: El Salvador (Ruta de las Flores & Coatepeque)',
     titleEn: 'Option 1: El Salvador (Ruta de las Flores & Lake Coatepeque)',
-    tagline: 'Viaje corto en carretera, pueblos coloridos, termales y vistas al lago',
-    taglineEn: 'Short drive, colorful towns, thermal springs, and volcanic lake dining',
+    tagline: 'Casona histórica 100% plana en Ataco, termales suaves y banquete frente al lago volcánico',
+    taglineEn: 'Historic zero-stair manor in Ataco, thermal springs & scenic volcanic lake feast',
     dateRange: '25 Nov (tarde) – 30 Nov (6 días / 5 noches)',
     dateRangeEn: 'Nov 25 (afternoon) – Nov 30 (6 days / 5 nights)',
     durationDays: 6,
@@ -364,40 +372,44 @@ export const initialOptions: TripOption[] = [
     crewSummary: 'Grupo familiar completo (10 personas): Ever, Cori, Isabella, Emily (7 meses), Jonchito, Lidia, Doña Isabel, Nely, Bruce y Norma.',
     crewSummaryEn: 'Full family crew (10 people): Ever, Cori, Isabella, Emily (7 months), Jonchito, Lidia, Isabel, Nely, Bruce & Norma.',
     pros: [
-      'Trayecto muy cercano desde Ixhuatán (solo 2 - 2.5 horas hasta Ataco).',
-      'Excelente estado de carreteras completamente asfaltadas.',
-      'Clima fresco en la montaña y aguas termales tibias para relajar el cuerpo.',
-      'Hermosos restaurantes con vistas al Lago de Coatepeque para el almuerzo/cena de Thanksgiving.'
+      'Trayecto más corto y cómodo desde Ixhuatán (solo 2h 15m a 2.5h hasta Ataco en carretera CA-8 asfaltada).',
+      'Hospedaje ideal en Casa Degraciela (Ataco): casona de 150 años, 100% en planta baja sin gradas, jardines llanos y total privacidad para la familia.',
+      'Cena de Acción de Gracias inolvidable en Cardedeu Bistro (Lago Coatepeque), utilizando la terraza superior contigua al estacionamiento (sin escaleras al lago).',
+      'Aguas termales en Santa Teresa con acceso vehicular directo hasta las piscinas para los abuelos y la bebé.',
+      'Clima primaveral fresco de montaña (18°C - 24°C) sin calor sofocante ni humedad pesada.'
     ],
     prosEn: [
-      'Very close drive from Ixhuatán (only 2 - 2.5 hours to Ataco).',
-      'Smooth, well-paved highways throughout the route.',
-      'Crisp pleasant mountain climate & warm soothing thermal baths.',
-      'Stunning lakeview restaurants for Thanksgiving feast at Lake Coatepeque.'
+      'Shortest and easiest drive from Ixhuatán (only 2h 15m to 2.5h to Ataco on smooth CA-8 highway).',
+      'Ideal boutique lodging at Casa Degraciela (Ataco): 150-year-old manor, 100% ground floor with 0 stairs, flat lawns and total privacy.',
+      'Memorable Thanksgiving dinner at Cardedeu Bistro (Lake Coatepeque) on upper terrace next to parking (avoiding steep lake staircases).',
+      'Thermal mineral springs at Santa Teresa with direct vehicular drop-off at pools for seniors and baby.',
+      'Pleasant highland spring weather (64°F - 75°F) with no sweltering heat or heavy humidity.'
     ],
     considerations: [
-      'Trámite migratorio en frontera terrestre (muy rápido con DPI / Pasaportes).',
-      'Moneda en El Salvador es el Dólar Estadounidense ($ USD).'
+      '⚠️ TRÁMITE URGENTE: Emily (7 meses) requiere tramitar su primer pasaporte e Isabella renovación inmediata en IGM Guatemala.',
+      'Bruce y Norma deben pagar $12 USD en efectivo exacto en ventanilla salvadoreña por la Tarjeta de Turismo.',
+      'Moneda oficial en El Salvador es el Dólar Estadounidense ($ USD en billetes limpios).'
     ],
     considerationsEn: [
-      'Land border crossing checkpoint (fast with passports).',
-      'Currency in El Salvador is official US Dollar ($ USD).'
+      '⚠️ URGENT PASSPORTS: Emily (7 months) needs her first passport and Isabella needs renewal at IGM Guatemala.',
+      'Bruce & Norma must pay $12 USD in exact cash at El Salvador immigration for the Tourist Card.',
+      'Official currency in El Salvador is the US Dollar ($ USD, crisp bills recommended).'
     ],
-    driveSummary: 'Aprox. 2 horas 15 min desde Ixhuatán. Poco cansancio para la familia.',
-    driveSummaryEn: 'Approx. 2 hours 15 min from Ixhuatán. Low driving fatigue.',
-    babyNotes: 'Ideal para Emily de 7 meses. Poca carretera, buen clima sin calor sofocante, hoteles con cunas y accesibilidad.',
-    babyNotesEn: 'Ideal for 7-month-old Emily. Minimal car time, pleasant temperature, comfortable hotels with cribs.',
-    seniorNotes: 'Excelente para Bruce, Norma, Isabel, Jonchito y Lidia. Termales relajantes en Santa Teresa y caminos planos.',
-    seniorNotesEn: 'Superb for Bruce, Norma, Isabel, Jonchito & Lidia. Gentle strolls and relaxing thermal pools.',
+    driveSummary: 'Aprox. 2h 15m a 2.5h desde Ixhuatán. Carretera internacional CA-8 100% asfaltada.',
+    driveSummaryEn: 'Approx. 2h 15m to 2.5h from Ixhuatán. 100% smooth paved international CA-8 highway.',
+    babyNotes: 'Excelente para Emily (7 meses): viaje corto en auto, clima fresco templado, hospedaje 100% en una sola planta con cunas y paseos planos en carriola.',
+    babyNotesEn: 'Superb for 7-month Emily: short drive, mild temperate weather, 100% single-story lodging with cribs, and flat stroller walks.',
+    seniorNotes: 'Insuperable para Bruce, Norma, Jonchito, Lidia e Isabel: sin escaleras en Casa Degraciela, termales con acceso en auto y terrazas planas con vista al lago.',
+    seniorNotesEn: 'Unbeatable comfort for Bruce, Norma, Jonchito, Lidia & Isabel: zero stairs at Casa Degraciela, drive-up thermal pools, and flat lakeview decks.',
     votes: 0
   },
   {
     id: 'opt-thanksgiving-riodulce',
     phase: 'thanksgiving',
-    title: 'Opción 2: Río Dulce & Chiquimula (Hacienda Tijax)',
-    titleEn: 'Option 2: Río Dulce & Chiquimula (Hacienda Tijax)',
-    tagline: 'Noche en Grand Caporal, paraíso ecológico en Tijax, lancha y Castillo San Felipe',
-    taglineEn: 'Stopover at Grand Caporal, Tijax eco-paradise, river boat tour & fortress',
+    title: 'Opción 2: Río Dulce & Chiquimula (Nana Juana Marina)',
+    titleEn: 'Option 2: Río Dulce & Chiquimula (Nana Juana Marina)',
+    tagline: 'Respaldo nacional 100% sin pasaportes, descanso en Grand Caporal, lancha por el cañón y marina plana',
+    taglineEn: '100% domestic backup requiring NO passports, Grand Caporal stopover, canyon boat cruise & flat marina',
     dateRange: '25 Nov (tarde) – 30 Nov (6 días / 5 noches)',
     dateRangeEn: 'Nov 25 (afternoon) – Nov 30 (6 days / 5 nights)',
     durationDays: 6,
@@ -406,40 +418,44 @@ export const initialOptions: TripOption[] = [
     crewSummary: 'Grupo familiar completo (10 personas): Ever, Cori, Isabella, Emily (7 meses), Jonchito, Lidia, Doña Isabel, Nely, Bruce y Norma.',
     crewSummaryEn: 'Full family crew (10 people): Ever, Cori, Isabella, Emily (7 months), Jonchito, Lidia, Isabel, Nely, Bruce & Norma.',
     pros: [
-      'La noche intermedia en Chiquimula (Grand Caporal) divide el trayecto perfectamente.',
-      'Hacienda Tijax es una joya comprobada: cabañas sobre la selva, piscina y marina.',
-      'Paseo privado en lancha por el Cañón de Río Dulce hacia Livingston es inolvidable.',
-      'Bruce y Norma confirmaron que les encanta la idea de que la familia conozca Río Dulce.'
+      '¡VENTAJA NACIONAL INMEDIATA: No requiere pasaportes ni trámites de frontera! Si los pasaportes de las niñas se retrasan, este viaje se realiza sin contratiempos.',
+      'Hospedaje de alta accesibilidad en Nana Juana Marina: caminerías de concreto liso para carriola y abuelos, A/C potente y piscina tipo laguna.',
+      'Noche intermedia en Chiquimula (Grand Caporal) divide el trayecto perfectamente con piscina y restaurante de carnes.',
+      'Paseo privado en lancha techada por el Cañón de Río Dulce hacia Livingston es un espectáculo natural irrepetible.',
+      'Bruce y Norma confirmaron gran entusiasmo por conocer el Caribe y los ríos tropicales de Guatemala.'
     ],
     prosEn: [
-      'Midway overnight at Grand Caporal in Chiquimula breaks up the drive comfortably.',
-      'Hacienda Tijax is a beloved retreat: jungle boardwalks, pool, marina & wildlife.',
-      'Private boat tour through Río Dulce Gorge to Livingston is a world-class experience.',
-      'Bruce & Norma expressed great excitement for the family to experience Río Dulce.'
+      'ZERO-PASSPORT DOMESTIC ADVANTAGE: 100% within Guatemala with no border lines! If girls\' passports encounter delays, this trip runs stress-free.',
+      'High-accessibility lodging at Nana Juana Marina: flat concrete walkways for stroller & seniors, strong A/C, and lagoon pool.',
+      'Strategic overnight in Chiquimula (Grand Caporal) breaks up the drive comfortably with refreshing pools and steakhouse.',
+      'Private covered boat tour through Río Dulce Gorge to Livingston is an awe-inspiring tropical experience.',
+      'Bruce & Norma expressed great excitement for the family to experience Río Dulce and Izabal.'
     ],
     considerations: [
-      'El trayecto total es más largo (~6 horas divididas en 2 etapas).',
-      'Clima tropical cálido y húmedo (requiere repelente y ropa fresca).'
+      'Carretera más larga: 7.5 a 8 horas de manejo acumulado (tráfico pesado de furgones en autopista CA-9 Norte).',
+      'Clima tropical caluroso y húmedo (~32°C - 35°C) con zancudos: indispensable repelente y mosquitero para la carriola de Emily.',
+      'Evitar senderos elevados rústicos de madera mojada sobre humedales (Hacienda Tijax) para personas mayores por riesgo de resbalones.'
     ],
     considerationsEn: [
-      'Total distance is longer (~6 hours split into two manageable stages).',
-      'Warm humid tropical weather (requires insect repellent & light clothing).'
+      'Longer driving time: 7.5 to 8 total hours on the road (heavy commercial container truck traffic on CA-9 North).',
+      'Tropical hot and humid climate (~90°F - 95°F) with mosquitoes: repellent and stroller netting for Emily are mandatory.',
+      'Avoid wet wooden boardwalks over wetlands (Hacienda Tijax) for seniors due to slip hazards; stay on Nana Juana concrete.'
     ],
-    driveSummary: 'Día 1: 3.5 hrs a Chiquimula. Día 2: 2.8 hrs a Río Dulce. Carretera al Atlántico.',
-    driveSummaryEn: 'Day 1: 3.5 hrs to Chiquimula. Day 2: 2.8 hrs to Río Dulce on Atlantic highway.',
-    babyNotes: 'El descanso en Chiquimula hace que el viaje sea amigable para Emily. Llevar mosquitero para carriola.',
-    babyNotesEn: 'Chiquimula overnight makes the road trip gentle for baby Emily. Bring stroller mosquito netting.',
-    seniorNotes: 'Muy agradable. Paseos en lancha seguros y sentados. Hoteles con piscinas y buena sombra.',
-    seniorNotesEn: 'Very enjoyable. Gentle seated boat cruises. Hotels with relaxing pools and shaded grounds.',
+    driveSummary: 'Día 1: 3.5 hrs a Chiquimula. Día 2: 3.5 hrs a Río Dulce. Carretera al Atlántico CA-9 Norte.',
+    driveSummaryEn: 'Day 1: 3.5 hrs to Chiquimula. Day 2: 3.5 hrs to Río Dulce on Atlantic highway CA-9 North.',
+    babyNotes: 'La escala en Chiquimula ayuda a descansar. En Río Dulce se requiere aire acondicionado en la habitación y mosquitero en la carriola.',
+    babyNotesEn: 'Overnight in Chiquimula helps baby rest. In Río Dulce, strong room A/C and stroller mosquito netting are indispensable.',
+    seniorNotes: 'Muy cómodo en Nana Juana Marina gracias a sus caminerías planas de concreto. Paseos en lancha techada con asientos cómodos.',
+    seniorNotesEn: 'Very comfortable at Nana Juana Marina thanks to flat concrete walkways. Covered boat tours with comfortable seating.',
     votes: 0
   },
   {
     id: 'opt-thanksgiving-hibrido',
     phase: 'thanksgiving',
-    title: 'Opción 3: Ruta Combinada (El Salvador + Chiquimula & Río Dulce)',
-    titleEn: 'Option 3: Hybrid Blend (El Salvador + Chiquimula & Río Dulce)',
-    tagline: 'Paso por la frontera para conocer Ataco y luego subir hacia Chiquimula',
-    taglineEn: 'Scenic pass through Ataco, then crossing toward Chiquimula & Río Dulce',
+    title: 'Opción 3: Ruta Combinada o Plan B Pacífico (Monterrico)',
+    titleEn: 'Option 3: Hybrid Blend or Pacific Plan B (Monterrico)',
+    tagline: 'Ruta extendida oriente o alternativa de emergencia sin estrés en la playa a 1h 25m',
+    taglineEn: 'Extended eastern circuit or emergency zero-stress Pacific beach Plan B (1h 25m drive)',
     dateRange: '25 Nov – 30 Nov (6 días)',
     dateRangeEn: 'Nov 25 – Nov 30 (6 days)',
     durationDays: 6,
@@ -447,27 +463,27 @@ export const initialOptions: TripOption[] = [
     crewSummary: 'Grupo familiar completo (10 personas): Ever, Cori, Isabella, Emily (7 meses), Jonchito, Lidia, Doña Isabel, Nely, Bruce y Norma.',
     crewSummaryEn: 'Full family crew (10 people): Ever, Cori, Isabella, Emily (7 months), Jonchito, Lidia, Isabel, Nely, Bruce & Norma.',
     pros: [
-      'Permite saborear un poco de ambos destinos en un solo itinerario.',
-      'Variedad de climas y paisajes.'
+      'Permite combinar la montaña salvadoreña y la selva caribeña de Izabal si se busca máxima variedad.',
+      'PLAN B PACÍFICO: Si se descarta El Salvador por pasaportes y Río Dulce por distancia, la costa de Monterrico / Las Lisas está a solo 1h 25m de carretera plana sin esfuerzo.'
     ],
     prosEn: [
-      'Taste a bit of both worlds in a single curated journey.',
-      'Great variety of mountain and Caribbean river landscapes.'
+      'Allows experiencing both Salvadoran mountain towns and Izabal’s Caribbean jungle if maximum variety is desired.',
+      'PACIFIC PLAN B: If El Salvador is ruled out due to passports and Río Dulce due to distance, Monterrico / Las Lisas is just 1h 25m on flat highway.'
     ],
     considerations: [
-      'Más horas acumuladas dentro del vehículo.',
-      'Cambio frecuente de hoteles.'
+      'El circuito híbrido El Salvador + Río Dulce suma más de 12 horas acumuladas en carretera, excesivo para Emily y abuelos.',
+      'Empacar y desempacar continuamente en 3 o 4 hoteles diferentes.'
     ],
     considerationsEn: [
-      'More cumulative hours seated in vehicle.',
-      'More hotel pack-and-unpack check-ins.'
+      'Hybrid El Salvador + Río Dulce circuit accumulates 12+ hours driving, excessive for baby Emily and seniors.',
+      'Continuous packing and unpacking across 3 to 4 different hotels.'
     ],
-    driveSummary: 'Ruta circular con mayor tiempo en carretera (~8+ hrs totales).',
-    driveSummaryEn: 'Circuit route with higher total road time (~8+ hours overall).',
-    babyNotes: 'Más pesado para una bebé de 7 meses debido a los cambios continuos de carro.',
-    babyNotesEn: 'Tougher on a 7-month baby due to frequent car transitions.',
-    seniorNotes: 'Exige mayor resistencia física por los cambios de hospedaje.',
-    seniorNotesEn: 'Requires more physical stamina due to frequent hotel packing.',
+    driveSummary: 'Circuito amplio con más de 12 horas en carretera, o solo 1h 25m si se opta por Plan B de playa.',
+    driveSummaryEn: 'Wide circuit with 12+ driving hours, or just 1h 25m if pivoting to Pacific beach Plan B.',
+    babyNotes: 'La ruta híbrida completa es muy agotadora para Emily; el Plan B de playa en cambio es sumamente amigable.',
+    babyNotesEn: 'Full hybrid route is exhausting for Emily; conversely, Pacific beach Plan B is exceptionally gentle.',
+    seniorNotes: 'Alta demanda física por cambios continuos de vehículo y hoteles en la ruta combinada.',
+    seniorNotesEn: 'High physical demand due to frequent transitions in vehicle and hotels on the combined route.',
     votes: 0
   },
 
@@ -477,8 +493,8 @@ export const initialOptions: TripOption[] = [
     phase: 'december',
     title: 'Opción A: Lago de Atitlán & Antigua Guatemala',
     titleEn: 'Option A: Lake Atitlán & Antigua Guatemala',
-    tagline: 'El lago más hermoso del mundo, lancha privada a San Juan y magia colonial',
-    taglineEn: 'World-famous lake, private boat to San Juan weavers, and colonial charm',
+    tagline: 'Salida nocturna vía VAS (~2h 15m), jardines y piscina climatizada en Atitlán, rampas en Santo Domingo',
+    taglineEn: 'Night drive via VAS (~2h 15m), heated pool & gardens at Atitlán, gentle ramps at Santo Domingo',
     dateRange: '3 Dic (noche) – 7 Dic (4 noches / 4 días)',
     dateRangeEn: 'Dec 3 (evening) – Dec 7 (4 nights / 4 days)',
     durationDays: 4,
@@ -487,29 +503,35 @@ export const initialOptions: TripOption[] = [
     crewSummary: 'Grupo de 6 personas: Ever, Cori, Isabella, bebé Emily (7 meses), Bruce y Norma.',
     crewSummaryEn: 'Core crew of 6: Ever, Cori, Isabella, baby Emily (7 months), Bruce & Norma.',
     pros: [
-      'Carretera 100% asfaltada y trayectos moderados (2.5 a 3.5 hrs).',
-      'Bruce y Norma expresaron inclinación por esta opción ("easier for Cori and Emily").',
-      'Paseo plano y accesible en San Juan La Laguna (arte, chocolate, textiles).',
-      'Jardines espectaculares de Casa Santo Domingo y Cerro de la Cruz con rampas.'
+      'Manejo nocturno el 3 de Dic de Ixhuatán a Antigua por autopista VAS toma solo ~2h 15m, esquivando por completo el tráfico capitalino.',
+      'Carreteras 100% asfaltadas de primer nivel en todo el recorrido.',
+      'Hotel Atitlán en Panajachel cuenta con amplios jardines botánicos planos y piscina exterior climatizada (crucial para los vientos frescos del Xocomil en diciembre).',
+      'Paseo privado en lancha a San Juan La Laguna con servicio de tuc-tuc al pie del muelle (Q5-Q10) para subir a los talleres textiles sin cansancio.',
+      'Hotel Museo Casa Santo Domingo en Antigua cuenta con rampas suaves 100% accesibles para carriola y abuelos.',
+      'Opción predilecta confirmada por Bruce y Norma ("much easier for Cori and Emily").'
     ],
     prosEn: [
-      '100% paved highways with manageable drive durations (2.5 to 3.5 hours).',
-      'Bruce & Norma specifically noted this as ideal: "easier for Cori & baby Emily".',
-      'Flat accessible stroll in San Juan La Laguna (artisan textiles, cacao, bees).',
-      'Stroller/senior-friendly ramps at Cerro de la Cruz & lush Casa Santo Domingo.'
+      'Evening drive on Dec 3 from Ixhuatán to Antigua via VAS highway takes only ~2h 15m, totally bypassing city gridlock.',
+      '100% top-grade paved highways throughout the entire itinerary.',
+      'Hotel Atitlán in Panajachel features flat botanical gardens and a heated outdoor pool (vital against brisk December Xocomil winds).',
+      'Private boat cruise to San Juan La Laguna with dockside tuc-tucs (Q5-Q10) to reach weaving cooperatives without uphill walking.',
+      'Hotel Museo Casa Santo Domingo in Antigua features 100% gentle ramps certified for strollers and seniors.',
+      'Top preferred option endorsed by Bruce & Norma ("much easier for Cori and Emily").'
     ],
     considerations: [
-      'Noches frescas en el lago y Antigua (~12°C - 14°C), llevar suéter ligero.'
+      'Noches y madrugadas frescas en el Altiplano y Antigua (11°C - 14°C): indispensable llevar chumpas livianas y ropa abrigada para la bebé.',
+      'En calles empedradas de Antigua, utilizar portabebé ergonómico en lugar de carriola con ruedas pequeñas.'
     ],
     considerationsEn: [
-      'Crisp nights around the lake and Antigua (~54°F - 58°F), pack light jackets.'
+      'Chilly evenings and early mornings in highlands and Antigua (52°F - 58°F): bring light jackets and warm baby layers.',
+      'On Antigua cobblestones, use an ergonomic baby carrier instead of small-wheeled strollers.'
     ],
-    driveSummary: 'Ixhuatán -> Antigua (2.4 hrs) -> Panajachel (2 hrs). Muy cómodo.',
-    driveSummaryEn: 'Ixhuatán -> Antigua (2.4 hrs) -> Panajachel (2 hrs). Very comfortable.',
-    babyNotes: 'Muy cómoda para Emily. Usar portabebé ergonómico en las calles empedradas de Antigua.',
-    babyNotesEn: 'Extremely comfortable for Emily. Baby carrier recommended for Antigua cobblestones.',
-    seniorNotes: 'Diseñado para el confort de Bruce y Norma (en sus 70s): paseos planos en Casa Santo Domingo y San Juan La Laguna, lancha tranquila y sin caminatas extenuantes.',
-    seniorNotesEn: 'Tailored for Bruce & Norma’s comfort (in their 70s): flat gardens at Casa Santo Domingo, gentle boat to San Juan, and zero strenuous climbs.',
+    driveSummary: 'Ixhuatán -> Antigua (2h 15m vía VAS) -> Panajachel (2h). Rutas rápidas, seguras y cómodas.',
+    driveSummaryEn: 'Ixhuatán -> Antigua (2h 15m via VAS) -> Panajachel (2h). Fast, safe, and scenic paved roads.',
+    babyNotes: 'La mejor opción para Emily (7 meses): distancias moderadas en auto, piscina climatizada, sin calor sofocante y atención médica de primera en Antigua.',
+    babyNotesEn: 'Best option for 7-month Emily: gentle driving times, heated pool, no sweltering heat, and top-tier medical facilities in Antigua.',
+    seniorNotes: 'Especialmente diseñada para Bruce y Norma (en sus 70s): cero subidas extenuantes, rampas suaves en Casa Santo Domingo, tuc-tucs en el muelle de San Juan y vistas panorámicas espectaculares.',
+    seniorNotesEn: 'Tailored for Bruce & Norma (in their 70s): zero steep climbs, gentle ramps at Casa Santo Domingo, dock tuc-tucs in San Juan, and splendid lake panoramas.',
     votes: 0
   },
   {
@@ -517,8 +539,8 @@ export const initialOptions: TripOption[] = [
     phase: 'december',
     title: 'Opción B: Semuc Champey & Cobán (Alta Verapaz)',
     titleEn: 'Option B: Semuc Champey & Cobán (Alta Verapaz)',
-    tagline: 'Pozas turquesas virgenes en la selva de las Verapaces',
-    taglineEn: 'Untouched turquoise limestone pools in Alta Verapaz rainforest',
+    tagline: 'Pozas turquesas virgenes en la selva (carretera recién pavimentada con concreto pero pendientes >20%)',
+    taglineEn: 'Untouched turquoise jungle pools (road recently concrete-paved, but steep >20% grades)',
     dateRange: '3 Dic (noche) – 7 Dic (4 noches / 4 días)',
     dateRangeEn: 'Dec 3 (evening) – Dec 7 (4 nights / 4 days)',
     durationDays: 4,
@@ -526,29 +548,33 @@ export const initialOptions: TripOption[] = [
     crewSummary: 'Grupo de 6 personas: Ever, Cori, Isabella, bebé Emily (7 meses), Bruce y Norma.',
     crewSummaryEn: 'Core crew of 6: Ever, Cori, Isabella, baby Emily (7 months), Bruce & Norma.',
     pros: [
-      'Uno de los monumentos naturales más asombrosos del planeta.',
-      'Agua cristalina templada para nadar en pozas escalonadas.'
+      'Uno de los monumentos naturales más asombrosos del mundo con piscinas naturales de caliza y agua turquesa templada.',
+      'ACTUALIZACIÓN VERIFICADA: El tramo de 12 km entre Lanquín y Semuc Champey ya cuenta con pavimento de concreto hidráulico (se eliminó la terracería con piedras sueltas).'
     ],
     prosEn: [
-      'One of the most jaw-dropping natural monuments on Earth.',
-      'Warm turquoise natural water pools cascading over river caverns.'
+      'One of the world\'s most breathtaking natural monuments with tiered limestone pools and warm turquoise waters.',
+      'VERIFIED ROAD UPDATE: The 12 km stretch between Lanquín and Semuc is now paved with hydraulic concrete (no more rough gravel track).'
     ],
     considerations: [
-      'Carretera muy larga (7+ horas) con muchas curvas de montaña.',
-      'El tramo de Lanquín a Semuc es de terracería empinada en pick-up 4x4.',
-      'Caminatas con escalones resbaladizos y humedad alta.'
+      'Aunque pavimentada, la carretera Lanquín-Semuc tiene pendientes extremas (+20%) y pasos estrechos de montaña.',
+      'Dentro del parque de Semuc: el mirador exige subir más de 450 gradas empinadas y la roca caliza mojada en las pozas es sumamente resbaladiza (riesgo de caídas para abuelos).',
+      'Hostales famosos como Zephyr Lodge son party hostels exclusivos para adultos (prohibidos niños); la estancia familiar obliga a pernoctar en Cobán o Guayaha.',
+      'Seguridad médica: el hospital regional de Cobán está a 3.5 - 4 horas de distancia por carretera montañosa ante cualquier emergencia infantil.',
+      'Trayecto largo de 7.5+ horas desde el sur de Guatemala.'
     ],
     considerationsEn: [
-      'Very long drive (7+ hours) with winding mountainous curves.',
-      'Lanquín to Semuc requires a 45-min bumpy 4x4 pickup ride on rough dirt road.',
-      'Slippery limestone steps and high humidity in the reserve.'
+      'Even though paved, the Lanquín-Semuc road features extreme grades (+20%) and narrow single-lane mountain passes.',
+      'Inside Semuc reserve: iconic overlook requires 450+ steep stairs, and wet limestone around pools is slick with no handrails (fall hazard for seniors).',
+      'Hostels like Zephyr Lodge are strictly 18+ party venues; family lodging requires staying in Cobán or Guayaha.',
+      'Medical emergency safety: Cobán regional hospital is 3.5 to 4 hours away on mountain roads if infant care is needed.',
+      'Long drive of 7.5+ hours from southern Guatemala.'
     ],
-    driveSummary: '7.5+ hrs de manejo con tramos difíciles de terracería.',
-    driveSummaryEn: '7.5+ hours driving with bumpy unpaved 4x4 sections.',
-    babyNotes: 'Duro para una bebé de 7 meses por la vibración del 4x4 y calor húmedo.',
-    babyNotesEn: 'Challenging for 7-month baby due to bumpy 4x4 pickup ride and humidity.',
-    seniorNotes: 'Muy exigente para Bruce y Norma (en sus 70s): trayecto largo, escalones húmedos resbaladizos y 45 min en pick-up 4x4 sobre terracería ruda.',
-    seniorNotesEn: 'Extremely demanding for Bruce & Norma (in their 70s): lengthy drive, wet slippery limestone stairs, and a rough 45-min bumpy 4x4 pickup ride.',
+    driveSummary: '7.5+ hrs de manejo con curvas de montaña y fuertes pendientes.',
+    driveSummaryEn: '7.5+ hours driving with winding mountain switchbacks and steep grades.',
+    babyNotes: 'Complicado para la bebé Emily (7 meses) por las 7.5 horas de curvas y la lejanía de centros hospitalarios pediátricos.',
+    babyNotesEn: 'Challenging for 7-month Emily due to 7.5 hours of mountain curves and distance to pediatric emergency hospitals.',
+    seniorNotes: 'Exigencia física alta para Bruce y Norma: trayecto largo en curvas, escaleras demandantes y roca caliza húmeda muy resbaladiza.',
+    seniorNotesEn: 'High physical toll for Bruce & Norma: long curvy mountain drive, demanding stairs, and slick wet limestone surfaces.',
     votes: 0
   },
   {
@@ -565,31 +591,29 @@ export const initialOptions: TripOption[] = [
     crewSummary: 'Grupo de 6 personas: Ever, Cori, Isabella, bebé Emily (7 meses), Bruce y Norma.',
     crewSummaryEn: 'Core crew of 6: Ever, Cori, Isabella, baby Emily (7 months), Bruce & Norma.',
     pros: [
-      'Permite experimentar la diversidad geográfica total de Guatemala: altiplano y selva kárstica.',
-      'Visita los dos monumentos naturales más famosos del país en un solo itinerario.',
-      'Paseo escénico en lancha en Lago de Atitlán más baño en las pozas turquesas de Semuc Champey.'
+      'Permite experimentar la diversidad geográfica total de Guatemala: altiplano volcánico y selva kárstica de las Verapaces.',
+      'Paseo escénico en lancha en Lago de Atitlán más baño en las pozas de Semuc Champey en un solo viaje.'
     ],
     prosEn: [
-      'Experience Guatemala’s entire natural spectrum: volcanic highlands and lush karst jungle.',
-      'Visit the two most legendary natural wonders of the country in one grand adventure.',
-      'Private scenic boat cruise on Lake Atitlán plus swimming in Semuc’s tiered turquoise pools.'
+      'Experience Guatemala’s entire natural spectrum: volcanic highlands and lush Verapaces rainforest.',
+      'Private scenic boat cruise on Lake Atitlán plus swimming in Semuc’s tiered pools in one journey.'
     ],
     considerations: [
-      'Itinerario muy exigente en carretera (~13+ horas acumuladas en vehículo).',
-      'Cambios frecuentes de hospedaje (Antigua / Panajachel / Cobán / Lanquín).',
-      'Tramo rudo en pick-up 4x4 de terracería hacia Semuc Champey.'
+      'Itinerario extenuante: más de 13.5 horas acumuladas de manejo en solo 4 días.',
+      'Cambios continuos de hotel cada noche sin tiempo de relajarse.',
+      'Exposición a contrastes térmicos bruscos (frío en Atitlán vs. calor húmedo en Semuc).'
     ],
     considerationsEn: [
-      'Very demanding road schedule (~13+ total cumulative hours driving).',
-      'Frequent packing and hotel transitions across highlands and rainforest.',
-      'Rough, bumpy 4x4 pickup stretch on unpaved gravel road into Semuc.'
+      'Exhausting itinerary: over 13.5 cumulative hours in the vehicle across only 4 days.',
+      'Moving hotels every single night with virtually zero downtime.',
+      'Sharp temperature swings (cool highland lake vs. muggy tropical jungle).'
     ],
-    driveSummary: 'Circuito amplio: Ixhuatán ➔ Antigua/Atitlán (4h) ➔ Cobán (5.5h) ➔ Semuc (2h 4x4) ➔ Ixhuatán (6.5h).',
-    driveSummaryEn: 'Extensive circuit: Ixhuatán ➔ Antigua/Atitlán (4h) ➔ Cobán (5.5h) ➔ Semuc (2h 4x4) ➔ Ixhuatán (6.5h).',
-    babyNotes: 'Muy pesado para la bebé Emily (7 meses) por las largas horas sentada en el carro y cambios térmicos.',
-    babyNotesEn: 'Heavy toll on 7-month Emily due to extensive car-seat time and varying temperature swings.',
-    seniorNotes: 'Alta exigencia física para Bruce y Norma (en sus 70s): muchas horas de carretera con curvas de montaña, caminos rústicos y caminatas en roca húmeda.',
-    seniorNotesEn: 'High physical stamina needed for Bruce & Norma (in their 70s): lengthy winding drives, bumpy 4x4 trails, and slick wet limestone surfaces.',
+    driveSummary: 'Circuito amplio: Ixhuatán ➔ Antigua/Atitlán (4h) ➔ Cobán (5.5h) ➔ Semuc (2h) ➔ Ixhuatán (7h).',
+    driveSummaryEn: 'Extensive circuit: Ixhuatán ➔ Antigua/Atitlán (4h) ➔ Cobán (5.5h) ➔ Semuc (2h) ➔ Ixhuatán (7h).',
+    babyNotes: 'No recomendable para la bebé Emily: demasiadas horas en silla de auto y cambios constantes de ambiente.',
+    babyNotesEn: 'Not recommended for baby Emily: excessive car-seat confinement and continuous environmental changes.',
+    seniorNotes: 'Muy fatigoso para Bruce y Norma (en sus 70s): más de 13 horas en carretera y caminatas complejas.',
+    seniorNotesEn: 'Extremely tiring for Bruce & Norma (in their 70s): 13+ hours on the road and demanding surfaces.',
     votes: 0
   }
 ];
@@ -1452,6 +1476,26 @@ export const initialDays: DayPlan[] = [
 
 export const initialPackingItems: PackingItem[] = [
   // MASTER ESSENTIALS
+  {
+    id: 'pack-m-passports-kids',
+    category: 'master',
+    title: '⚠️ URGENTE: Pasaporte de Emily (nuevo) e Isabella (renovación)',
+    titleEn: '⚠️ URGENT: Passports for Emily (new) & Isabella (renewal)',
+    description: 'Requisito migratorio obligatorio para menores de edad si se viaja a El Salvador. Agendar cita en IGM Guatemala inmediatamente (pago Banrural $50 USD, certificados RENAP con QR y ambos padres con DPI).',
+    descriptionEn: 'Mandatory immigration requirement for minors entering El Salvador. Schedule appointment at IGM Guatemala right away ($50 fee at Banrural, recent RENAP birth certificates with QR, both parents present with DPI).',
+    checked: false,
+    isEssential: true
+  },
+  {
+    id: 'pack-m-tourist-card-cash',
+    category: 'master',
+    title: 'Efectivo para Tarjeta de Turismo de Bruce & Norma ($12 USD c/u)',
+    titleEn: 'Cash for Bruce & Norma Tourist Card ($12 USD each)',
+    description: 'Migración de El Salvador cobra $12 USD exactos en efectivo por persona a ciudadanos estadounidenses al ingresar.',
+    descriptionEn: 'El Salvador Immigration collects exactly $12 USD in cash per person for US passport holders upon entry.',
+    checked: false,
+    isEssential: true
+  },
   {
     id: 'pack-m-1',
     category: 'master',
