@@ -484,8 +484,8 @@ export const initialOptions: TripOption[] = [
     durationDays: 4,
     destinations: ['atitlan', 'antigua'],
     isRecommendedForFamily: true,
-    crewSummary: 'Grupo de 6 personas: Solo Ever, Cori, Isabella, bebé Emily, Bruce y Norma. (Jonchito, Lidia, Doña Isabel y Nely descansan en el hogar en Ixhuatán).',
-    crewSummaryEn: 'Core crew of 6: Only Ever, Cori, Isabella, baby Emily, Bruce & Norma. (Remaining family rests at home in Ixhuatán).',
+    crewSummary: 'Grupo de 6 personas: Ever, Cori, Isabella, bebé Emily (7 meses), Bruce y Norma.',
+    crewSummaryEn: 'Core crew of 6: Ever, Cori, Isabella, baby Emily (7 months), Bruce & Norma.',
     pros: [
       'Carretera 100% asfaltada y trayectos moderados (2.5 a 3.5 hrs).',
       'Bruce y Norma expresaron inclinación por esta opción ("easier for Cori and Emily").',
@@ -523,8 +523,8 @@ export const initialOptions: TripOption[] = [
     dateRangeEn: 'Dec 3 (evening) – Dec 7 (4 nights / 4 days)',
     durationDays: 4,
     destinations: ['semuc'],
-    crewSummary: 'Grupo de 6 personas: Solo Ever, Cori, Isabella, bebé Emily, Bruce y Norma. (Jonchito, Lidia, Doña Isabel y Nely descansan en el hogar en Ixhuatán).',
-    crewSummaryEn: 'Core crew of 6: Only Ever, Cori, Isabella, baby Emily, Bruce & Norma. (Remaining family rests at home in Ixhuatán).',
+    crewSummary: 'Grupo de 6 personas: Ever, Cori, Isabella, bebé Emily (7 meses), Bruce y Norma.',
+    crewSummaryEn: 'Core crew of 6: Ever, Cori, Isabella, baby Emily (7 months), Bruce & Norma.',
     pros: [
       'Uno de los monumentos naturales más asombrosos del planeta.',
       'Agua cristalina templada para nadar en pozas escalonadas.'
@@ -562,8 +562,8 @@ export const initialOptions: TripOption[] = [
     dateRangeEn: 'Dec 3 (evening) – Dec 7 (4 nights / 4 days)',
     durationDays: 4,
     destinations: ['atitlan', 'antigua', 'semuc'],
-    crewSummary: 'Grupo de 6 personas: Solo Ever, Cori, Isabella, bebé Emily, Bruce y Norma. (Jonchito, Lidia, Doña Isabel y Nely descansan en el hogar en Ixhuatán).',
-    crewSummaryEn: 'Core crew of 6: Only Ever, Cori, Isabella, baby Emily, Bruce & Norma. (Remaining family rests at home in Ixhuatán).',
+    crewSummary: 'Grupo de 6 personas: Ever, Cori, Isabella, bebé Emily (7 meses), Bruce y Norma.',
+    crewSummaryEn: 'Core crew of 6: Ever, Cori, Isabella, baby Emily (7 months), Bruce & Norma.',
     pros: [
       'Permite experimentar la diversidad geográfica total de Guatemala: altiplano y selva kárstica.',
       'Visita los dos monumentos naturales más famosos del país en un solo itinerario.',
@@ -1195,8 +1195,8 @@ export const initialDays: DayPlan[] = [
         timeLabel: '18:30',
         title: 'Salida nocturna para evitar tráfico',
         titleEn: 'Evening drive avoiding city traffic',
-        description: 'Viaje fresco y tranquilo hacia Antigua Guatemala para pasar la primera noche. Grupo de viaje (6 personas): Ever, Cori, Isabella, bebé Emily, Bruce y Norma. Los abuelos Jonchito, Lidia, Doña Isabel y Nely se quedan descansando cómodamente en casa en Santa María Ixhuatán.',
-        descriptionEn: 'Cool, pleasant night drive up into the highlands to overnight in colonial Antigua. Travel crew (6 people): Ever, Cori, Isabella, baby Emily, Bruce, and Norma. Grandparents Jonchito, Lidia, Isabel, and Nely remain relaxing comfortably at home in Santa María Ixhuatán.',
+        description: 'Viaje fresco y tranquilo hacia Antigua Guatemala para pasar la primera noche. Grupo de viaje (6 personas): Ever, Cori, Isabella, bebé Emily, Bruce y Norma.',
+        descriptionEn: 'Cool, pleasant night drive up into the highlands to overnight in colonial Antigua. Travel crew (6 people): Ever, Cori, Isabella, baby Emily, Bruce, and Norma.',
         tag: 'logistics'
       }
     ]
@@ -1321,8 +1321,8 @@ export const initialDays: DayPlan[] = [
         timeLabel: '10:30',
         title: 'Desayuno frente al lago y viaje de regreso a Santa Rosa',
         titleEn: 'Lakefront breakfast & return journey to Santa Rosa',
-        description: 'Retorno seguro y cómodo hacia Santa María Ixhuatán para reencontrarse con Jonchito, Lidia, Doña Isabel y Nely para los días finales de descanso y convivencia.',
-        descriptionEn: 'Safe, smooth drive back down to Santa María Ixhuatán to reunite with Jonchito, Lidia, Isabel, and Nely for the final restful days together.',
+        description: 'Retorno seguro y cómodo hacia Santa María Ixhuatán para los días finales de descanso y convivencia.',
+        descriptionEn: 'Safe, smooth drive back down to Santa María Ixhuatán for the final restful days together.',
         tag: 'logistics'
       }
     ]

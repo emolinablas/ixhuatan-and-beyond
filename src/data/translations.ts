@@ -44,6 +44,8 @@ export const translations = {
     considerations: "A considerar",
     babyNotesTitle: "Nota para bebé Emily (7 meses)",
     seniorNotesTitle: "Nota para Jonchito, Lidia, Isabel, Bruce & Norma (60s - 70s)",
+    seniorNotesTitleThanksgiving: "Nota para Jonchito, Lidia, Isabel, Bruce & Norma (60s - 70s)",
+    seniorNotesTitleDecember: "Nota para Bruce & Norma (70s)",
     
     // Road & Comfort Labels
     paved_smooth: "Carretera asfaltada y cómoda",
@@ -122,6 +124,8 @@ export const translations = {
     considerations: "Things to keep in mind",
     babyNotesTitle: "Baby Emily Note (7 months)",
     seniorNotesTitle: "Note for Jonchito, Lidia, Isabel, Bruce & Norma (60s - 70s)",
+    seniorNotesTitleThanksgiving: "Note for Jonchito, Lidia, Isabel, Bruce & Norma (60s - 70s)",
+    seniorNotesTitleDecember: "Note for Bruce & Norma (70s)",
     
     // Road & Comfort Labels
     paved_smooth: "Paved, smooth highway",

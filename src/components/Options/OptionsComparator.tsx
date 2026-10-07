@@ -97,7 +97,11 @@ export const OptionsComparator: React.FC<OptionsComparatorProps> = ({ onSelectDe
           <div className="p-3 rounded-2xl bg-teal-50/70 border border-teal-200/70 text-xs space-y-1">
             <div className="flex items-center gap-1.5 font-bold text-teal-900">
               <Heart className="w-4 h-4 text-teal-600" />
-              <span>{t.seniorNotesTitle}</span>
+              <span>
+                {option.phase === 'december'
+                  ? t.seniorNotesTitleDecember
+                  : t.seniorNotesTitleThanksgiving}
+              </span>
             </div>
             <p className="text-teal-800/90 text-[11px] leading-relaxed">
               {language === 'es' ? option.seniorNotes : option.seniorNotesEn}

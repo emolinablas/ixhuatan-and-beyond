@@ -51,7 +51,7 @@ export const FamilyCrew: React.FC = () => {
       ageBadge: language === 'es' ? '60s • Tradición y Familia' : '60s • Tradition & Family',
       avatar: '👵',
       bgGradient: 'from-amber-500 to-orange-600',
-      tripParticipation: language === 'es' ? '🦃 Thanksgiving • 🏡 Descanso en Ixhuatán en Diciembre' : '🦃 Thanksgiving • 🏡 Resting in Ixhuatán in December',
+      tripParticipation: language === 'es' ? '🦃 Viaje de Thanksgiving' : '🦃 Thanksgiving Trip',
       isCoreSix: false,
       description: language === 'es'
         ? 'Pilar del hogar, expertos en cocina tradicional, calidez familiar y anécdotas de la región.'
@@ -64,12 +64,12 @@ export const FamilyCrew: React.FC = () => {
       ageBadge: language === 'es' ? '70s • Sabiduría' : '70s • Wisdom & Grace',
       avatar: '🌸',
       bgGradient: 'from-purple-500 to-violet-600',
-      tripParticipation: language === 'es' ? '🦃 Thanksgiving • 🏡 Descanso en Ixhuatán en Diciembre' : '🦃 Thanksgiving • 🏡 Resting in Ixhuatán in December',
+      tripParticipation: language === 'es' ? '🦃 Viaje de Thanksgiving' : '🦃 Thanksgiving Trip',
       isCoreSix: false,
       description: language === 'es'
         ? 'Presencia dulce y llena de paz, disfrutando cada comida, paisaje y momento junto a sus hijos y nietas.'
         : 'Sweet, peaceful presence, savoring every garden, lake panorama, and precious moment with children and grandchildren.',
-      favorite: language === 'es' ? 'Jardines de Atitlán & Antigua' : 'Atitlán gardens & Antigua'
+      favorite: language === 'es' ? 'Termales de Santa Teresa & Ruta de las Flores' : 'Santa Teresa Hot Springs & Ruta de las Flores'
     },
     {
       name: 'Nely',
@@ -77,7 +77,7 @@ export const FamilyCrew: React.FC = () => {
       ageBadge: language === 'es' ? 'Alegre y Atenta' : 'Cheerful & Helpful',
       avatar: '✨',
       bgGradient: 'from-cyan-500 to-blue-600',
-      tripParticipation: language === 'es' ? '🦃 Thanksgiving • 🏡 Descanso en Ixhuatán en Diciembre' : '🦃 Thanksgiving • 🏡 Resting in Ixhuatán in December',
+      tripParticipation: language === 'es' ? '🦃 Viaje de Thanksgiving' : '🦃 Thanksgiving Trip',
       isCoreSix: false,
       description: language === 'es'
         ? 'Siempre lista para colaborar con las niñas, apoyar en la logística y disfrutar los paseos en familia.'
@@ -135,8 +135,8 @@ export const FamilyCrew: React.FC = () => {
           </span>
           <p className="text-slate-600 leading-relaxed text-[11px]">
             {language === 'es'
-              ? 'Viajan 6 personas: Bruce, Norma, Ever, Cori, Isabella y Emily. Los abuelos y Nely se quedan descansando en el hogar en Santa María Ixhuatán.'
-              : 'Core crew of 6 travels: Bruce, Norma, Ever, Cori, Isabella & baby Emily. Remaining family rests comfortably at home in Santa María Ixhuatán.'}
+              ? 'Viajan únicamente 6 personas: Bruce, Norma, Ever, Cori, Isabella y la bebé Emily.'
+              : 'Core crew of 6 only: Bruce, Norma, Ever, Cori, Isabella, and baby Emily.'}
           </p>
         </div>
       </div>

@@ -28,7 +28,7 @@ interface TripContextType {
   resetToDefaults: () => void;
 }
 
-const STORAGE_KEY = 'ixhuatan_trip_data_v10';
+const STORAGE_KEY = 'ixhuatan_trip_data_v11';
 
 const sanitizeSantaMaria = (data: TripDataState): TripDataState => {
   const jsonStr = JSON.stringify(data);
@@ -109,6 +109,20 @@ const sanitizeSantaMaria = (data: TripDataState): TripDataState => {
     });
   }
 
+  // Guarantee days reflect latest activities for days 19 and 23
+  if (sanitized.days) {
+    sanitized.days = sanitized.days.map(d => {
+      const initD = initialTripState.days.find(initDay => initDay.id === d.id);
+      if (initD && (d.id === 'day-19' || d.id === 'day-23')) {
+        return {
+          ...d,
+          activities: initD.activities
+        };
+      }
+      return d;
+    });
+  }
+
   return sanitized;
 };
 
@@ -118,7 +132,7 @@ export const TripProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [state, setState] = useState<TripDataState>(() => {
     try {
       // Purge all legacy localStorage keys to eradicate old cached strings
-      ['ixhuatan_trip_data_v1', 'ixhuatan_trip_data_v2', 'ixhuatan_trip_data_v3', 'ixhuatan_trip_data_v4', 'ixhuatan_trip_data_v5', 'ixhuatan_trip_data_v6', 'ixhuatan_trip_data_v7', 'ixhuatan_trip_data_v8', 'ixhuatan_trip_data_v9'].forEach(key => {
+      ['ixhuatan_trip_data_v1', 'ixhuatan_trip_data_v2', 'ixhuatan_trip_data_v3', 'ixhuatan_trip_data_v4', 'ixhuatan_trip_data_v5', 'ixhuatan_trip_data_v6', 'ixhuatan_trip_data_v7', 'ixhuatan_trip_data_v8', 'ixhuatan_trip_data_v9', 'ixhuatan_trip_data_v10'].forEach(key => {
         try { localStorage.removeItem(key); } catch {}
       });
 
