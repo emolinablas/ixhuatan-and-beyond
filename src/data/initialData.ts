@@ -626,13 +626,13 @@ export const initialDays: DayPlan[] = [
     date: '2026-11-15',
     dateFormatted: 'Dom, 15 Nov',
     dateFormattedEn: 'Sun, Nov 15',
-    title: '¡Bienvenidos a Guatemala! Llegada de Bruce & Norma',
-    titleEn: 'Welcome to Guatemala! Bruce & Norma Arrival',
+    title: '¡Bienvenidos a Guatemala! Llegada y Almuerzo con Karla',
+    titleEn: 'Welcome to Guatemala! Arrival & Welcome Meal with Karla',
     locationId: 'aeropuerto',
-    locationName: 'Aeropuerto La Aurora -> Ixhuatán',
+    locationName: 'Aeropuerto La Aurora ➔ Portal del Ángel / Pradera Concepción ➔ Ixhuatán',
     isKeyMilestone: true,
-    milestoneBadge: '🛬 Recogida Aeropuerto 2:30 PM',
-    milestoneBadgeEn: '🛬 Airport Pickup 2:30 PM',
+    milestoneBadge: '🛬 Llegada 2:30 PM & Almuerzo con Karla',
+    milestoneBadgeEn: '🛬 Arrival 2:30 PM & Lunch with Karla',
     phase: 'initial_base',
     activities: [
       {
@@ -641,29 +641,41 @@ export const initialDays: DayPlan[] = [
         timeLabel: '14:30',
         title: 'Recoger a Bruce y Norma en Aeropuerto La Aurora (GUA)',
         titleEn: 'Pick up Bruce & Norma at La Aurora Airport (GUA)',
-        description: 'Vuelo aterriza. Recibimiento cálido familiar con letrero de bienvenida y agua fresca.',
-        descriptionEn: 'Flight touches down. Warm family greeting with signs, cold drinks, and big hugs.',
+        description: 'Vuelo aterriza. Recibimiento cálido familiar con letreros, abrazos y agua fresca mientras se acomoda el equipaje de forma segura en los vehículos.',
+        descriptionEn: 'Flight touches down. Warm family greeting with welcome signs, big hugs, and loading luggage securely into vehicles.',
         tag: 'logistics',
         googleMapsUrl: 'https://maps.google.com/?q=La+Aurora+International+Airport+Guatemala'
       },
       {
         id: 'act-1-2',
         timeOfDay: 'afternoon',
-        timeLabel: '15:30',
-        title: 'Traslado panorámico hacia Santa María Ixhuatán',
-        titleEn: 'Scenic drive to Santa María Ixhuatán',
-        description: 'Viaje en carretera pasando por Cuilapa y Santa Rosa viendo los paisajes montañosos.',
-        descriptionEn: 'Driving past Cuilapa and Santa Rosa countryside, taking in the rolling green mountains.',
-        tag: 'logistics'
+        timeLabel: '15:45',
+        title: 'Almuerzo de bienvenida & reencuentro con Karla (2 Opciones en CAES)',
+        titleEn: 'Welcome lunch & reunion with Karla (2 Options on CAES highway)',
+        description: 'Celebración y reencuentro con Karla para dar la bienvenida a Bruce y Norma, eligiendo entre dos opciones estratégicas sobre Carretera a El Salvador:\n• Opción A (Panorámica): Restaurante Portal del Ángel (Km 11.2) — Cortes de carne premium y terraza con vista espectacular a la Ciudad de Guatemala.\n• Opción B (Comodidad & Seguridad de Parqueo): Pradera Concepción (Km 15.5) — Centro comercial con parqueo techado ultra seguro (máxima tranquilidad para maletas en los baúles), elevadores para carriola y amplia variedad gastronómica (San Martín, Tre Fratelli, Saúl Bistro, Los Ranchos).',
+        descriptionEn: 'Celebratory reunion with Bruce\'s friend Karla to welcome Bruce & Norma, choosing between two strategic venues along Carretera a El Salvador:\n• Option A (Scenic Overlook): Portal del Ángel (Km 11.2) — Premium steaks and terrace with sweeping panoramic views of Guatemala City.\n• Option B (Convenience & Parking Security): Pradera Concepción (Km 15.5) — Modern shopping center with multi-level covered parking (complete peace of mind for luggage in vehicles), elevators for strollers, and top family dining (San Martín, Tre Fratelli, Saúl Bistro, Los Ranchos).',
+        tag: 'food',
+        locationName: 'Portal del Ángel (Km 11.2) o Pradera Concepción (Km 15.5)',
+        googleMapsUrl: 'https://maps.google.com/?q=Pradera+Concepcion+Carretera+a+El+Salvador'
       },
       {
         id: 'act-1-3',
         timeOfDay: 'evening',
-        timeLabel: '18:30',
-        title: 'Cena de bienvenida en casa de Ever y Cori',
-        titleEn: 'Welcome dinner at Ever & Cori’s home',
-        description: 'Comida típica casera, presentación con Jonchito, Lidia, Isabel, Nely y las niñas Isabella y Emily.',
-        descriptionEn: 'Authentic home-cooked dinner, introducing the family with in-laws, mom Isabel, and little Emily.',
+        timeLabel: '17:45',
+        title: 'Despedida de Karla y trayecto hacia Santa María Ixhuatán',
+        titleEn: 'Farewell to Karla & scenic drive to Santa María Ixhuatán',
+        description: 'Salida directa por la Carretera a El Salvador (CA-1 Oriente) rumbo a Santa Rosa pasando por Barberena y Cuilapa, aprovechando que ya se está sobre la ruta de salida de la ciudad.',
+        descriptionEn: 'Direct highway cruise along CA-1 Oriente toward Santa Rosa passing Barberena and Cuilapa, already perfectly positioned on the outbound route.',
+        tag: 'logistics'
+      },
+      {
+        id: 'act-1-4',
+        timeOfDay: 'evening',
+        timeLabel: '19:30',
+        title: 'Llegada a casa en Santa María Ixhuatán y descanso',
+        titleEn: 'Arrival home in Santa María Ixhuatán & restful evening',
+        description: 'Llegada a casa de Ever y Cori, bienvenida con la familia local, acomodación de Bruce y Norma en su habitación y descanso reparador tras el viaje internacional.',
+        descriptionEn: 'Arrival at Ever & Cori’s home, welcoming with local family, settling Bruce & Norma into their cozy bedroom, and restful sleep after international travel.',
         tag: 'family'
       }
     ]
