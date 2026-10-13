@@ -3,6 +3,9 @@ export type Language = 'es' | 'en';
 export type ClimateType = 'tropical_beach' | 'highland_cool' | 'jungle_hot' | 'temperate';
 export type RoadQuality = 'paved_smooth' | 'mixed_curves' | 'rough_4x4';
 
+/** The two trips the family votes on. */
+export type VotePhase = 'thanksgiving' | 'december';
+
 export interface PlaceItem {
   id: string;
   name: string;
@@ -35,7 +38,7 @@ export interface TripDestination {
   stayDurationEn: string;
   description: string;
   descriptionEn: string;
-  imageUrl: string;
+  photo?: { url: string; credit: string };
   googleMapsUrl: string;
   wazeUrl?: string;
   lodgingName?: string;
@@ -51,11 +54,43 @@ export interface TripDestination {
   intermediateStops?: IntermediateStop[];
 }
 
+/**
+ * Comparable numbers for the "at a glance" matrix. Kept separate from the
+ * prose so the comparison can't drift from the itinerary it summarizes.
+ */
+export interface OptionMetrics {
+  totalDriveHours: number; // whole trip, door to door
+  longestLegHours: number; // longest single drive day
+  lodgings: number; // distinct hotels = times everyone packs up
+  passportsRequired: boolean;
+  babyScore: number; // 1 (hard) to 5 (easy)
+  seniorScore: number; // 1 (hard) to 5 (easy)
+  climate: string;
+  climateEn: string;
+  nearestHospital: string;
+  nearestHospitalEn: string;
+}
+
+export interface CostLine {
+  id: string;
+  label: string;
+  labelEn: string;
+  quantity: number;
+  unitUsd: number;
+  note?: string;
+  noteEn?: string;
+}
+
 export interface TripOption {
   id: string;
-  phase: 'thanksgiving' | 'december';
+  /** Short code used in WhatsApp vote links (keeps URLs tiny). */
+  code: string;
+  phase: VotePhase;
   title: string;
   titleEn: string;
+  shortTitle: string;
+  shortTitleEn: string;
+  color: string;
   tagline: string;
   taglineEn: string;
   dateRange: string;
@@ -75,7 +110,8 @@ export interface TripOption {
   babyNotesEn: string;
   seniorNotes: string;
   seniorNotesEn: string;
-  votes: number;
+  metrics: OptionMetrics;
+  costs: CostLine[];
 }
 
 export type ActivityTag = 'logistics' | 'beach' | 'relaxation' | 'adventure' | 'thanksgiving' | 'food' | 'family';
@@ -93,6 +129,8 @@ export interface ActivityBlock {
   tag?: ActivityTag;
 }
 
+export type DayPhase = 'initial_base' | 'thanksgiving' | 'post_thanksgiving_base' | 'december' | 'farewell_base';
+
 export interface DayPlan {
   id: string;
   dayNumber: number;
@@ -109,8 +147,9 @@ export interface DayPlan {
   isKeyMilestone?: boolean;
   milestoneBadge?: string;
   milestoneBadgeEn?: string;
-  phase: 'initial_base' | 'thanksgiving' | 'post_thanksgiving_base' | 'december' | 'farewell_base';
-  optionId?: string; // If specific to an option
+  phase: DayPhase;
+  optionId?: string; // set on days that only exist for one voting option
+  driveHours?: number; // time on the road that day, for the drive-load bar
   activities: ActivityBlock[];
   notes?: string;
   notesEn?: string;
@@ -125,20 +164,36 @@ export interface PackingItem {
   titleEn: string;
   description?: string;
   descriptionEn?: string;
-  checked: boolean;
   isEssential: boolean;
+  /** Seed items that were already done when the list was written. */
+  initiallyChecked?: boolean;
 }
 
-export interface TripDataState {
-  tripTitle: string;
-  tripTitleEn: string;
-  startDate: string;
-  endDate: string;
-  selectedThanksgivingOptionId: string;
-  selectedDecemberOptionId: string;
-  destinations: TripDestination[];
-  options: TripOption[];
-  days: DayPlan[];
-  packingItems: PackingItem[];
-  userVotes: Record<string, boolean>; // optionId -> boolean
+export interface Traveler {
+  id: string;
+  name: string;
+  emoji: string;
+  role: string;
+  roleEn: string;
+  trips: VotePhase[];
+  canVote: boolean;
+}
+
+/** One person's choice per trip. */
+export type Ballot = Partial<Record<VotePhase, string>>;
+
+/**
+ * Everything the family changes on a phone. Trip content (days, options,
+ * destinations) ships with the code and is never persisted, so content
+ * updates reach every phone without cache-busting.
+ */
+export interface UserState {
+  version: 1;
+  ballots: Record<string, Ballot>; // travelerId -> ballot
+  selectedOptionIds: Record<VotePhase, string>;
+  packedIds: string[];
+  customPlaces: Record<string, PlaceItem[]>; // destinationId -> places
+  customStops: Record<string, IntermediateStop[]>; // destinationId -> stops
+  hiddenSeedIds: string[]; // seeded places/stops the family removed
+  costOverrides: Record<string, number>; // `${optionId}:${lineId}` -> unit USD
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { X, Download, Upload, RotateCcw, Check, AlertCircle } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 import { useTrip } from '../../context/TripContext';
@@ -14,6 +14,13 @@ export const AdminModal: React.FC<AdminModalProps> = ({ isOpen, onClose }) => {
 
   const [importJsonText, setImportJsonText] = useState('');
   const [importStatus, setImportStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
@@ -58,20 +65,25 @@ export const AdminModal: React.FC<AdminModalProps> = ({ isOpen, onClose }) => {
   };
 
   const handleReset = () => {
-    if (window.confirm(language === 'es' ? '¿Restaurar los datos originales del viaje?' : 'Reset to default trip data?')) {
+    if (window.confirm(language === 'es'
+      ? '¿Borrar los votos, checks de equipaje y lugares agregados en este teléfono?'
+      : 'Erase the votes, packing checks and added places on this phone?')) {
       resetToDefaults();
       onClose();
     }
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="bg-white rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl border border-slate-200 space-y-6 max-h-[90vh] overflow-y-auto">
+    <div
+      className="fixed inset-0 z-[55] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm print:hidden"
+      onClick={e => { if (e.target === e.currentTarget) onClose(); }}
+    >
+      <div role="dialog" aria-modal="true" aria-labelledby="admin-title" className="bg-white rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl border border-slate-200 space-y-6 max-h-[90vh] overflow-y-auto">
         
         {/* Header */}
         <div className="flex items-center justify-between pb-4 border-b border-slate-100">
           <div>
-            <h2 className="text-xl font-black text-slate-900 flex items-center gap-2">
+            <h2 id="admin-title" className="text-xl font-black text-slate-900 flex items-center gap-2">
               <span>⚙️</span>
               <span>{t.adminMode}</span>
             </h2>
@@ -83,7 +95,9 @@ export const AdminModal: React.FC<AdminModalProps> = ({ isOpen, onClose }) => {
           </div>
           <button
             onClick={onClose}
-            className="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
+            autoFocus
+            aria-label={language === 'es' ? 'Cerrar' : 'Close'}
+            className="p-2 rounded-xl text-slate-500 hover:text-slate-700 hover:bg-slate-100 transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
@@ -92,17 +106,17 @@ export const AdminModal: React.FC<AdminModalProps> = ({ isOpen, onClose }) => {
         {/* Export Action */}
         <div className="p-4 rounded-2xl bg-emerald-50/70 border border-emerald-200 space-y-2">
           <h3 className="text-xs font-bold uppercase tracking-wider text-emerald-900 flex items-center gap-1.5">
-            <Download className="w-4 h-4 text-emerald-600" />
+            <Download className="w-4 h-4 text-emerald-700" />
             <span>{t.exportData}</span>
           </h3>
           <p className="text-xs text-emerald-800/90 leading-relaxed">
             {language === 'es'
-              ? 'Guarda una copia de seguridad con todos los votos, checklists y notas para compartirla o conservarla.'
-              : 'Save a backup file with all votes, packing progress, and notes to share or archive.'}
+              ? 'Guarda los votos, el equipaje marcado, los lugares agregados y los precios cotizados de este teléfono. El itinerario no va en el respaldo: siempre viene actualizado con la app.'
+              : 'Saves this phone’s votes, packing checks, added places and quoted prices. The itinerary isn’t in the backup: it always comes up to date with the app.'}
           </p>
           <button
             onClick={handleDownload}
-            className="mt-2 inline-flex items-center gap-2 py-2 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white font-bold text-xs shadow-md shadow-emerald-600/20 transition-all"
+            className="mt-2 inline-flex items-center gap-2 py-2 px-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 active:scale-95 text-white font-bold text-xs shadow-md shadow-emerald-600/20 transition-all"
           >
             <Download className="w-4 h-4" />
             <span>{language === 'es' ? 'Descargar Archivo .JSON' : 'Download .JSON File'}</span>
@@ -121,7 +135,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({ isOpen, onClose }) => {
               <span>{language === 'es' ? 'Subir archivo' : 'Upload file'}</span>
               <input type="file" accept=".json" onChange={handleFileUpload} className="hidden" />
             </label>
-            <span className="text-[11px] text-slate-400">
+            <span className="text-[0.75rem] text-slate-500">
               {language === 'es' ? 'o pega el código JSON abajo:' : 'or paste JSON text below:'}
             </span>
           </div>
@@ -135,7 +149,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({ isOpen, onClose }) => {
           />
 
           {importStatus === 'success' && (
-            <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-600">
+            <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-700">
               <Check className="w-4 h-4" />
               <span>{language === 'es' ? '¡Datos cargados con éxito!' : 'Data loaded successfully!'}</span>
             </div>
@@ -151,7 +165,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({ isOpen, onClose }) => {
           <button
             onClick={handleImport}
             disabled={!importJsonText.trim()}
-            className="w-full py-2.5 px-4 rounded-xl bg-slate-900 hover:bg-black disabled:bg-slate-200 disabled:text-slate-400 text-white font-bold text-xs transition-colors"
+            className="w-full py-2.5 px-4 rounded-xl bg-slate-900 hover:bg-black disabled:bg-slate-200 disabled:text-slate-500 text-white font-bold text-xs transition-colors"
           >
             {language === 'es' ? 'Aplicar Datos Importados' : 'Apply Imported Data'}
           </button>
@@ -161,8 +175,8 @@ export const AdminModal: React.FC<AdminModalProps> = ({ isOpen, onClose }) => {
         <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
           <div>
             <h4 className="text-xs font-bold text-slate-800">{t.resetDefaults}</h4>
-            <p className="text-[11px] text-slate-400">
-              {language === 'es' ? 'Vuelve a la configuración original sugerida.' : 'Restores the original suggested itinerary.'}
+            <p className="text-[0.75rem] text-slate-500">
+              {language === 'es' ? 'Borra lo guardado en este teléfono.' : 'Clears what is saved on this phone.'}
             </p>
           </div>
           <button

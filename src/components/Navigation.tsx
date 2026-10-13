@@ -1,8 +1,24 @@
 import React from 'react';
-import { Calendar, MapPin, Scale, Luggage, Users2 } from 'lucide-react';
+import { Calendar, MapPin, Vote, Luggage, Users2 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
 export type TabType = 'itinerary' | 'map' | 'options' | 'packing' | 'family';
+
+/** Spanish slugs in the URL hash so shared links read naturally in the family chat. */
+export const TAB_SLUGS: Record<TabType, string> = {
+  itinerary: 'itinerario',
+  options: 'opciones',
+  map: 'mapa',
+  packing: 'equipaje',
+  family: 'familia',
+};
+
+export const tabFromHash = (hash: string): TabType | null => {
+  const slug = hash.replace(/^#/, '').split('?')[0];
+  if (slug === 'votos') return 'options';
+  const match = (Object.keys(TAB_SLUGS) as TabType[]).find(tab => TAB_SLUGS[tab] === slug);
+  return match ?? null;
+};
 
 interface NavigationProps {
   activeTab: TabType;
@@ -10,37 +26,37 @@ interface NavigationProps {
 }
 
 export const Navigation: React.FC<NavigationProps> = ({ activeTab, setActiveTab }) => {
-  const { t } = useLanguage();
+  const { t, tr } = useLanguage();
 
-  const navItems: { id: TabType; label: string; icon: React.ReactNode }[] = [
-    { id: 'itinerary', label: t.navItinerary, icon: <Calendar className="w-4 h-4 sm:w-5 sm:h-5" /> },
-    { id: 'map', label: t.navMap, icon: <MapPin className="w-4 h-4 sm:w-5 sm:h-5" /> },
-    { id: 'options', label: t.navOptions, icon: <Scale className="w-4 h-4 sm:w-5 sm:h-5" /> },
-    { id: 'packing', label: t.navPacking, icon: <Luggage className="w-4 h-4 sm:w-5 sm:h-5" /> },
-    { id: 'family', label: t.navFamily, icon: <Users2 className="w-4 h-4 sm:w-5 sm:h-5" /> },
+  const navItems: { id: TabType; label: string; short: string; icon: React.ElementType }[] = [
+    { id: 'itinerary', label: t.navItinerary, short: tr('Itinerario', 'Itinerary'), icon: Calendar },
+    { id: 'options', label: tr('Opciones y votos', 'Options & voting'), short: tr('Votar', 'Vote'), icon: Vote },
+    { id: 'map', label: t.navMap, short: tr('Mapa', 'Map'), icon: MapPin },
+    { id: 'packing', label: t.navPacking, short: tr('Equipaje', 'Packing'), icon: Luggage },
+    { id: 'family', label: t.navFamily, short: tr('Familia', 'Family'), icon: Users2 },
   ];
 
   return (
     <>
       {/* Desktop Navigation Tabs */}
-      <nav className="hidden md:block bg-white border-b border-slate-200/80 sticky top-16 sm:top-20 z-30 shadow-sm">
+      <nav aria-label={tr('Secciones', 'Sections')} className="hidden md:block bg-white border-b border-slate-200/80 sticky top-16 sm:top-20 z-30 shadow-sm print:hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex space-x-1 lg:space-x-4">
             {navItems.map(item => {
               const isActive = activeTab === item.id;
+              const Icon = item.icon;
               return (
                 <button
                   key={item.id}
                   onClick={() => setActiveTab(item.id)}
+                  aria-current={isActive ? 'page' : undefined}
                   className={`flex items-center gap-2 py-4 px-3 lg:px-4 text-sm font-bold border-b-2 transition-all cursor-pointer ${
                     isActive
-                      ? 'border-emerald-600 text-emerald-700 bg-emerald-50/50'
+                      ? 'border-emerald-700 text-emerald-800 bg-emerald-50/50'
                       : 'border-transparent text-slate-600 hover:text-slate-900 hover:border-slate-300'
                   }`}
                 >
-                  <span className={isActive ? 'text-emerald-600' : 'text-slate-400'}>
-                    {item.icon}
-                  </span>
+                  <Icon className={`w-5 h-5 ${isActive ? 'text-emerald-700' : 'text-slate-500'}`} aria-hidden />
                   <span>{item.label}</span>
                 </button>
               );
@@ -50,24 +66,29 @@ export const Navigation: React.FC<NavigationProps> = ({ activeTab, setActiveTab 
       </nav>
 
       {/* Mobile Bottom Navigation Bar */}
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-lg border-t border-slate-200 z-50 px-2 py-1 shadow-lg pb-safe">
+      <nav
+        data-bottom-nav
+        aria-label={tr('Secciones', 'Sections')}
+        className="md:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-lg border-t border-slate-200 z-50 px-1 pt-1 shadow-lg print:hidden"
+        style={{ paddingBottom: 'max(0.25rem, env(safe-area-inset-bottom))' }}
+      >
         <div className="grid grid-cols-5 gap-1">
           {navItems.map(item => {
             const isActive = activeTab === item.id;
+            const Icon = item.icon;
             return (
               <button
                 key={item.id}
                 onClick={() => setActiveTab(item.id)}
-                className={`flex flex-col items-center justify-center py-2 px-1 rounded-xl text-[10px] font-semibold transition-all ${
-                  isActive
-                    ? 'text-emerald-700 bg-emerald-50'
-                    : 'text-slate-500 hover:text-slate-800'
+                aria-current={isActive ? 'page' : undefined}
+                className={`flex flex-col items-center justify-center min-h-[56px] py-1.5 px-1 rounded-xl text-xs font-bold transition-all ${
+                  isActive ? 'text-emerald-800' : 'text-slate-600'
                 }`}
               >
-                <div className={`p-1 rounded-lg ${isActive ? 'bg-emerald-600 text-white' : ''}`}>
-                  {item.icon}
-                </div>
-                <span className="truncate w-full text-center mt-0.5">{item.label.split(' ')[0]}</span>
+                <span className={`px-3 py-1 rounded-full transition-colors ${isActive ? 'bg-emerald-100' : ''}`}>
+                  <Icon className="w-5 h-5" aria-hidden />
+                </span>
+                <span className="truncate w-full text-center mt-0.5">{item.short}</span>
               </button>
             );
           })}

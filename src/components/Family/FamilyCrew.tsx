@@ -1,6 +1,7 @@
 import React from 'react';
-import { ShieldCheck } from 'lucide-react';
+import { Phone, ShieldCheck } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
+import { EMERGENCY_CONTACTS } from '../../data/contacts';
 
 export const FamilyCrew: React.FC = () => {
   const { language, t } = useLanguage();
@@ -91,7 +92,7 @@ export const FamilyCrew: React.FC = () => {
       
       {/* Title */}
       <div className="border-b border-slate-200 pb-6">
-        <span className="text-xs font-bold uppercase tracking-widest text-emerald-600">
+        <span className="text-xs font-bold uppercase tracking-widest text-emerald-700">
           {language === 'es' ? 'Nuestro Grupo' : 'Our Travel Crew'}
         </span>
         <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">
@@ -100,6 +101,34 @@ export const FamilyCrew: React.FC = () => {
         <p className="text-sm text-slate-500 mt-0.5">
           {t.travelersSub}
         </p>
+      </div>
+
+      {/* Safety & Tourist Support Numbers — tap to call */}
+      <div className="bg-slate-900 text-white rounded-3xl p-5 sm:p-7 shadow-xl space-y-4">
+        <div className="flex items-center gap-2 text-emerald-300">
+          <ShieldCheck className="w-5 h-5" aria-hidden />
+          <h3 className="text-sm font-extrabold uppercase tracking-wider">
+            {language === 'es' ? 'Números de emergencia (toca para llamar)' : 'Emergency numbers (tap to call)'}
+          </h3>
+        </div>
+
+        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-sm">
+          {EMERGENCY_CONTACTS.map(c => (
+            <li key={c.tel}>
+              <a
+                href={`tel:${c.tel}`}
+                className="flex items-center gap-3 p-3 rounded-2xl bg-slate-800 border border-slate-700 hover:border-emerald-400 min-h-[64px]"
+              >
+                <Phone className="w-5 h-5 text-emerald-300 shrink-0" aria-hidden />
+                <span className="min-w-0">
+                  <span className="block text-slate-200 font-semibold leading-tight">{language === 'es' ? c.label : c.labelEn}</span>
+                  <span className="block text-lg font-extrabold text-white tabular-nums">{c.number}</span>
+                  <span className="block text-xs text-slate-300">{language === 'es' ? c.note : c.noteEn}</span>
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
 
       {/* Guest of honor welcome banner */}
@@ -123,7 +152,7 @@ export const FamilyCrew: React.FC = () => {
           <span className="font-extrabold text-emerald-700 block text-sm">
             🦃 {language === 'es' ? 'Viaje de Thanksgiving (25 - 30 Nov)' : 'Thanksgiving Getaway (Nov 25 - 30)'}
           </span>
-          <p className="text-slate-600 leading-relaxed text-[11px]">
+          <p className="text-slate-600 leading-relaxed text-[0.75rem]">
             {language === 'es'
               ? 'Viajamos los 10 integrantes: Bruce, Norma, Ever, Cori, Isabella, Emily, Jonchito, Lidia, Doña Isabel y Nely.'
               : 'All 10 members travel together: Bruce, Norma, Ever, Cori, Isabella, Emily, Jonchito, Lidia, Isabel & Nely.'}
@@ -133,7 +162,7 @@ export const FamilyCrew: React.FC = () => {
           <span className="font-extrabold text-indigo-700 block text-sm">
             ⛰️ {language === 'es' ? 'Escapada de Diciembre (3 - 7 Dic)' : 'December Getaway (Dec 3 - 7)'}
           </span>
-          <p className="text-slate-600 leading-relaxed text-[11px]">
+          <p className="text-slate-600 leading-relaxed text-[0.75rem]">
             {language === 'es'
               ? 'Viajan únicamente 6 personas: Bruce, Norma, Ever, Cori, Isabella y la bebé Emily.'
               : 'Core crew of 6 only: Bruce, Norma, Ever, Cori, Isabella, and baby Emily.'}
@@ -153,18 +182,18 @@ export const FamilyCrew: React.FC = () => {
                 <div className="w-12 h-12 rounded-2xl bg-slate-100 flex items-center justify-center text-2xl shadow-inner">
                   {m.avatar}
                 </div>
-                <span className="text-[11px] font-extrabold px-2.5 py-1 rounded-full bg-slate-100 text-slate-700">
+                <span className="text-[0.75rem] font-extrabold px-2.5 py-1 rounded-full bg-slate-100 text-slate-700">
                   {m.ageBadge}
                 </span>
               </div>
 
               <div className="mt-3">
                 <h3 className="text-lg font-extrabold text-slate-900">{m.name}</h3>
-                <span className="text-xs font-bold text-emerald-600">{m.role}</span>
+                <span className="text-xs font-bold text-emerald-700">{m.role}</span>
               </div>
 
               <div className="mt-2.5">
-                <span className={`inline-block text-[11px] font-semibold px-2.5 py-1 rounded-xl border ${
+                <span className={`inline-block text-[0.75rem] font-semibold px-2.5 py-1 rounded-xl border ${
                   m.isCoreSix
                     ? 'bg-emerald-50 text-emerald-800 border-emerald-200/80'
                     : 'bg-amber-50 text-amber-900 border-amber-200/80'
@@ -179,41 +208,11 @@ export const FamilyCrew: React.FC = () => {
             </div>
 
             <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
-              <span className="text-slate-400 font-semibold">{language === 'es' ? 'Favorito:' : 'Highlight:'}</span>
+              <span className="text-slate-500 font-semibold">{language === 'es' ? 'Favorito:' : 'Highlight:'}</span>
               <span className="font-bold text-slate-800">{m.favorite}</span>
             </div>
           </div>
         ))}
-      </div>
-
-      {/* Safety & Tourist Support Numbers */}
-      <div className="bg-slate-900 text-white rounded-3xl p-6 sm:p-7 shadow-xl space-y-4">
-        <div className="flex items-center gap-2 text-emerald-400">
-          <ShieldCheck className="w-5 h-5" />
-          <h3 className="text-sm font-extrabold uppercase tracking-wider">
-            {language === 'es' ? 'Asistencia y Números Clave en Guatemala' : 'Assistance & Key Numbers in Guatemala'}
-          </h3>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
-          <div className="p-3 rounded-2xl bg-slate-800/80 border border-slate-700">
-            <span className="text-slate-400 block font-medium">Asistencia al Turista (INGUAT)</span>
-            <span className="text-base font-extrabold text-emerald-400">📞 1500</span>
-            <p className="text-[10px] text-slate-400 mt-0.5">Atención 24/7 en inglés y español</p>
-          </div>
-
-          <div className="p-3 rounded-2xl bg-slate-800/80 border border-slate-700">
-            <span className="text-slate-400 block font-medium">Policía Nacional Civil (PNC)</span>
-            <span className="text-base font-extrabold text-sky-400">📞 110</span>
-            <p className="text-[10px] text-slate-400 mt-0.5">Seguridad y emergencias de tránsito</p>
-          </div>
-
-          <div className="p-3 rounded-2xl bg-slate-800/80 border border-slate-700">
-            <span className="text-slate-400 block font-medium">Bomberos Voluntarios (Ambulancia)</span>
-            <span className="text-base font-extrabold text-rose-400">📞 122</span>
-            <p className="text-[10px] text-slate-400 mt-0.5">Primeros auxilios y emergencias médicas</p>
-          </div>
-        </div>
       </div>
 
     </div>
