@@ -124,68 +124,37 @@ export const destinations: TripDestination[] = [
     ]
   },
   {
-    id: 'ruta-flores',
-    name: 'Ruta de las Flores & Ataco',
-    nameEn: 'Ruta de las Flores & Ataco',
-    region: 'Ahuachapán, El Salvador',
-    regionEn: 'Ahuachapán, El Salvador',
-    coordinates: [-89.8509, 13.8704],
-    stayDuration: 'Parte de Opción El Salvador (25 - 30 Nov)',
-    stayDurationEn: 'Part of El Salvador Option (Nov 25 - 30)',
-    description: 'Pueblos coloniales coloridos, murales vibrantes, clima fresco de montaña, plantaciones de café y casonas históricas llanas. Hospedaje estelar en Casa Degraciela: 100% en planta baja sin gradas, ideal para los 10.',
-    descriptionEn: 'Charming colonial mountain towns, vibrant murals, crisp highland air, coffee estates, and gentle ground-floor historic manors. Stellar stay at Casa Degraciela: 100% single-level with zero stairs, ideal for all 10.',
-    photo: PHOTOS.ataco,
-    googleMapsUrl: 'https://maps.google.com/?q=Concepcion+de+Ataco+El+Salvador',
-    wazeUrl: 'https://waze.com/ul?q=Concepcion+de+Ataco',
-    lodgingName: 'Casa Degraciela Hotel Boutique (Ataco)',
-    lodgingUrl: 'https://maps.google.com/?q=Casa+Degraciela+Concepcion+de+Ataco',
-    climate: 'highland_cool',
-    driveHoursFromIxhuatan: 3.2,
-    roadQuality: 'paved_smooth',
-    babyFriendlyScore: 5,
-    seniorFriendlyScore: 5,
-    highlights: ['Casa Degraciela 100% en planta baja', 'Murales artísticos de Ataco', 'Termales de Santa Teresa (36-38°C)'],
-    highlightsEn: ['Casa Degraciela 100% single floor', 'Artistic murals of Ataco', 'Santa Teresa thermal pools (36-38°C)'],
-    placesToVisit: [
-      { id: 'p-ataco-degraciela', name: 'Casa Degraciela Hotel Boutique', nameEn: 'Casa Degraciela Boutique Hotel', description: 'Casona colonial histórica de 150 años, 100% en planta baja sin gradas, jardines llanos y privacidad total para 10 personas.', googleMapsUrl: 'https://maps.google.com/?q=Casa+Degraciela+Concepcion+de+Ataco' },
-      { id: 'p-ataco-1', name: 'Termales de Santa Teresa (Ahuachapán)', nameEn: 'Santa Teresa Geothermal Hot Springs', description: 'Aguas termales minerales tibias con acceso vehicular directo hasta las piscinas principales y pasamanos seguros.', googleMapsUrl: 'https://maps.google.com/?q=Termales+de+Santa+Teresa+Ahuachapan' },
-      { id: 'p-ataco-2', name: 'Pueblo Colonial de Concepción de Ataco', nameEn: 'Concepción de Ataco Historic Center', description: 'Caminar por calles con murales pintados a mano, tiendas de telares en telar de palanca y cafeterías.', googleMapsUrl: 'https://maps.google.com/?q=Concepcion+de+Ataco+El+Salvador' },
-      { id: 'p-ataco-3', name: 'Laberinto de Albania (Apaneca)', nameEn: 'Albania Cypress Labyrinth', description: 'El laberinto vegetal más grande de Centroamérica, miradores y columpio panorámico.', googleMapsUrl: 'https://maps.google.com/?q=Cafe+Albania+Apaneca' },
-      { id: 'p-ataco-4', name: 'Finca El Carmen Estate (Ataco)', nameEn: 'El Carmen Coffee Estate', description: 'Beneficio tradicional de café con patios de secado completamente planos y degustación de café con vista panorámica.' }
-    ],
-    intermediateStops: [
-      { id: 'i-ataco-1', name: 'Paso Fronterizo Valle Nuevo / Las Chinamas', nameEn: 'Valle Nuevo Border Crossing', description: 'Trámite migratorio: Bruce y Norma pagan $12 USD en efectivo (Tarjeta de Turismo). Emily e Isabella requieren pasaporte vigente. Alternativa ágil: Frontera San Cristóbal.', driveTimeBadge: '⏱️ 1h 45m desde Ixhuatán' },
-      { id: 'i-ataco-2', name: 'Ahuachapán (Mirador y Parque)', nameEn: 'Ahuachapán Town Square', description: 'Parada para cambio de moneda si se requiere o probar pupusas salvadoreñas.' }
-    ]
-  },
-  {
     id: 'coatepeque',
     name: 'Lago de Coatepeque',
     nameEn: 'Lake Coatepeque',
     region: 'Santa Ana, El Salvador',
     regionEn: 'Santa Ana, El Salvador',
-    coordinates: [-89.5473, 13.8633],
-    stayDuration: 'Paseo & Almuerzo Panorámico',
-    stayDurationEn: 'Scenic Cruise & Lakeside Dining',
-    description: 'Espectacular lago en el cráter de un volcán con aguas azul turquesa. Cardedeu Bistro y La Pampa ofrecen terrazas superiores con vistas increíbles para la cena de Acción de Gracias.',
-    descriptionEn: 'Stunning volcanic crater lake with turquoise-blue waters. Cardedeu Bistro and La Pampa offer upper deck lakefront panoramas ideal for Thanksgiving feast.',
+    coordinates: [-89.5347, 13.8913],
+    stayDuration: '1 noche (25 Nov) y comida de Thanksgiving',
+    stayDurationEn: '1 night (Nov 25) and Thanksgiving meal',
+    description: 'Lago de agua turquesa dentro del cráter de un volcán, con la isla Teopán al centro. Recomendación de hospedaje: Cardedeu Hotel Coatepeque, en el ala frente al lago: varias piscinas, lancha, kayak y minigolf, y el restaurante La Pampa en el mismo complejo para la comida de Thanksgiving sin manejar. Los terrenos del lago bajan en pendiente: pedir habitaciones sin gradas cerca del parqueo.',
+    descriptionEn: 'Turquoise lake inside a volcanic crater, with Teopán island in the middle. Lodging pick: Cardedeu Hotel Coatepeque, lakefront wing: several pools, boats, kayaks and mini golf, plus La Pampa restaurant in the same complex for a Thanksgiving meal with no driving. Lakeside grounds slope down: ask for step-free rooms near the parking.',
     photo: PHOTOS.coatepeque,
-    googleMapsUrl: 'https://maps.google.com/?q=Lago+de+Coatepeque+El+Salvador',
-    lodgingName: 'Cardedeu Residence / Villas del Lago',
+    googleMapsUrl: 'https://maps.google.com/?q=La+Pampa+Coatepeque',
+    lodgingName: 'Cardedeu Hotel Coatepeque (ala frente al lago)',
+    lodgingUrl: 'https://www.cardedeuhotels.com/cardedeu-hotel-coatepeque',
     climate: 'temperate',
-    driveHoursFromIxhuatan: 3.5,
+    driveHoursFromIxhuatan: 2.5,
     roadQuality: 'paved_smooth',
-    babyFriendlyScore: 5,
-    seniorFriendlyScore: 5,
-    highlights: ['Cena de Acción de Gracias frente al volcán', 'Terrazas superiores junto al parqueo', 'Paseo suave en pontón techado'],
-    highlightsEn: ['Thanksgiving feast with volcano views', 'Upper decks adjacent to parking', 'Gentle covered pontoon cruise'],
+    babyFriendlyScore: 4,
+    seniorFriendlyScore: 3,
+    highlights: ['Noche frente al lago del cráter', 'Comida de Thanksgiving en La Pampa', 'Lancha y kayak con el agua calma de la mañana'],
+    highlightsEn: ['A night on the crater lake', 'Thanksgiving meal at La Pampa', 'Boat and kayak on calm morning water'],
     placesToVisit: [
-      { id: 'p-coat-1', name: 'Cardedeu Bistro / La Pampa Coatepeque', nameEn: 'Cardedeu Bistro / La Pampa Lakeside Dining', description: 'Terrazas techadas en el nivel superior contiguas al parqueo (evitando escalinatas hacia el agua). Vista panorámica insuperable al volcán para la cena festiva.', googleMapsUrl: 'https://maps.google.com/?q=Cardedeu+Residence+Lago+Coatepeque' },
-      { id: 'p-coat-2', name: 'Paseo en Pontón Privado Techado', nameEn: 'Private Covered Pontoon Cruise', description: 'Paseo suave, plano y sentado alrededor de la isla Teopán por aguas calmas de color turquesa.' },
-      { id: 'p-coat-3', name: 'Mirador de la Carretera Panorámica', nameEn: 'Crater Rim Scenic Overlook', description: 'Punto alto para fotos de toda la caldera volcánica.' }
+      { id: 'p-coat-1', name: 'Cardedeu Hotel Coatepeque', nameEn: 'Cardedeu Hotel Coatepeque', description: 'Ala frente al lago (habitaciones triples y cuádruples) y ala con vista; varias piscinas, lancha, kayak, jet ski y minigolf. Reservas por WhatsApp +503 7856 6504.', descriptionEn: 'Lakefront wing (triple and quad rooms) and a lake-view wing; several pools, boats, kayaks, jet skis and mini golf. Book on WhatsApp +503 7856 6504.', googleMapsUrl: 'https://www.cardedeuhotels.com/cardedeu-hotel-coatepeque' },
+      { id: 'p-coat-2', name: 'La Pampa Coatepeque', nameEn: 'La Pampa Coatepeque', description: 'Parrilla argentina abierta al público dentro del complejo Cardedeu. Reservas por WhatsApp +503 7349 4582.', descriptionEn: 'Argentine grill open to the public inside the Cardedeu complex. Bookings on WhatsApp +503 7349 4582.', googleMapsUrl: 'https://maps.google.com/?q=La+Pampa+Coatepeque' },
+      { id: 'p-coat-3', name: 'Paseo en lancha a la isla Teopán', nameEn: 'Boat ride to Teopán island', description: 'Paseo sentado por agua calma, mejor temprano.', descriptionEn: 'Seated ride on calm water, best early.' },
+      { id: 'p-coat-4', name: 'Casa Azul (alternativa: casa entera)', nameEn: 'Casa Azul (alternative: whole house)', description: 'Casa en El Congo frente al lago con piscina y muelle privados; hasta 9 huéspedes, 3 habitaciones y 2 baños (4.9★ en Airbnb).', descriptionEn: 'Lakefront house in El Congo with private pool and dock; up to 9 guests, 3 bedrooms and 2 baths (4.9★ on Airbnb).', googleMapsUrl: 'https://www.airbnb.com/rooms/44807937' }
     ],
     intermediateStops: [
-      { id: 'i-coat-1', name: 'Parque Nacional Cerro Verde', nameEn: 'Cerro Verde National Park', description: 'Miradores directos al Volcán de Izalco y Volcán de Santa Ana con senderos planos.', driveTimeBadge: '⏱️ 35 min desde el lago' }
+      { id: 'i-coat-1', name: 'Cueva de Andá Mirá (Jalpatagua)', nameEn: 'Andá Mirá cave (Jalpatagua)', description: 'Balneario de aguas azufradas y cueva de ~12 m, km 115 de la CA-8. Q15 adultos, Q10 niños, parqueo Q15.', descriptionEn: 'Sulfur-water pools and a ~12 m cave, km 115 on CA-8. Q15 adults, Q10 children, Q15 parking.', driveTimeBadge: '⏱️ 1 h desde Ixhuatán', googleMapsUrl: 'https://maps.google.com/?q=Cueva+Anda+Mira+Jalpatagua' },
+      { id: 'i-coat-2', name: 'Frontera Valle Nuevo – Las Chinamas', nameEn: 'Valle Nuevo – Las Chinamas border', description: 'Migración y aduana. $12 en efectivo por persona para Bruce y Norma.', descriptionEn: 'Immigration and customs. $12 cash each for Bruce & Norma.', driveTimeBadge: '⏱️ 15 min desde la cueva' },
+      { id: 'i-coat-3', name: 'Pupusas en Ahuachapán', nameEn: 'Pupusas in Ahuachapán', description: 'Pupuserías alrededor del Parque Menéndez, a 15 min de la frontera.', descriptionEn: 'Pupuserías around Parque Menéndez, 15 min past the border.', driveTimeBadge: '⏱️ 1 h antes del lago', googleMapsUrl: 'https://maps.google.com/?q=Parque+Menendez+Ahuachapan' }
     ]
   },
   {
@@ -194,11 +163,11 @@ export const destinations: TripDestination[] = [
     nameEn: 'Chiquimula (Grand Caporal Hotel)',
     region: 'Chiquimula, Guatemala',
     regionEn: 'Chiquimula, Guatemala',
-    coordinates: [-89.5458, 14.7981],
-    stayDuration: '1 Noche de Descanso Estratégico',
-    stayDurationEn: '1 Night Strategic Rest Stop',
-    description: 'Parada perfecta para dividir el viaje hacia Izabal. Hotel Grand Caporal con piscinas, amplios jardines, excelente restaurante de cortes de carne y cómodas habitaciones.',
-    descriptionEn: 'Ideal stop to break up the drive toward Izabal. Grand Caporal Hotel features swimming pools, spacious grounds, great steakhouse, and plush rooms.',
+    coordinates: [-89.5248, 14.7678],
+    stayDuration: '1 noche (26 Nov)',
+    stayDurationEn: '1 night (Nov 26)',
+    description: 'Primera noche de vuelta en Guatemala, después de Thanksgiving en el lago. Hotel Grand Caporal con piscinas, amplios jardines, excelente restaurante de cortes de carne y cómodas habitaciones.',
+    descriptionEn: 'First night back in Guatemala, after Thanksgiving at the lake. Grand Caporal Hotel features swimming pools, spacious grounds, great steakhouse, and plush rooms.',
     photo: PHOTOS.chiquimula,
     googleMapsUrl: 'https://maps.google.com/?q=Hotel+Grand+Caporal+Chiquimula',
     lodgingName: 'Hotel Grand Caporal',
@@ -215,6 +184,7 @@ export const destinations: TripDestination[] = [
       { id: 'p-chiq-2', name: 'Parque Central y Parroquia de Chiquimula', nameEn: 'Chiquimula Central Square', description: 'Plaza histórica con kiosco colonial y ambiente de oriente.' }
     ],
     intermediateStops: [
+      { id: 'i-chiq-0', name: 'Frontera Anguiatú (desde Metapán)', nameEn: 'Anguiatú border (from Metapán)', description: 'Frontera pequeña y tranquila de regreso a Guatemala. Cruzarla con luz de día.', descriptionEn: 'Small, quiet border back into Guatemala. Cross in daylight.', driveTimeBadge: '⏱️ 2 h desde el lago', googleMapsUrl: 'https://maps.google.com/?q=Frontera+Anguiatu' },
       { id: 'i-chiq-1', name: 'Museo de Paleontología en Estanzuela (Zacapa)', nameEn: 'Estanzuela Paleontology Museum', description: 'Esqueletos reales de mastodontes y perezosos gigantes prehistóricos. ¡Gran sorpresa educativa para Isabella y la familia!', driveTimeBadge: '⏱️ Parada de 45 min en ruta', googleMapsUrl: 'https://maps.google.com/?q=Museo+de+Paleontologia+Estanzuela' },
       { id: 'i-chiq-2', name: 'Basílica del Señor de Esquipulas (Opcional)', nameEn: 'Esquipulas Basilica (Optional detour)', description: 'Monumento católico más visitado de Centroamérica, a 45 min al sur de Chiquimula.', googleMapsUrl: 'https://maps.google.com/?q=Basilica+de+Esquipulas' }
     ]
@@ -226,16 +196,16 @@ export const destinations: TripDestination[] = [
     region: 'Izabal, Guatemala',
     regionEn: 'Izabal, Guatemala',
     coordinates: [-88.9913, 15.6583],
-    stayDuration: '3 Noches en Paraíso Ecológico',
-    stayDurationEn: '3 Nights Eco-Paradise Stay',
+    stayDuration: '2 noches (27–28 Nov)',
+    stayDurationEn: '2 nights (Nov 27–28)',
     description: 'Selva tropical exuberante, canales navegables y Castillo de San Felipe. Nana Juana Marina ofrece caminerías 100% planas de concreto ideales para carriola y abuelos, suites con A/C potente y piscina tipo laguna. (Alternativa rústica: Hacienda Tijax con senderos de madera sobre humedales).',
     descriptionEn: 'Lush tropical jungle, calm winding waterways, and San Felipe fortress. Nana Juana Marina offers 100% flat concrete walkways ideal for strollers and seniors, robust A/C, and lagoon pool. (Rustic alternative: Hacienda Tijax eco-lodges with raised boardwalks).',
     photo: PHOTOS.rioDulce,
     googleMapsUrl: 'https://maps.google.com/?q=Nana+Juana+Marina+Hotel+Rio+Dulce',
-    lodgingName: 'Nana Juana Marina & Resort (o Hacienda Tijax)',
+    lodgingName: 'Nana Juana Marina & Resort',
     lodgingUrl: 'https://maps.google.com/?q=Nana+Juana+Marina+Hotel+Rio+Dulce',
     climate: 'jungle_hot',
-    driveHoursFromIxhuatan: 7.5,
+    driveHoursFromIxhuatan: 6,
     roadQuality: 'paved_smooth',
     babyFriendlyScore: 4,
     seniorFriendlyScore: 4,
@@ -253,6 +223,34 @@ export const destinations: TripDestination[] = [
       { id: 'i-rio-1', name: 'Puente de Río Dulce', nameEn: 'Río Dulce Bridge Viewpoint', description: 'Uno de los puentes más altos de Centroamérica con vista impresionante al río y veleros.' },
       { id: 'i-rio-2', name: 'Parque Arqueológico Quiriguá', nameEn: 'Quiriguá Mayan Monumental Stelae', description: 'Las estelas mayas talladas en bloque único más altas del mundo (Patrimonio UNESCO).', googleMapsUrl: 'https://maps.google.com/?q=Quirigua+Archaeological+Park' }
     ]
+  },
+  {
+    id: 'paragliding',
+    name: 'Paragliding Chiquimula',
+    nameEn: 'Paragliding Chiquimula',
+    region: 'Saspán, San José La Arada, Chiquimula',
+    regionEn: 'Saspán, San José La Arada, Chiquimula',
+    coordinates: [-89.5859, 14.7232],
+    stayDuration: '1 noche (29 Nov)',
+    stayDurationEn: '1 night (Nov 29)',
+    description: 'Parque de aventuras en la cima de un cerro, a unos 30 min de Chiquimula: parapente en tándem, canopy, trampolines, paseo en camello, senderos, piscina climatizada, restaurante y cabañas entre pinos (para 2 y 4 personas). El pin del mapa es aproximado: el parque está en la montaña sobre San José La Arada.',
+    descriptionEn: 'Hilltop adventure park about 30 min from Chiquimula: tandem paragliding, zip line, trampolines, camel rides, trails, heated pool, restaurant and cabins among pine trees (for 2 and 4 people). The map pin is approximate: the park sits on the mountain above San José La Arada.',
+    googleMapsUrl: 'https://parqueaventuraslodgingnv.com/',
+    lodgingName: 'Cabañas Paragliding Chiquimula',
+    lodgingUrl: 'https://parqueaventuraslodgingnv.com/',
+    climate: 'temperate',
+    driveHoursFromIxhuatan: 2.3,
+    roadQuality: 'mixed_curves',
+    babyFriendlyScore: 3,
+    seniorFriendlyScore: 3,
+    highlights: ['Vuelo en parapente en tándem', 'Piscina climatizada', 'Cabañas entre pinos con vista'],
+    highlightsEn: ['Tandem paragliding flight', 'Heated pool', 'Cabins among pine trees with a view'],
+    placesToVisit: [
+      { id: 'p-para-1', name: 'Vuelo en parapente', nameEn: 'Paragliding flight', description: 'En tándem con piloto certificado. ≈Q750 en 2022: confirmar precio, peso máximo y horario. WhatsApp +502 4995 5081.', descriptionEn: 'Tandem with a certified pilot. ≈Q750 in 2022: confirm price, weight limit and times. WhatsApp +502 4995 5081.' },
+      { id: 'p-para-2', name: 'Canopy, trampolines y camellos', nameEn: 'Zip line, trampolines & camels', description: 'Para Isabella y los más aventureros.', descriptionEn: 'For Isabella and the adventurous.' },
+      { id: 'p-para-3', name: 'Piscina climatizada y jacuzzi', nameEn: 'Heated pool & jacuzzi', description: 'Para la mañana de descanso antes de volver a casa.', descriptionEn: 'For a relaxed morning before heading home.' }
+    ],
+    intermediateStops: []
   },
   {
     id: 'antigua',
@@ -320,37 +318,6 @@ export const destinations: TripDestination[] = [
     intermediateStops: [
       { id: 'i-atit-1', name: 'Mirador de Godínez', nameEn: 'Godínez Lake Panoramic Overlook', description: 'El punto más alto de la carretera con vista completa a los 3 volcanes y el espejo de agua.', driveTimeBadge: '⏱️ 20 min antes de Panajachel' },
       { id: 'i-atit-2', name: 'Tecpán (Restaurante Katok / Rincón Suizo)', nameEn: 'Tecpán Country Grill Stop', description: 'Parada clásica para comer carnes asadas, frijoles negros y queso con chimenea de leña.', googleMapsUrl: 'https://maps.google.com/?q=Restaurante+Katok+Tecpan' }
-    ]
-  },
-  {
-    id: 'semuc',
-    name: 'Semuc Champey & Lanquín',
-    nameEn: 'Semuc Champey & Lanquín',
-    region: 'Alta Verapaz, Guatemala',
-    regionEn: 'Alta Verapaz, Guatemala',
-    coordinates: [-89.9581, 15.5338],
-    stayDuration: 'Opción de Aventura (Cobán)',
-    stayDurationEn: 'Adventure Option (Cobán)',
-    description: 'Monumento natural con pozas de agua turquesa sobre el río Cahabón subterráneo. ACTUALIZACIÓN DE RUTA: La carretera Lanquín-Semuc (~12 km) fue pavimentada recientemente con concreto hidráulico (ya no es terracería de piedras), aunque conserva pendientes empinadas (+20%) y curvas estrechas. Dentro del parque, el mirador tiene más de 450 gradas y la roca caliza mojada es muy resbaladiza. Atención médica: hospital de Cobán a 3.5 - 4 horas.',
-    descriptionEn: 'Natural limestone bridge with cascading turquoise pools. ROUTE UPDATE: The 12 km Lanquín-Semuc road was recently paved with hydraulic concrete (no longer rough gravel), but features steep 20%+ mountain gradients and narrow turns. Inside the reserve, the overlook has 450+ stairs and wet limestone is extremely slippery. Nearest hospital in Cobán is 3.5 - 4h away.',
-    photo: PHOTOS.semuc,
-    googleMapsUrl: 'https://maps.google.com/?q=Semuc+Champey+Lanquin+Guatemala',
-    lodgingName: 'Hotel Park Cobán / Guayaha Lanquín (Familiar)',
-    climate: 'jungle_hot',
-    driveHoursFromIxhuatan: 7.5,
-    roadQuality: 'mixed_curves',
-    babyFriendlyScore: 2,
-    seniorFriendlyScore: 2,
-    highlights: ['Pozas turquesas naturales', 'Carretera Lanquín-Semuc pavimentada con concreto', 'Aviso: caliza resbaladiza y 4h a hospital'],
-    highlightsEn: ['Natural turquoise pools', 'Lanquín-Semuc road paved with concrete', 'Caution: slippery limestone & 4h to hospital'],
-    placesToVisit: [
-      { id: 'p-sem-1', name: 'Pozas Turquesas Naturales de Semuc Champey', nameEn: 'Semuc Champey Turquoise Cascades', description: 'Terrazas naturales de piedra caliza con agua tibia cristalina que se escalonan en piscinas naturales.', googleMapsUrl: 'https://maps.google.com/?q=Semuc+Champey' },
-      { id: 'p-sem-2', name: 'Grutas Sagradas de Lanquín', nameEn: 'Lanquín Sacred Bat Caverns', description: 'Caverna iluminada por donde emerge un río subterráneo sagrado maya.', googleMapsUrl: 'https://maps.google.com/?q=Grutas+de+Lanquin' },
-      { id: 'p-sem-3', name: 'El Sumidero del Río Cahabón', nameEn: 'Cahabón Underground River Sinkhole', description: 'Punto donde el furioso río se sumerge bajo el puente de roca caliza.' }
-    ],
-    intermediateStops: [
-      { id: 'i-sem-1', name: 'Cobán (Vivero de Orquídeas Verapaz)', nameEn: 'Cobán Botanical Orchid Nursery', description: 'Colección de más de 1,000 especies incluyendo la Monja Blanca, flor nacional de Guatemala.', driveTimeBadge: '⏱️ A mitad de camino' },
-      { id: 'i-sem-2', name: 'Biotopo del Quetzal (Purulhá)', nameEn: 'Quetzal Cloud Forest Sanctuary', description: 'Reserva natural de helechos gigantes y bosque nuboso con senderos frescos.' }
     ]
   }
 ];

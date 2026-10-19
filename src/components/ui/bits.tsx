@@ -5,14 +5,6 @@ import { MessageCircle } from 'lucide-react';
 export const scoreTone = (score: number) =>
   score >= 4 ? 'good' : score === 3 ? 'ok' : 'hard';
 
-const TONE_CLASSES = {
-  good: 'bg-emerald-100 text-emerald-900 border-emerald-200',
-  ok: 'bg-amber-100 text-amber-900 border-amber-200',
-  hard: 'bg-rose-100 text-rose-900 border-rose-200',
-} as const;
-
-export const toneClasses = (tone: keyof typeof TONE_CLASSES) => TONE_CLASSES[tone];
-
 export const ScoreDots: React.FC<{ score: number; label: string }> = ({ score, label }) => (
   <span className="inline-flex items-center gap-0.5" role="img" aria-label={`${label}: ${score}/5`}>
     {[1, 2, 3, 4, 5].map(i => (

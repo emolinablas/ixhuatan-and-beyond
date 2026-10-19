@@ -2,18 +2,19 @@ import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useSta
 import { ArrowLeft, CalendarDays, Pause, Play, SkipForward, X } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 import { useTrip } from '../../context/TripContext';
-import { VotePhase } from '../../types/trip';
-import { pointById, scenarioById, SCENARIOS } from '../../data/routes';
+import { TripPhase } from '../../types/trip';
+import { pointById, scenarioById, ScenarioId, SCENARIOS } from '../../data/routes';
+import { planFor } from '../../data/plans';
 import { photoThumb } from '../../data/photos';
 import { boundsOf, buildScenarioView, formatHours, ScenarioView } from './mapModel';
 import { DrawnLeg, MarkerSpec, RouteMap, RouteMapHandle } from './RouteMap';
 import { MapSheet, SheetSnap } from './MapSheet';
 import { TripStory } from './TripStory';
 import { PlaceDetail, StopContext } from './PlaceDetail';
-import { CompareSummary, OverviewSummary, optionLabel } from './MapSummaries';
+import { OverviewSummary } from './MapSummaries';
 import { tourStepsFor, useTour } from './useTour';
 
-type MapTab = 'overview' | 'base' | VotePhase;
+type MapTab = 'overview' | ScenarioId;
 
 interface MapExplorerProps {
   onOpenItineraryDay: (day: number) => void;
@@ -50,10 +51,7 @@ const useAvailableHeight = (ref: React.RefObject<HTMLElement>) => {
 
 export const MapExplorer: React.FC<MapExplorerProps> = ({ onOpenItineraryDay }) => {
   const { language, tr } = useLanguage();
-  const {
-    options, selectedOptionIds, selectOption, days, daysForOption, destinations, votersByOption,
-    activeDestinationId, setActiveDestinationId, mapRouteFocusId, setMapRouteFocusId,
-  } = useTrip();
+  const { days, destinations, activeDestinationId, setActiveDestinationId, mapFocus, setMapFocus } = useTrip();
   const es = language === 'es';
 
   const rootRef = useRef<HTMLDivElement>(null);
@@ -63,8 +61,7 @@ export const MapExplorer: React.FC<MapExplorerProps> = ({ onOpenItineraryDay }) 
   const isDesktop = useMediaQuery('(min-width: 1024px)');
   const height = useAvailableHeight(rootRef);
 
-  const [tab, setTab] = useState<MapTab>('thanksgiving');
-  const [compare, setCompare] = useState(false);
+  const [tab, setTab] = useState<MapTab>(() => mapFocus ?? 'thanksgiving');
   const [selectedPointId, setSelectedPointId] = useState<string | null>(null);
   const [activeDay, setActiveDay] = useState<number | null>(null);
   const [snap, setSnap] = useState<SheetSnap>('peek');
@@ -79,22 +76,22 @@ export const MapExplorer: React.FC<MapExplorerProps> = ({ onOpenItineraryDay }) 
     return () => ro.disconnect();
   }, []);
 
-  const phaseOptions = useCallback((phase: VotePhase) => options.filter(o => o.phase === phase), [options]);
-
-  const scenarioIds = useMemo(() => {
-    if (tab === 'overview') return ['base', selectedOptionIds.thanksgiving, selectedOptionIds.december];
-    if (tab === 'base') return ['base'];
-    return compare ? phaseOptions(tab).map(o => o.id) : [selectedOptionIds[tab]];
-  }, [tab, compare, selectedOptionIds, phaseOptions]);
+  const scenarioIds: ScenarioId[] = useMemo(
+    () => (tab === 'overview' ? ['base', 'thanksgiving', 'december'] : [tab]),
+    [tab],
+  );
   const scenarioKey = scenarioIds.join('|');
 
-  const views = useMemo(() => scenarioIds.map(id => buildScenarioView(scenarioById(id)!)), [scenarioKey]); // eslint-disable-line react-hooks/exhaustive-deps
+  const views = useMemo(() => scenarioIds.map(id => buildScenarioView(scenarioById(id))), [scenarioIds]);
   const single: ScenarioView | null = views.length === 1 ? views[0] : null;
   const allBounds = useMemo(() => boundsOf(views.flatMap(v => v.bounds)), [views]);
 
+  // Itinerary days behind each route: the two trips by phase, everything else is "home".
   const itineraryFor = useCallback(
-    (scenarioId: string) => (scenarioId === 'base' ? days.filter(d => !d.optionId) : daysForOption(scenarioId)),
-    [days, daysForOption],
+    (scenarioId: ScenarioId) => days.filter(d => (scenarioId === 'base'
+      ? d.phase !== 'thanksgiving' && d.phase !== 'december'
+      : d.phase === scenarioId)),
+    [days],
   );
 
   // Area of the map hidden behind the floating tabs and the sheet.
@@ -107,14 +104,12 @@ export const MapExplorer: React.FC<MapExplorerProps> = ({ onOpenItineraryDay }) 
   }), [topInset, cover, isDesktop]);
 
   // ── Map content ────────────────────────────────────────────────
-  const drawnLegs: DrawnLeg[] = useMemo(() => views.flatMap((view, i) => view.legs.map(leg => ({
+  const drawnLegs: DrawnLeg[] = useMemo(() => views.flatMap(view => view.legs.map(leg => ({
     key: `${view.scenario.id}|${leg.key}|${leg.day}`,
     coords: leg.coords,
     color: view.scenario.color,
     mode: leg.mode,
-    offset: compare ? (i - (views.length - 1) / 2) * 5 : 0,
-    arrows: !compare,
-  }))), [views, compare]);
+  }))), [views]);
 
   const highlightKeys = useMemo(() => (single && activeDay !== null
     ? single.legs.filter(l => l.day === activeDay).map(l => `${single.scenario.id}|${l.key}|${l.day}`)
@@ -136,10 +131,11 @@ export const MapExplorer: React.FC<MapExplorerProps> = ({ onOpenItineraryDay }) 
           variant,
           color: view.scenario.color,
           order: single ? stop.order : null,
-          label: variant === 'home' ? tr('Casa', 'Home') : (es ? p.name : p.nameEn).split(' · ')[0],
+          label: variant === 'home' ? tr('Casa', 'Home') : p.mapLabel ? (es ? p.mapLabel[0] : p.mapLabel[1]) : (es ? p.name : p.nameEn).split(' · ')[0],
           emoji: p.emoji,
           photo: variant === 'stay' && photo ? photoThumb(photo) : undefined,
           nights: single && stop.role === 'stay' ? stop.nights : undefined,
+          labelSide: p.labelSide,
         });
       }
     }
@@ -201,54 +197,32 @@ export const MapExplorer: React.FC<MapExplorerProps> = ({ onOpenItineraryDay }) 
 
   const showTab = (next: MapTab) => {
     setSelectedPointId(null);
-    setCompare(false);
     setTab(next);
   };
 
-  const pickOption = (phase: VotePhase, optionId: string) => {
-    setSelectedPointId(null);
-    setCompare(false);
-    selectOption(phase, optionId);
-  };
-
-  // "See route" from the Options tab.
+  // "See the route on the map" from a trip in the itinerary.
   useEffect(() => {
-    if (!mapRouteFocusId) return;
-    const option = options.find(o => o.id === mapRouteFocusId);
-    if (option) {
-      setTab(option.phase);
-      setCompare(false);
-      selectOption(option.phase, option.id);
-    }
-    setMapRouteFocusId(null);
-  }, [mapRouteFocusId, options, selectOption, setMapRouteFocusId]);
+    if (!mapFocus) return;
+    showTab(mapFocus);
+    setMapFocus(null);
+  }, [mapFocus, setMapFocus]);
 
-  // Location chip in the itinerary: open that place on a route that includes it.
+  // Location chip in the itinerary: open that place on the route that includes it.
   useEffect(() => {
     if (!activeDestinationId || !mapReady) return;
-    const point = SCENARIOS.flatMap(s => s.stops.map(st => pointById(st.pointId)!)).find(p => p.destinationId === activeDestinationId);
     setActiveDestinationId(null);
-    if (!point) return;
-    const preferred = ['base', selectedOptionIds.thanksgiving, selectedOptionIds.december];
-    const scenario = [...preferred.map(id => scenarioById(id)!), ...SCENARIOS].find(s => s.stops.some(st => st.pointId === point.id));
-    if (scenario) {
-      const option = options.find(o => o.id === scenario.id);
-      setCompare(false);
-      if (option) {
-        setTab(option.phase);
-        selectOption(option.phase, option.id);
-      } else {
-        setTab('base');
-      }
-    }
+    const scenario = SCENARIOS.find(s => s.stops.some(st => pointById(st.pointId)?.destinationId === activeDestinationId));
+    const point = scenario?.stops.map(st => pointById(st.pointId)!).find(p => p.destinationId === activeDestinationId);
+    if (!scenario || !point) return;
+    setTab(scenario.id);
     window.setTimeout(() => openPoint(point.id), 350);
   }, [activeDestinationId, mapReady]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const onLegClick = (key: string) => {
     const [scenarioId, , day] = key.split('|');
-    if (compare) {
-      const option = options.find(o => o.id === scenarioId);
-      if (option) pickOption(option.phase, option.id);
+    // On the whole-trip view, tapping a line opens that part of the trip.
+    if (!single) {
+      showTab(scenarioId as ScenarioId);
       return;
     }
     setSelectedPointId(null);
@@ -258,11 +232,10 @@ export const MapExplorer: React.FC<MapExplorerProps> = ({ onOpenItineraryDay }) 
 
   // ── Sheet content ──────────────────────────────────────────────
   const selectedPoint = selectedPointId ? pointById(selectedPointId) : null;
-  const scenarioTitle = (scenarioId: string) => {
+  const scenarioTitle = (scenarioId: ScenarioId) => {
     if (scenarioId === 'base') return tr('Llegada, semana en casa y despedida', 'Arrival, home week & farewell');
-    const option = options.find(o => o.id === scenarioId)!;
-    const phase = option.phase === 'thanksgiving' ? 'Thanksgiving' : tr('Diciembre', 'December');
-    return `${phase} · ${optionLabel(option, options, es)} · ${es ? option.shortTitle : option.shortTitleEn}`;
+    const plan = planFor(scenarioId);
+    return es ? plan.title : plan.titleEn;
   };
   const contexts: StopContext[] = selectedPoint
     ? views.flatMap(v => v.stops.filter(s => s.pointId === selectedPoint.id).map(stop => ({
@@ -270,7 +243,7 @@ export const MapExplorer: React.FC<MapExplorerProps> = ({ onOpenItineraryDay }) 
     })))
     : [];
 
-  const singleOption = single ? options.find(o => o.id === single.scenario.id) : undefined;
+  const singlePlan = single && single.scenario.id !== 'base' ? planFor(single.scenario.id as TripPhase) : undefined;
 
   const header = selectedPoint ? (
     <div className="px-3 pb-2.5 flex items-center gap-2">
@@ -287,22 +260,23 @@ export const MapExplorer: React.FC<MapExplorerProps> = ({ onOpenItineraryDay }) 
     <div className="px-4 pb-3 space-y-2">
       <div>
         <p className="text-xs font-extrabold uppercase tracking-wide" style={{ color: single.scenario.color }}>
-          {singleOption ? `${singleOption.phase === 'thanksgiving' ? 'Thanksgiving' : tr('Diciembre', 'December')} · ${optionLabel(singleOption, options, es)}` : tr('En casa', 'At home')}
+          {singlePlan
+            ? `${singlePlan.id === 'thanksgiving' ? 'Thanksgiving' : tr('Diciembre', 'December')} · ${es ? singlePlan.dateRange : singlePlan.dateRangeEn}`
+            : tr('En casa', 'At home')}
         </p>
         <h3 className="text-lg font-black text-slate-900 leading-tight">
-          {singleOption ? (es ? singleOption.shortTitle : singleOption.shortTitleEn) : tr('Llegada, playa, cataratas y despedida', 'Arrival, beach, waterfalls & farewell')}
+          {singlePlan ? (es ? singlePlan.title : singlePlan.titleEn).split(': ')[1] ?? (es ? singlePlan.title : singlePlan.titleEn) : tr('Llegada, playa, cataratas y despedida', 'Arrival, beach, waterfalls & farewell')}
         </h3>
       </div>
       <div className="flex gap-1.5 text-xs font-bold overflow-x-auto no-scrollbar -mx-4 px-4 whitespace-nowrap">
-        {singleOption ? (
+        {singlePlan ? (
           <>
-            <span className="px-2 py-1 rounded-lg bg-slate-100 text-slate-800">📅 {singleOption.durationDays} {tr('días', 'days')}</span>
-            <span className="px-2 py-1 rounded-lg bg-slate-100 text-slate-800">🚗 ~{singleOption.metrics.totalDriveHours} h · {single.totalKm} km</span>
-            <span className="px-2 py-1 rounded-lg bg-slate-100 text-slate-800">🏨 {singleOption.metrics.lodgings} {singleOption.metrics.lodgings === 1 ? 'hotel' : tr('hoteles', 'hotels')}</span>
-            <span className={`px-2 py-1 rounded-lg ${singleOption.metrics.passportsRequired ? 'bg-amber-100 text-amber-900' : 'bg-emerald-100 text-emerald-900'}`}>
-              🛂 {singleOption.metrics.passportsRequired ? tr('Pasaportes', 'Passports') : tr('Sin pasaportes', 'No passports')}
+            <span className="px-2 py-1 rounded-lg bg-slate-100 text-slate-800">📅 {singlePlan.durationDays} {tr('días', 'days')}</span>
+            <span className="px-2 py-1 rounded-lg bg-slate-100 text-slate-800">🚗 ~{singlePlan.metrics.totalDriveHours} h · {single.totalKm} km</span>
+            <span className="px-2 py-1 rounded-lg bg-slate-100 text-slate-800">🏨 {singlePlan.metrics.lodgings} {singlePlan.metrics.lodgings === 1 ? 'hotel' : tr('hoteles', 'hotels')}</span>
+            <span className={`px-2 py-1 rounded-lg ${singlePlan.metrics.passportsRequired ? 'bg-amber-100 text-amber-900' : 'bg-emerald-100 text-emerald-900'}`}>
+              🛂 {singlePlan.metrics.passportsRequired ? tr('Pasaportes', 'Passports') : tr('Sin pasaportes', 'No passports')}
             </span>
-            <span className="px-2 py-1 rounded-lg bg-slate-100 text-slate-800">🗳️ {votersByOption(singleOption.id).length}</span>
           </>
         ) : (
           <>
@@ -333,24 +307,6 @@ export const MapExplorer: React.FC<MapExplorerProps> = ({ onOpenItineraryDay }) 
         </button>
       </div>
     </div>
-  ) : compare ? (
-    <div className="px-4 pb-3">
-      <p className="text-xs font-extrabold uppercase tracking-wide text-slate-600">{tr('Comparar', 'Compare')}</p>
-      <h3 className="text-lg font-black text-slate-900 leading-tight">
-        {tab === 'thanksgiving' ? tr('Las 3 rutas de Thanksgiving', 'The 3 Thanksgiving routes') : tr('Las 3 rutas de diciembre', 'The 3 December routes')}
-      </h3>
-      <div className="flex flex-wrap gap-1.5 mt-1.5">
-        {views.map(v => {
-          const o = options.find(x => x.id === v.scenario.id)!;
-          return (
-            <span key={o.id} className="inline-flex items-center gap-1 text-xs font-bold text-slate-800">
-              <span className="w-3 h-3 rounded-full" style={{ backgroundColor: o.color }} aria-hidden />
-              {es ? o.shortTitle : o.shortTitleEn}
-            </span>
-          );
-        })}
-      </div>
-    </div>
   ) : (
     <div className="px-4 pb-3">
       <p className="text-xs font-extrabold uppercase tracking-wide text-slate-600">{tr('Todo el viaje · 27 días', 'The whole trip · 27 days')}</p>
@@ -372,8 +328,6 @@ export const MapExplorer: React.FC<MapExplorerProps> = ({ onOpenItineraryDay }) 
       onStopClick={openPoint}
       scrollContainer={sheetScrollRef}
     />
-  ) : compare ? (
-    <CompareSummary views={views} onPick={id => pickOption(tab as VotePhase, id)} />
   ) : (
     <OverviewSummary onOpen={target => showTab(target)} />
   );
@@ -455,40 +409,7 @@ export const MapExplorer: React.FC<MapExplorerProps> = ({ onOpenItineraryDay }) 
                 </button>
               </div>
             </div>
-          ) : (tab === 'thanksgiving' || tab === 'december') && (
-            <div className="pointer-events-auto grid grid-cols-4 gap-1 p-1 rounded-2xl bg-white/95 backdrop-blur shadow-lg border border-slate-200" role="group" aria-label={tr('Opciones', 'Options')}>
-              {phaseOptions(tab).map(o => {
-                const active = !compare && selectedOptionIds[tab] === o.id;
-                return (
-                  <button
-                    key={o.id}
-                    onClick={() => pickOption(tab, o.id)}
-                    aria-pressed={active}
-                    className={`flex flex-col items-center justify-center min-h-[52px] rounded-xl px-1 leading-tight border-2 transition-colors ${
-                      active ? 'text-white' : 'bg-white text-slate-900'
-                    }`}
-                    style={{ borderColor: active ? o.color : 'transparent', backgroundColor: active ? o.color : undefined }}
-                  >
-                    <span className="flex items-center gap-1 text-xs font-extrabold">
-                      {!active && <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: o.color }} aria-hidden />}
-                      {optionLabel(o, options, es)}
-                    </span>
-                    <span className="text-[0.6875rem] font-semibold text-center line-clamp-2">{es ? o.shortTitle : o.shortTitleEn}</span>
-                  </button>
-                );
-              })}
-              <button
-                onClick={() => { setSelectedPointId(null); setCompare(c => !c); }}
-                aria-pressed={compare}
-                className={`flex flex-col items-center justify-center min-h-[52px] rounded-xl px-1 leading-tight transition-colors ${
-                  compare ? 'bg-slate-900 text-white' : 'bg-slate-100 text-slate-900'
-                }`}
-              >
-                <span className="text-base font-black" aria-hidden>⇄</span>
-                <span className="text-[0.6875rem] font-bold">{tr('Comparar', 'Compare')}</span>
-              </button>
-            </div>
-          )}
+          ) : null}
         </div>
       </div>
 

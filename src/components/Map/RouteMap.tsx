@@ -13,9 +13,6 @@ export interface DrawnLeg {
   color: string;
   mode: 'drive' | 'boat';
   ghost?: boolean;
-  /** Sideways shift in px so options sharing a road show as parallel lines. */
-  offset?: number;
-  arrows?: boolean;
 }
 
 export type MarkerVariant = 'home' | 'airport' | 'stay' | 'visit' | 'border';
@@ -30,6 +27,7 @@ export interface MarkerSpec {
   emoji: string;
   photo?: string;
   nights?: number;
+  labelSide?: 'below' | 'left';
 }
 
 export interface Padding { top: number; bottom: number; left: number; right: number }
@@ -85,7 +83,7 @@ const legsGeoJSON = (legs: DrawnLeg[]): GeoJSON.FeatureCollection<GeoJSON.LineSt
   type: 'FeatureCollection',
   features: legs.map(l => ({
     type: 'Feature',
-    properties: { key: l.key, color: l.color, mode: l.mode, ghost: !!l.ghost, offset: l.offset ?? 0, arrows: l.arrows !== false },
+    properties: { key: l.key, color: l.color, mode: l.mode, ghost: !!l.ghost },
     geometry: { type: 'LineString', coordinates: l.coords },
   })),
 });
@@ -93,7 +91,7 @@ const legsGeoJSON = (legs: DrawnLeg[]): GeoJSON.FeatureCollection<GeoJSON.LineSt
 const markerElement = (spec: MarkerSpec, onClick: () => void) => {
   const el = document.createElement('button');
   el.type = 'button';
-  el.className = `rm-marker rm-${spec.variant}`;
+  el.className = `rm-marker rm-${spec.variant}${spec.labelSide === 'left' ? ' rm-label-left' : ''}`;
   el.style.setProperty('--c', spec.color);
   el.setAttribute('aria-label', spec.order ? `${spec.order}. ${spec.label}` : spec.label);
 
@@ -187,20 +185,20 @@ export const RouteMap = forwardRef<RouteMapHandle, RouteMapProps>(function Route
       map.addLayer({ id: 'legs-casing', type: 'line', source: 'legs',
         filter: ['all', ['==', ['get', 'mode'], 'drive'], ['==', ['get', 'ghost'], false]],
         layout: { 'line-cap': 'round', 'line-join': 'round' },
-        paint: { 'line-color': '#ffffff', 'line-width': width(6, 11), 'line-offset': ['get', 'offset'] } });
+        paint: { 'line-color': '#ffffff', 'line-width': width(6, 11) } });
       map.addLayer({ id: 'highlight-glow', type: 'line', source: 'highlight',
         layout: { 'line-cap': 'round', 'line-join': 'round' },
         paint: { 'line-color': '#facc15', 'line-width': width(11, 18), 'line-opacity': 0.9, 'line-blur': 1 } });
       map.addLayer({ id: 'legs-line', type: 'line', source: 'legs',
         filter: ['all', ['==', ['get', 'mode'], 'drive'], ['==', ['get', 'ghost'], false]],
         layout: { 'line-cap': 'round', 'line-join': 'round' },
-        paint: { 'line-color': ['get', 'color'], 'line-width': width(3.5, 6.5), 'line-offset': ['get', 'offset'] } });
+        paint: { 'line-color': ['get', 'color'], 'line-width': width(3.5, 6.5) } });
       map.addLayer({ id: 'legs-boat', type: 'line', source: 'legs',
         filter: ['all', ['==', ['get', 'mode'], 'boat'], ['==', ['get', 'ghost'], false]],
         layout: { 'line-cap': 'round', 'line-join': 'round' },
         paint: { 'line-color': '#0369a1', 'line-width': width(3, 5), 'line-dasharray': [1, 1.6] } });
       map.addLayer({ id: 'legs-arrows', type: 'symbol', source: 'legs',
-        filter: ['all', ['==', ['get', 'mode'], 'drive'], ['==', ['get', 'ghost'], false], ['==', ['get', 'arrows'], true]],
+        filter: ['all', ['==', ['get', 'mode'], 'drive'], ['==', ['get', 'ghost'], false]],
         layout: {
           'symbol-placement': 'line',
           'symbol-spacing': 90,

@@ -66,8 +66,8 @@ export const AdminModal: React.FC<AdminModalProps> = ({ isOpen, onClose }) => {
 
   const handleReset = () => {
     if (window.confirm(language === 'es'
-      ? '¿Borrar los votos, checks de equipaje y lugares agregados en este teléfono?'
-      : 'Erase the votes, packing checks and added places on this phone?')) {
+      ? '¿Borrar los checks de equipaje, lugares agregados y precios cotizados en este teléfono?'
+      : 'Erase the packing checks, added places and quoted prices on this phone?')) {
       resetToDefaults();
       onClose();
     }
@@ -111,8 +111,8 @@ export const AdminModal: React.FC<AdminModalProps> = ({ isOpen, onClose }) => {
           </h3>
           <p className="text-xs text-emerald-800/90 leading-relaxed">
             {language === 'es'
-              ? 'Guarda los votos, el equipaje marcado, los lugares agregados y los precios cotizados de este teléfono. El itinerario no va en el respaldo: siempre viene actualizado con la app.'
-              : 'Saves this phone’s votes, packing checks, added places and quoted prices. The itinerary isn’t in the backup: it always comes up to date with the app.'}
+              ? 'Guarda el equipaje marcado, los lugares agregados y los precios cotizados de este teléfono. El itinerario no va en el respaldo: siempre viene actualizado con la app.'
+              : 'Saves this phone’s packing checks, added places and quoted prices. The itinerary isn’t in the backup: it always comes up to date with the app.'}
           </p>
           <button
             onClick={handleDownload}

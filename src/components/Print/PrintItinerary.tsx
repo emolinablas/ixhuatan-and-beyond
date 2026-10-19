@@ -5,15 +5,12 @@ import { EMERGENCY_CONTACTS } from '../../data/contacts';
 
 /**
  * Paper version for the suitcase: only rendered while printing, in the
- * current language, with the options currently selected in the itinerary.
+ * current language, with both road-trip plans.
  */
 export const PrintItinerary: React.FC = () => {
   const { language, tr } = useLanguage();
-  const { days, options, selectedOptionIds } = useTrip();
+  const { days, plans } = useTrip();
   const es = language === 'es';
-  const chosen = [selectedOptionIds.thanksgiving, selectedOptionIds.december]
-    .map(id => options.find(o => o.id === id))
-    .filter(Boolean);
 
   return (
     <div className="hidden print:block text-black bg-white text-[11pt] leading-snug">
@@ -21,8 +18,7 @@ export const PrintItinerary: React.FC = () => {
         <h1 className="text-[20pt] font-extrabold">Ixhuatán &amp; Beyond — {tr('Itinerario', 'Itinerary')}</h1>
         <p className="font-semibold">{tr('15 de noviembre – 11 de diciembre de 2026 · Base: Santa María Ixhuatán, Santa Rosa', 'November 15 – December 11, 2026 · Home base: Santa María Ixhuatán, Santa Rosa')}</p>
         <p className="mt-1">
-          {tr('Opciones en este itinerario: ', 'Options in this itinerary: ')}
-          {chosen.map(o => (es ? o!.title : o!.titleEn)).join(' · ')}
+          {plans.map(p => (es ? p.title : p.titleEn)).join(' · ')}
         </p>
       </header>
 

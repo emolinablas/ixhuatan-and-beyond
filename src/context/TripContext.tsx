@@ -1,36 +1,23 @@
-import React, { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import {
-  Ballot, CostLine, DayPlan, IntermediateStop, PackingItem, PlaceItem,
-  TripDestination, TripOption, UserState, VotePhase,
+  CostLine, DayPlan, IntermediateStop, PackingItem, PlaceItem,
+  TripDestination, TripPhase, TripPlan, UserState,
 } from '../types/trip';
 import { destinations as destinationSeeds } from '../data/destinations';
-import { tripOptions } from '../data/options';
+import { tripPlans } from '../data/plans';
 import { baseDays } from '../data/baseDays';
-import { optionItineraries } from '../data/optionItineraries';
+import { planDays } from '../data/planDays';
 import { packingItems as packingSeeds } from '../data/packing';
-import { travelerById } from '../data/travelers';
 
 export type PackingItemView = PackingItem & { checked: boolean };
 export type CostLineView = CostLine & { unitUsdEffective: number; edited: boolean };
 
 interface TripContextType {
   destinations: TripDestination[];
-  options: TripOption[];
-  /** The 27 days, with option days swapped in for the currently selected options. */
+  plans: TripPlan[];
+  /** All 27 days in order. */
   days: DayPlan[];
-  daysForOption: (optionId: string) => DayPlan[];
   packingItems: PackingItemView[];
-
-  selectedOptionIds: Record<VotePhase, string>;
-  selectOption: (phase: VotePhase, optionId: string) => void;
-
-  ballots: Record<string, Ballot>;
-  me: string | null;
-  setMe: (travelerId: string | null) => void;
-  castVote: (travelerId: string, phase: VotePhase, optionId: string) => void;
-  /** Merges ballots from a shared link; returns the names that were added or changed. */
-  mergeBallots: (incoming: Record<string, Ballot>) => string[];
-  votersByOption: (optionId: string) => string[];
 
   togglePackingItem: (id: string) => void;
   resetPackingItems: () => void;
@@ -41,13 +28,14 @@ interface TripContextType {
   addIntermediateStop: (destinationId: string, stop: IntermediateStop) => void;
   deleteIntermediateStop: (destinationId: string, stopId: string) => void;
 
-  costLines: (option: TripOption) => CostLineView[];
-  setCostOverride: (optionId: string, lineId: string, unitUsd: number | null) => void;
+  costLines: (plan: TripPlan) => CostLineView[];
+  setCostOverride: (planId: string, lineId: string, unitUsd: number | null) => void;
 
   activeDestinationId: string | null;
   setActiveDestinationId: (id: string | null) => void;
-  mapRouteFocusId: string | null;
-  setMapRouteFocusId: (id: string | null) => void;
+  /** Which trip the Map tab should open on, when another tab sends people there. */
+  mapFocus: TripPhase | null;
+  setMapFocus: (phase: TripPhase | null) => void;
 
   exportStateJson: () => string;
   importStateJson: (jsonString: string) => boolean;
@@ -55,18 +43,14 @@ interface TripContextType {
 }
 
 const USER_STATE_KEY = 'ixhuatan_user_state_v1';
-const ME_KEY = 'ixhuatan_me';
 const LEGACY_KEY_PATTERN = /^ixhuatan_trip_data_v\d+$/;
+// Keys from the voting era (October 2026); the plans are decided now.
+const RETIRED_KEYS = ['ixhuatan_me'];
 
-const DEFAULT_SELECTION: Record<VotePhase, string> = {
-  thanksgiving: 'opt-thanksgiving-elsalvador',
-  december: 'opt-december-atitlan-antigua',
-};
+const ALL_DAYS = [...baseDays, ...planDays].sort((a, b) => a.dayNumber - b.dayNumber);
 
 const defaultUserState = (): UserState => ({
   version: 1,
-  ballots: {},
-  selectedOptionIds: { ...DEFAULT_SELECTION },
   packedIds: packingSeeds.filter(p => p.initiallyChecked).map(p => p.id),
   customPlaces: {},
   customStops: {},
@@ -75,33 +59,28 @@ const defaultUserState = (): UserState => ({
 });
 
 const isObject = (v: unknown): v is Record<string, any> => typeof v === 'object' && v !== null && !Array.isArray(v);
-const optionExists = (phase: VotePhase, id: unknown) =>
-  typeof id === 'string' && tripOptions.some(o => o.id === id && o.phase === phase);
 
 /** Accepts a v1 user state (or anything close) and fills gaps with defaults. */
 const normalizeUserState = (raw: Record<string, any>): UserState => {
   const base = defaultUserState();
-  const sel = isObject(raw.selectedOptionIds) ? raw.selectedOptionIds : {};
   return {
     version: 1,
-    ballots: isObject(raw.ballots) ? raw.ballots : base.ballots,
-    selectedOptionIds: {
-      thanksgiving: optionExists('thanksgiving', sel.thanksgiving) ? sel.thanksgiving : base.selectedOptionIds.thanksgiving,
-      december: optionExists('december', sel.december) ? sel.december : base.selectedOptionIds.december,
-    },
     packedIds: Array.isArray(raw.packedIds) ? raw.packedIds : base.packedIds,
     customPlaces: isObject(raw.customPlaces) ? raw.customPlaces : {},
     customStops: isObject(raw.customStops) ? raw.customStops : {},
     hiddenSeedIds: Array.isArray(raw.hiddenSeedIds) ? raw.hiddenSeedIds : [],
-    costOverrides: isObject(raw.costOverrides) ? raw.costOverrides : {},
+    // Quotes typed in while the options were being compared were keyed by option id;
+    // only keep the ones that belong to a decided plan.
+    costOverrides: isObject(raw.costOverrides)
+      ? Object.fromEntries(Object.entries(raw.costOverrides).filter(([key]) => tripPlans.some(p => key.startsWith(`${p.id}:`))))
+      : {},
   };
 };
 
 /**
  * The pre-v1 app persisted the whole trip (content included) under
  * ixhuatan_trip_data_vN. Keep only what the family actually did: packing
- * checks, places they added and their selections. Anonymous per-phone votes
- * can't be attributed to a person, so they are dropped.
+ * checks and places they added.
  */
 const migrateLegacyState = (legacy: Record<string, any>): UserState => {
   const state = defaultUserState();
@@ -115,12 +94,6 @@ const migrateLegacyState = (legacy: Record<string, any>): UserState => {
       if (places.length) state.customPlaces[d.id] = places;
       if (stops.length) state.customStops[d.id] = stops;
     }
-  }
-  if (optionExists('thanksgiving', legacy.selectedThanksgivingOptionId)) {
-    state.selectedOptionIds.thanksgiving = legacy.selectedThanksgivingOptionId;
-  }
-  if (optionExists('december', legacy.selectedDecemberOptionId)) {
-    state.selectedOptionIds.december = legacy.selectedDecemberOptionId;
   }
   return state;
 };
@@ -171,35 +144,20 @@ const loadUserState = (): UserState => {
   return defaultUserState();
 };
 
-const sortByDay = (days: DayPlan[]) => [...days].sort((a, b) => a.dayNumber - b.dayNumber);
-
 const TripContext = createContext<TripContextType | undefined>(undefined);
 
 export const TripProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<UserState>(loadUserState);
-  const [me, setMeState] = useState<string | null>(() => {
-    const saved = safeGet(ME_KEY);
-    return saved && travelerById(saved) ? saved : null;
-  });
   const [activeDestinationId, setActiveDestinationId] = useState<string | null>(null);
-  const [mapRouteFocusId, setMapRouteFocusId] = useState<string | null>(null);
-
-  // Lets mergeBallots report what changed while staying a stable callback.
-  const ballotsRef = useRef(user.ballots);
-  ballotsRef.current = user.ballots;
+  const [mapFocus, setMapFocus] = useState<TripPhase | null>(null);
 
   useEffect(() => {
     safeSet(USER_STATE_KEY, JSON.stringify(user));
   }, [user]);
 
-  // The migrated state is saved under the new key above, so old copies can go.
+  // The current state is saved under the new key above, so old copies can go.
   useEffect(() => {
-    legacyKeys().forEach(key => safeSet(key, null));
-  }, []);
-
-  const setMe = useCallback((travelerId: string | null) => {
-    setMeState(travelerId);
-    safeSet(ME_KEY, travelerId);
+    [...legacyKeys(), ...RETIRED_KEYS].forEach(key => safeSet(key, null));
   }, []);
 
   const destinations = useMemo(() => {
@@ -211,58 +169,10 @@ export const TripProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }));
   }, [user.customPlaces, user.customStops, user.hiddenSeedIds]);
 
-  const days = useMemo(
-    () => sortByDay([
-      ...baseDays,
-      ...(optionItineraries[user.selectedOptionIds.thanksgiving] ?? []),
-      ...(optionItineraries[user.selectedOptionIds.december] ?? []),
-    ]),
-    [user.selectedOptionIds],
-  );
-
-  const daysForOption = useCallback((optionId: string) => optionItineraries[optionId] ?? [], []);
-
   const packingItems = useMemo(() => {
     const packed = new Set(user.packedIds);
     return packingSeeds.map(p => ({ ...p, checked: packed.has(p.id) }));
   }, [user.packedIds]);
-
-  const selectOption = useCallback((phase: VotePhase, optionId: string) => {
-    setUser(prev => ({ ...prev, selectedOptionIds: { ...prev.selectedOptionIds, [phase]: optionId } }));
-  }, []);
-
-  const castVote = useCallback((travelerId: string, phase: VotePhase, optionId: string) => {
-    setUser(prev => {
-      const current = prev.ballots[travelerId] ?? {};
-      const next: Ballot = { ...current };
-      if (current[phase] === optionId) delete next[phase];
-      else next[phase] = optionId;
-      return { ...prev, ballots: { ...prev.ballots, [travelerId]: next } };
-    });
-  }, []);
-
-  const mergeBallots = useCallback((incoming: Record<string, Ballot>) => {
-    const current = ballotsRef.current;
-    const changed = Object.entries(incoming)
-      .filter(([id, ballot]) => JSON.stringify({ ...current[id], ...ballot }) !== JSON.stringify(current[id] ?? {}))
-      .map(([id]) => travelerById(id)?.name ?? id);
-    setUser(prev => {
-      const ballots = { ...prev.ballots };
-      for (const [id, ballot] of Object.entries(incoming)) {
-        ballots[id] = { ...ballots[id], ...ballot };
-      }
-      return { ...prev, ballots };
-    });
-    return changed;
-  }, []);
-
-  const votersByOption = useCallback((optionId: string) => {
-    const option = tripOptions.find(o => o.id === optionId);
-    if (!option) return [];
-    return Object.entries(user.ballots)
-      .filter(([, b]) => b[option.phase] === optionId)
-      .map(([id]) => id);
-  }, [user.ballots]);
 
   const togglePackingItem = useCallback((id: string) => {
     setUser(prev => ({
@@ -303,16 +213,16 @@ export const TripProvider: React.FC<{ children: React.ReactNode }> = ({ children
       : { ...prev, customStops: { ...prev.customStops, [destinationId]: (prev.customStops[destinationId] ?? []).filter(s => s.id !== stopId) } });
   }, []);
 
-  const costLines = useCallback((option: TripOption): CostLineView[] =>
-    option.costs.map(line => {
-      const override = user.costOverrides[`${option.id}:${line.id}`];
+  const costLines = useCallback((plan: TripPlan): CostLineView[] =>
+    plan.costs.map(line => {
+      const override = user.costOverrides[`${plan.id}:${line.id}`];
       return { ...line, unitUsdEffective: override ?? line.unitUsd, edited: override !== undefined };
     }), [user.costOverrides]);
 
-  const setCostOverride = useCallback((optionId: string, lineId: string, unitUsd: number | null) => {
+  const setCostOverride = useCallback((planId: string, lineId: string, unitUsd: number | null) => {
     setUser(prev => {
       const costOverrides = { ...prev.costOverrides };
-      const key = `${optionId}:${lineId}`;
+      const key = `${planId}:${lineId}`;
       if (unitUsd === null || Number.isNaN(unitUsd)) delete costOverrides[key];
       else costOverrides[key] = unitUsd;
       return { ...prev, costOverrides };
@@ -336,18 +246,9 @@ export const TripProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const value = useMemo<TripContextType>(() => ({
     destinations,
-    options: tripOptions,
-    days,
-    daysForOption,
+    plans: tripPlans,
+    days: ALL_DAYS,
     packingItems,
-    selectedOptionIds: user.selectedOptionIds,
-    selectOption,
-    ballots: user.ballots,
-    me,
-    setMe,
-    castVote,
-    mergeBallots,
-    votersByOption,
     togglePackingItem,
     resetPackingItems,
     markAllPackingItems,
@@ -359,16 +260,15 @@ export const TripProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setCostOverride,
     activeDestinationId,
     setActiveDestinationId,
-    mapRouteFocusId,
-    setMapRouteFocusId,
+    mapFocus,
+    setMapFocus,
     exportStateJson,
     importStateJson,
     resetToDefaults,
   }), [
-    destinations, days, daysForOption, packingItems, user.selectedOptionIds, selectOption, user.ballots, me, setMe,
-    castVote, mergeBallots, votersByOption, togglePackingItem, resetPackingItems, markAllPackingItems,
+    destinations, packingItems, togglePackingItem, resetPackingItems, markAllPackingItems,
     addPlaceToVisit, deletePlaceToVisit, addIntermediateStop, deleteIntermediateStop, costLines, setCostOverride,
-    activeDestinationId, mapRouteFocusId, exportStateJson, importStateJson, resetToDefaults,
+    activeDestinationId, mapFocus, exportStateJson, importStateJson, resetToDefaults,
   ]);
 
   return <TripContext.Provider value={value}>{children}</TripContext.Provider>;

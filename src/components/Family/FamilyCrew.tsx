@@ -70,7 +70,7 @@ export const FamilyCrew: React.FC = () => {
       description: language === 'es'
         ? 'Presencia dulce y llena de paz, disfrutando cada comida, paisaje y momento junto a sus hijos y nietas.'
         : 'Sweet, peaceful presence, savoring every garden, lake panorama, and precious moment with children and grandchildren.',
-      favorite: language === 'es' ? 'Termales de Santa Teresa & Ruta de las Flores' : 'Santa Teresa Hot Springs & Ruta de las Flores'
+      favorite: language === 'es' ? 'Lago de Coatepeque & Río Dulce' : 'Lake Coatepeque & Río Dulce'
     },
     {
       name: 'Nely',

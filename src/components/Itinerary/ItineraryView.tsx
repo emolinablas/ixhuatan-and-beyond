@@ -2,40 +2,41 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { CalendarCheck, Printer } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 import { useTrip } from '../../context/TripContext';
-import { DayPhase, DayPlan, VotePhase } from '../../types/trip';
+import { DayPhase, DayPlan, TripPhase } from '../../types/trip';
+import { planFor } from '../../data/plans';
 import { shortWeekday, tripDayNumber, TRIP_DAYS } from '../../lib/dates';
 import { DayCard } from './DayCard';
-import { PhaseHeader } from './PhaseHeader';
+import { PlanHeader } from './PlanHeader';
 
 type Filter = 'all' | 'milestones' | 'rest' | 'thanksgiving' | 'december' | 'beach';
 
 interface ItineraryViewProps {
   onOpenMap: (destinationId: string) => void;
-  onGoToVote: () => void;
+  onShowPlanOnMap: (phase: TripPhase) => void;
   onPrint: () => void;
 }
 
-const SECTIONS: { phase: DayPhase; es: string; en: string; vote?: VotePhase }[] = [
+const SECTIONS: { phase: DayPhase; es: string; en: string; trip?: TripPhase }[] = [
   { phase: 'initial_base', es: '🛬 Llegada y semana en casa', en: '🛬 Arrival & first week at home' },
-  { phase: 'thanksgiving', es: '', en: '', vote: 'thanksgiving' },
+  { phase: 'thanksgiving', es: '', en: '', trip: 'thanksgiving' },
   { phase: 'post_thanksgiving_base', es: '🏡 Descanso en Ixhuatán', en: '🏡 Rest in Ixhuatán' },
-  { phase: 'december', es: '', en: '', vote: 'december' },
+  { phase: 'december', es: '', en: '', trip: 'december' },
   { phase: 'farewell_base', es: '👋 Últimos días y despedida', en: '👋 Last days & farewell' },
 ];
 
 const scrollToDay = (n: number, behavior: ScrollBehavior = 'smooth') =>
   document.getElementById(`day-${n}`)?.scrollIntoView({ behavior, block: 'start' });
 
-export const ItineraryView: React.FC<ItineraryViewProps> = ({ onOpenMap, onGoToVote, onPrint }) => {
+export const ItineraryView: React.FC<ItineraryViewProps> = ({ onOpenMap, onShowPlanOnMap, onPrint }) => {
   const { language, tr } = useLanguage();
-  const { days, destinations, options, selectedOptionIds, setActiveDestinationId } = useTrip();
+  const { days, destinations, setActiveDestinationId } = useTrip();
   const [filter, setFilter] = useState<Filter>('all');
   const [visibleDay, setVisibleDay] = useState<number>(1);
   const stripRef = useRef<HTMLDivElement>(null);
   const today = tripDayNumber();
 
   const accentFor = (day: DayPlan) =>
-    day.optionId ? options.find(o => o.id === day.optionId)?.color : undefined;
+    day.phase === 'thanksgiving' || day.phase === 'december' ? planFor(day.phase).color : undefined;
 
   const filteredDays = days.filter(day => {
     if (filter === 'milestones') return day.isKeyMilestone;
@@ -68,7 +69,7 @@ export const ItineraryView: React.FC<ItineraryViewProps> = ({ onOpenMap, onGoToV
     );
     document.querySelectorAll('[data-day]').forEach(el => observer.observe(el));
     return () => observer.disconnect();
-  }, [filteredDays.length, selectedOptionIds]);
+  }, [filteredDays.length]);
 
   useEffect(() => {
     stripRef.current
@@ -97,8 +98,8 @@ export const ItineraryView: React.FC<ItineraryViewProps> = ({ onOpenMap, onGoToV
           <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900">{tr('Itinerario día a día', 'Day-by-day itinerary')}</h2>
           <p className="text-sm text-slate-700 mt-1">
             {tr(
-              `${TRIP_DAYS} días · ${restCount} de descanso en casa · ~${Math.round(roadHours)} h de carretera con las opciones elegidas`,
-              `${TRIP_DAYS} days · ${restCount} rest days at home · ~${Math.round(roadHours)} h on the road with the chosen options`,
+              `${TRIP_DAYS} días · ${restCount} de descanso en casa · ~${Math.round(roadHours)} h de carretera`,
+              `${TRIP_DAYS} days · ${restCount} rest days at home · ~${Math.round(roadHours)} h on the road`,
             )}
           </p>
         </div>
@@ -168,8 +169,8 @@ export const ItineraryView: React.FC<ItineraryViewProps> = ({ onOpenMap, onGoToV
         if (!sectionDays.length) return null;
         return (
           <section key={section.phase} className="space-y-4">
-            {section.vote ? (
-              <PhaseHeader phase={section.vote} onGoToVote={onGoToVote} />
+            {section.trip ? (
+              <PlanHeader phase={section.trip} onShowOnMap={onShowPlanOnMap} />
             ) : (
               <h3 className="text-lg font-extrabold text-slate-800 pt-2">{language === 'es' ? section.es : section.en}</h3>
             )}

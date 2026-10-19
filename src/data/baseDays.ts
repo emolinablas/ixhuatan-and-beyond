@@ -1,7 +1,7 @@
 import { DayPlan } from '../types/trip';
 
-// Days that are the same no matter which option wins the vote.
-// Option-specific days (Thanksgiving 11–16, December 19–23) live in optionItineraries.ts.
+// The home-base days of the month. The two road trips (Thanksgiving 11–16,
+// December 19–23) live in planDays.ts.
 export const baseDays: DayPlan[] = [
   // WEEK 1: ARRIVAL & BASE
   {
@@ -350,10 +350,10 @@ export const baseDays: DayPlan[] = [
       {
         id: 'act-10-1',
         timeOfDay: 'afternoon',
-        title: 'Revisión del vehículo y maletas según opción elegida',
-        titleEn: 'Vehicle check & packing according to chosen route',
-        description: 'Verificar pasaportes (si es El Salvador) o equipaje de selva (si es Río Dulce).',
-        descriptionEn: 'Check travel documents (if El Salvador) or river clothes (if Río Dulce).',
+        title: 'Revisión de carros, papeles y maletas para el viaje de Thanksgiving',
+        titleEn: 'Car, paperwork & packing check for the Thanksgiving trip',
+        description: 'Pasaportes de las niñas, $24 exactos para Bruce y Norma, tarjeta de circulación y título de los carros, trajes de baño y toallas, y ropa fresca y repelente para Río Dulce. Salida mañana a las 7:30.',
+        descriptionEn: 'Girls’ passports, exactly $24 for Bruce & Norma, car registration and titles, swimsuits and towels, and light clothes and repellent for Río Dulce. Leaving tomorrow at 7:30 AM.',
         tag: 'logistics'
       }
     ]

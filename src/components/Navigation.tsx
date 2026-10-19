@@ -1,13 +1,12 @@
 import React from 'react';
-import { Calendar, MapPin, Vote, Luggage, Users2 } from 'lucide-react';
+import { Calendar, MapPin, Luggage, Users2 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
-export type TabType = 'itinerary' | 'map' | 'options' | 'packing' | 'family';
+export type TabType = 'itinerary' | 'map' | 'packing' | 'family';
 
 /** Spanish slugs in the URL hash so shared links read naturally in the family chat. */
 export const TAB_SLUGS: Record<TabType, string> = {
   itinerary: 'itinerario',
-  options: 'opciones',
   map: 'mapa',
   packing: 'equipaje',
   family: 'familia',
@@ -15,7 +14,6 @@ export const TAB_SLUGS: Record<TabType, string> = {
 
 export const tabFromHash = (hash: string): TabType | null => {
   const slug = hash.replace(/^#/, '').split('?')[0];
-  if (slug === 'votos') return 'options';
   const match = (Object.keys(TAB_SLUGS) as TabType[]).find(tab => TAB_SLUGS[tab] === slug);
   return match ?? null;
 };
@@ -30,7 +28,6 @@ export const Navigation: React.FC<NavigationProps> = ({ activeTab, setActiveTab 
 
   const navItems: { id: TabType; label: string; short: string; icon: React.ElementType }[] = [
     { id: 'itinerary', label: t.navItinerary, short: tr('Itinerario', 'Itinerary'), icon: Calendar },
-    { id: 'options', label: tr('Opciones y votos', 'Options & voting'), short: tr('Votar', 'Vote'), icon: Vote },
     { id: 'map', label: t.navMap, short: tr('Mapa', 'Map'), icon: MapPin },
     { id: 'packing', label: t.navPacking, short: tr('Equipaje', 'Packing'), icon: Luggage },
     { id: 'family', label: t.navFamily, short: tr('Familia', 'Family'), icon: Users2 },
@@ -72,7 +69,7 @@ export const Navigation: React.FC<NavigationProps> = ({ activeTab, setActiveTab 
         className="md:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-lg border-t border-slate-200 z-50 px-1 pt-1 shadow-lg print:hidden"
         style={{ paddingBottom: 'max(0.25rem, env(safe-area-inset-bottom))' }}
       >
-        <div className="grid grid-cols-5 gap-1">
+        <div className="grid grid-cols-4 gap-1">
           {navItems.map(item => {
             const isActive = activeTab === item.id;
             const Icon = item.icon;

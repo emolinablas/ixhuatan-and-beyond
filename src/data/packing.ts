@@ -7,8 +7,8 @@ export const packingItems: PackingItem[] = [
     category: 'master',
     title: '⚠️ URGENTE: Pasaporte de Emily (nuevo) e Isabella (renovación)',
     titleEn: '⚠️ URGENT: Passports for Emily (new) & Isabella (renewal)',
-    description: 'Requisito migratorio obligatorio para menores de edad si se viaja a El Salvador. Agendar cita en IGM Guatemala inmediatamente (pago Banrural $50 USD, certificados RENAP con QR y ambos padres con DPI).',
-    descriptionEn: 'Mandatory immigration requirement for minors entering El Salvador. Schedule appointment at IGM Guatemala right away ($50 fee at Banrural, recent RENAP birth certificates with QR, both parents present with DPI).',
+    description: 'Obligatorio: el 25 de noviembre entran a El Salvador. Agendar cita en IGM Guatemala inmediatamente (pago Banrural $50 USD, certificados RENAP con QR y ambos padres con DPI).',
+    descriptionEn: 'Required: on November 25 the family enters El Salvador. Schedule appointment at IGM Guatemala right away ($50 fee at Banrural, recent RENAP birth certificates with QR, both parents present with DPI).',
     isEssential: true
   },
   {
@@ -39,12 +39,30 @@ export const packingItems: PackingItem[] = [
     isEssential: false
   },
   {
+    id: 'pack-m-swim',
+    category: 'master',
+    title: 'Trajes de baño y toallas para el viaje de Thanksgiving',
+    titleEn: 'Swimsuits and towels for the Thanksgiving trip',
+    description: 'Hay agua en cada parada: pozas de Andá Mirá, piscinas en Coatepeque, Grand Caporal y Nana Juana, y la piscina climatizada del parque. Llevar ropa seca de cambio a mano en el carro.',
+    descriptionEn: 'There’s water at every stop: Andá Mirá pools, pools at Coatepeque, Grand Caporal and Nana Juana, and the park’s heated pool. Keep a dry change of clothes handy in the car.',
+    isEssential: true
+  },
+  {
+    id: 'pack-m-flashlight',
+    category: 'master',
+    title: 'Linterna impermeable y sandalias de agua',
+    titleEn: 'Waterproof flashlight and water sandals',
+    description: 'Para la cueva de Andá Mirá (poca luz y piso mojado) y las rocas de las termales del cañón del Río Dulce.',
+    descriptionEn: 'For the Andá Mirá cave (low light, wet floor) and the rocks at the Río Dulce canyon hot springs.',
+    isEssential: false
+  },
+  {
     id: 'pack-m-offline-maps',
     category: 'master',
     title: 'Mapas sin conexión en Google Maps',
     titleEn: 'Offline maps in Google Maps',
-    description: 'Descargar las zonas de la ruta elegida (Izabal o Alta Verapaz no tienen señal en varios tramos). Abrir esta app una vez con internet para que quede guardada.',
-    descriptionEn: 'Download the areas of the chosen route (Izabal and Alta Verapaz have long no-signal stretches). Open this app once online so it stays saved.',
+    description: 'Descargar el occidente de El Salvador, Chiquimula e Izabal (el cañón del Río Dulce y la montaña de Saspán tienen tramos sin señal). Abrir esta app una vez con internet para que quede guardada.',
+    descriptionEn: 'Download western El Salvador, Chiquimula and Izabal (the Río Dulce canyon and the Saspán mountain have no-signal stretches). Open this app once online so it stays saved.',
     isEssential: false
   },
   {
@@ -52,8 +70,8 @@ export const packingItems: PackingItem[] = [
     category: 'master',
     title: 'Pasaportes vigentes (mínimo 6 meses de vigencia)',
     titleEn: 'Valid Passports (at least 6 months validity)',
-    description: 'Imprescindible para Bruce & Norma y para cruzar a El Salvador si eligen esa opción.',
-    descriptionEn: 'Crucial for Bruce & Norma and for El Salvador border crossing if chosen.',
+    description: 'Imprescindible para Bruce & Norma y para cruzar a El Salvador en el viaje de Thanksgiving.',
+    descriptionEn: 'Crucial for Bruce & Norma and for crossing into El Salvador on the Thanksgiving trip.',
     initiallyChecked: true,
     isEssential: true
   },
@@ -133,7 +151,7 @@ export const packingItems: PackingItem[] = [
     isEssential: true
   },
 
-  // HIGHLAND COOL (Antigua / Atitlán / Ataco)
+  // HIGHLAND COOL (Antigua / Atitlán)
   {
     id: 'pack-h-1',
     category: 'highland',
@@ -148,8 +166,8 @@ export const packingItems: PackingItem[] = [
     category: 'highland',
     title: 'Zapatos cómodos con suela antideslizante para empedrado',
     titleEn: 'Sturdy, comfortable walking shoes with grip for cobblestones',
-    description: 'Las calles de Antigua y Ataco son de piedra colonial; evitar suelas lisas o tacones.',
-    descriptionEn: 'Antigua and Ataco streets are historical cobblestones; avoid smooth soles.',
+    description: 'Las calles de Antigua son de piedra colonial; evitar suelas lisas o tacones.',
+    descriptionEn: 'Antigua’s streets are historic cobblestones; avoid smooth soles.',
     isEssential: true
   },
   {
@@ -281,8 +299,8 @@ export const packingItems: PackingItem[] = [
     category: 'seniors',
     title: 'Calzado ortopédico acolchonado con buen soporte de tobillo',
     titleEn: 'Cushioned walking shoes with solid arch & ankle support',
-    description: 'Previene cansancio en piernas durante los recorridos por Ataco, Antigua y Panajachel.',
-    descriptionEn: 'Prevents leg fatigue during relaxed strolls in Ataco, Antigua, and Panajachel.',
+    description: 'Previene cansancio en piernas durante los recorridos por Antigua, Panajachel y Livingston.',
+    descriptionEn: 'Prevents leg fatigue during relaxed strolls in Antigua, Panajachel, and Livingston.',
     isEssential: true
   }
 ];

@@ -3,8 +3,8 @@ export type Language = 'es' | 'en';
 export type ClimateType = 'tropical_beach' | 'highland_cool' | 'jungle_hot' | 'temperate';
 export type RoadQuality = 'paved_smooth' | 'mixed_curves' | 'rough_4x4';
 
-/** The two trips the family votes on. */
-export type VotePhase = 'thanksgiving' | 'december';
+/** The two road trips away from home. */
+export type TripPhase = 'thanksgiving' | 'december';
 
 export interface PlaceItem {
   id: string;
@@ -54,17 +54,11 @@ export interface TripDestination {
   intermediateStops?: IntermediateStop[];
 }
 
-/**
- * Comparable numbers for the "at a glance" matrix. Kept separate from the
- * prose so the comparison can't drift from the itinerary it summarizes.
- */
-export interface OptionMetrics {
+export interface PlanMetrics {
   totalDriveHours: number; // whole trip, door to door
   longestLegHours: number; // longest single drive day
   lodgings: number; // distinct hotels = times everyone packs up
   passportsRequired: boolean;
-  babyScore: number; // 1 (hard) to 5 (easy)
-  seniorScore: number; // 1 (hard) to 5 (easy)
   climate: string;
   climateEn: string;
   nearestHospital: string;
@@ -81,27 +75,21 @@ export interface CostLine {
   noteEn?: string;
 }
 
-export interface TripOption {
-  id: string;
-  /** Short code used in WhatsApp vote links (keeps URLs tiny). */
-  code: string;
-  phase: VotePhase;
+/** The decided plan for one of the two road trips. */
+export interface TripPlan {
+  id: TripPhase;
   title: string;
   titleEn: string;
-  shortTitle: string;
-  shortTitleEn: string;
   color: string;
   tagline: string;
   taglineEn: string;
   dateRange: string;
   dateRangeEn: string;
   durationDays: number;
-  destinations: string[]; // destination IDs
-  isRecommendedForFamily?: boolean;
-  crewSummary?: string;
-  crewSummaryEn?: string;
-  pros: string[];
-  prosEn: string[];
+  crewSummary: string;
+  crewSummaryEn: string;
+  highlights: string[];
+  highlightsEn: string[];
   considerations: string[];
   considerationsEn: string[];
   driveSummary: string;
@@ -110,7 +98,7 @@ export interface TripOption {
   babyNotesEn: string;
   seniorNotes: string;
   seniorNotesEn: string;
-  metrics: OptionMetrics;
+  metrics: PlanMetrics;
   costs: CostLine[];
 }
 
@@ -148,7 +136,6 @@ export interface DayPlan {
   milestoneBadge?: string;
   milestoneBadgeEn?: string;
   phase: DayPhase;
-  optionId?: string; // set on days that only exist for one voting option
   driveHours?: number; // time on the road that day, for the drive-load bar
   activities: ActivityBlock[];
   notes?: string;
@@ -175,25 +162,19 @@ export interface Traveler {
   emoji: string;
   role: string;
   roleEn: string;
-  trips: VotePhase[];
-  canVote: boolean;
+  trips: TripPhase[];
 }
 
-/** One person's choice per trip. */
-export type Ballot = Partial<Record<VotePhase, string>>;
-
 /**
- * Everything the family changes on a phone. Trip content (days, options,
+ * Everything the family changes on a phone. Trip content (days, plans,
  * destinations) ships with the code and is never persisted, so content
  * updates reach every phone without cache-busting.
  */
 export interface UserState {
   version: 1;
-  ballots: Record<string, Ballot>; // travelerId -> ballot
-  selectedOptionIds: Record<VotePhase, string>;
   packedIds: string[];
   customPlaces: Record<string, PlaceItem[]>; // destinationId -> places
   customStops: Record<string, IntermediateStop[]>; // destinationId -> stops
   hiddenSeedIds: string[]; // seeded places/stops the family removed
-  costOverrides: Record<string, number>; // `${optionId}:${lineId}` -> unit USD
+  costOverrides: Record<string, number>; // `${planId}:${lineId}` -> unit USD
 }
