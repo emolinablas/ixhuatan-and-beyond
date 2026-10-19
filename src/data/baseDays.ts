@@ -136,8 +136,8 @@ export const baseDays: DayPlan[] = [
     date: '2026-11-18',
     dateFormatted: 'Mié, 18 Nov',
     dateFormattedEn: 'Wed, Nov 18',
-    title: 'Día en familia y preparación de maletas para la playa',
-    titleEn: 'Family day & beach packing preparation',
+    title: 'Día en familia y preparación para la cascada y la playa',
+    titleEn: 'Family day & packing for the waterfall and beach',
     locationId: 'ixhuatan',
     locationName: 'Ixhuatán, Santa Rosa',
     isRestDay: true,
@@ -155,8 +155,8 @@ export const baseDays: DayPlan[] = [
       {
         id: 'act-4-2',
         timeOfDay: 'afternoon',
-        title: 'Preparación de equipaje playero',
-        titleEn: 'Packing beach gear for Pacific getaway',
+        title: 'Preparar mochilas para la cascada y la playa',
+        titleEn: 'Packing for the waterfall and the beach',
         description: 'Revisar bloqueador solar, toallas, sombreros y ropa fresca para Monterrico/Chapetón.',
         descriptionEn: 'Reviewing sunblock, hats, beach towels, and breezy outfits for Monterrico/El Chapetón.',
         tag: 'logistics'
@@ -171,42 +171,30 @@ export const baseDays: DayPlan[] = [
     date: '2026-11-19',
     dateFormatted: 'Jue, 19 Nov',
     dateFormattedEn: 'Thu, Nov 19',
-    title: 'Hacia la Costa del Pacífico: Monterrico y El Chapetón',
-    titleEn: 'Depart to the Pacific Coast: Monterrico & El Chapetón',
-    locationId: 'monterrico',
-    locationName: 'Monterrico, Costa del Pacífico',
-    lodgingName: 'Casa/Hotel frente al mar (2 noches)',
+    title: 'Excursión a las Cataratas Los Amates en Ixhuatán',
+    titleEn: 'Excursion to Los Amates Waterfalls in Ixhuatán',
+    locationId: 'los-amates',
+    locationName: 'Cataratas Los Amates, Santa Rosa',
     phase: 'initial_base',
     activities: [
       {
         id: 'act-5-1',
         timeOfDay: 'morning',
         timeLabel: '09:00',
-        title: 'Salida hacia Monterrico y El Chapetón',
-        titleEn: 'Morning departure to Monterrico & El Chapetón',
-        description: 'Trayecto de ~1.8 horas descendiendo hacia la costa cálida del Océano Pacífico.',
-        descriptionEn: 'Pleasant 1.8-hour descent toward the warm Pacific coastline.',
-        tag: 'logistics'
+        title: 'Salida hacia las Cataratas Los Amates',
+        titleEn: 'Departure to Los Amates Waterfalls',
+        description: 'Una de las cascadas más espectaculares de Centroamérica, orgullo de Ixhuatán.',
+        descriptionEn: 'One of Central America’s most stunning waterfall amphitheaters, pride of Ixhuatán.',
+        tag: 'adventure'
       },
       {
         id: 'act-5-2',
         timeOfDay: 'afternoon',
-        timeLabel: '13:00',
-        title: 'Almuerzo con ceviche fresco y descanso frente al mar',
-        titleEn: 'Fresh seafood lunch & oceanfront relaxation',
-        description: 'Check-in en el hotel/casa con piscina. Ceviches y mariscos frente a las olas.',
-        descriptionEn: 'Check-in at beachfront hotel/villa with pool. Fresh ceviche and tropical drinks by the waves.',
-        tag: 'beach'
-      },
-      {
-        id: 'act-5-3',
-        timeOfDay: 'evening',
-        timeLabel: '17:30',
-        title: 'Liberación de tortuguitas marinas al atardecer',
-        titleEn: 'Sunset sea turtle hatchling release',
-        description: 'En el Tortugario local: ayudar a guiar crías de tortuga parlama hacia el mar. ¡Mágico para Isabella y toda la familia!',
-        descriptionEn: 'At the local conservation sanctuary: guiding newborn sea turtle hatchlings to the surf. Magical memory!',
-        tag: 'adventure'
+        title: 'Almuerzo campestre junto al río y pozas cristalinas',
+        titleEn: 'Riverside country picnic by crystalline natural pools',
+        description: 'Comida familiar con música y sombra natural entre los cañones de roca.',
+        descriptionEn: 'Picnic lunch with fresh mountain breeze under natural canyon shade.',
+        tag: 'food'
       }
     ]
   },
@@ -216,30 +204,44 @@ export const baseDays: DayPlan[] = [
     date: '2026-11-20',
     dateFormatted: 'Vie, 20 Nov',
     dateFormattedEn: 'Fri, Nov 20',
-    title: 'Manglares del Canal de Chiquimulilla & Relax de Playa',
-    titleEn: 'Chiquimulilla Mangrove Safari & Beach Day',
+    title: 'A la playa: casa frente al mar en El Chapetón',
+    titleEn: 'To the beach: oceanfront house in El Chapetón',
     locationId: 'monterrico',
-    locationName: 'Monterrico & El Chapetón',
+    locationName: 'Ixhuatán → El Chapetón (Chiquimulilla)',
+    lodgingName: 'Oceanfront Beach House · El Chapetón (Airbnb, 2 noches)',
+    lodgingUrl: 'https://www.airbnb.com/rooms/1639448933834380058',
+    lodgingStatus: 'confirmed',
     phase: 'initial_base',
     activities: [
       {
         id: 'act-6-1',
         timeOfDay: 'morning',
-        timeLabel: '06:30',
-        title: 'Tour en lancha por los manglares al amanecer',
-        titleEn: 'Sunrise boat cruise through mangrove tunnels',
-        description: 'Aguas calmas, avistamiento de aves acuáticas, garzas y lirios flotantes.',
-        descriptionEn: 'Calm glassy waters, observing tropical birds, herons, and blooming water lilies.',
-        tag: 'adventure'
+        timeLabel: '09:00',
+        title: 'Salida hacia El Chapetón (~2 h)',
+        titleEn: 'Drive to El Chapetón (~2 h)',
+        description: 'Unos 64 km por El Garrobo y Las Lisas. Preguntar antes el estado del último tramo de camino.',
+        descriptionEn: 'About 64 km via El Garrobo and Las Lisas. Ask about the last stretch of road before leaving.',
+        tag: 'logistics'
       },
       {
         id: 'act-6-2',
         timeOfDay: 'afternoon',
-        title: 'Piscina y descanso bajo las palmeras',
-        titleEn: 'Poolside lounging under the coconut palms',
-        description: 'Disfrute seguro en la piscina para Emily y los abuelos, protegiéndose del sol.',
-        descriptionEn: 'Safe shaded poolside relaxation for baby Emily and the grandparents.',
-        tag: 'relaxation'
+        timeLabel: '13:00',
+        title: 'Almuerzo con ceviche fresco y descanso frente al mar',
+        titleEn: 'Fresh seafood lunch & oceanfront relaxation',
+        description: 'Check-in en la casa frente al mar (Airbnb confirmado): piscina infinita privada, 2 habitaciones (A/C solo en la de arriba), duchas al aire libre y parqueo para 3 carros. Hay una cocinera local que puede ayudar con la comida si se le pide con anticipación.',
+        descriptionEn: 'Check-in at the oceanfront house (confirmed Airbnb): private infinity pool, 2 bedrooms (A/C only upstairs), outdoor showers and parking for 3 cars. A local cook can help with meals if requested in advance.',
+        tag: 'beach'
+      },
+      {
+        id: 'act-6-3',
+        timeOfDay: 'evening',
+        timeLabel: '17:30',
+        title: 'Liberación de tortuguitas marinas al atardecer',
+        titleEn: 'Sunset sea turtle hatchling release',
+        description: 'Preguntar en el tortugario más cercano si hay liberación de tortuga parlama al atardecer. ¡Mágico para Isabella y toda la familia!',
+        descriptionEn: 'At the local conservation sanctuary: guiding newborn sea turtle hatchlings to the surf. Magical memory!',
+        tag: 'adventure'
       }
     ]
   },
@@ -249,30 +251,29 @@ export const baseDays: DayPlan[] = [
     date: '2026-11-21',
     dateFormatted: 'Sáb, 21 Nov',
     dateFormattedEn: 'Sat, Nov 21',
-    title: 'Regreso a casa en Ixhuatán y descanso',
-    titleEn: 'Return home to Ixhuatán & rest',
-    locationId: 'ixhuatan',
-    locationName: 'Monterrico -> Ixhuatán',
-    isRestDay: true,
+    title: 'Manglares del Canal de Chiquimulilla & Relax de Playa',
+    titleEn: 'Chiquimulilla Mangrove Safari & Beach Day',
+    locationId: 'monterrico',
+    locationName: 'El Chapetón y Canal de Chiquimulilla',
     phase: 'initial_base',
     activities: [
       {
         id: 'act-7-1',
         timeOfDay: 'morning',
-        timeLabel: '10:00',
-        title: 'Desayuno playero y viaje de vuelta a Ixhuatán',
-        titleEn: 'Beachside breakfast & scenic drive back to Ixhuatán',
-        description: 'Regreso tranquilo antes del calor del mediodía para llegar a descansar a casa.',
-        descriptionEn: 'Leisurely drive back before midday heat, arriving home to unpack and unwind.',
-        tag: 'logistics'
+        timeLabel: '06:30',
+        title: 'Tour en lancha por los manglares al amanecer',
+        titleEn: 'Sunrise boat cruise through mangrove tunnels',
+        description: 'Aguas calmas, avistamiento de aves acuáticas, garzas y lirios flotantes.',
+        descriptionEn: 'Calm glassy waters, observing tropical birds, herons, and blooming water lilies.',
+        tag: 'adventure'
       },
       {
         id: 'act-7-2',
         timeOfDay: 'afternoon',
-        title: 'Tarde de siesta y preparar excursión de mañana',
-        titleEn: 'Afternoon nap & prepping for tomorrow’s waterfall',
-        description: 'Descanso en hamacas tras el viaje a la costa.',
-        descriptionEn: 'Resting in hammocks and gearing up for Sunday waterfall excursion.',
+        title: 'Piscina y descanso bajo las palmeras',
+        titleEn: 'Poolside lounging under the coconut palms',
+        description: 'Piscina infinita de la casa frente al mar, a la sombra para Emily y los abuelos.',
+        descriptionEn: 'The house’s infinity pool by the ocean, in the shade for Emily and the grandparents.',
         tag: 'relaxation'
       }
     ]
@@ -283,30 +284,31 @@ export const baseDays: DayPlan[] = [
     date: '2026-11-22',
     dateFormatted: 'Dom, 22 Nov',
     dateFormattedEn: 'Sun, Nov 22',
-    title: 'Excursión a las Cataratas Los Amates en Ixhuatán',
-    titleEn: 'Excursion to Los Amates Waterfalls in Ixhuatán',
-    locationId: 'los-amates',
-    locationName: 'Cataratas Los Amates, Santa Rosa',
+    title: 'Regreso a casa en Ixhuatán y descanso',
+    titleEn: 'Return home to Ixhuatán & rest',
+    locationId: 'ixhuatan',
+    locationName: 'El Chapetón → Ixhuatán',
+    isRestDay: true,
     phase: 'initial_base',
     activities: [
       {
         id: 'act-8-1',
         timeOfDay: 'morning',
-        timeLabel: '09:00',
-        title: 'Salida hacia las Cataratas Los Amates',
-        titleEn: 'Departure to Los Amates Waterfalls',
-        description: 'Una de las cascadas más espectaculares de Centroamérica, orgullo de Ixhuatán.',
-        descriptionEn: 'One of Central America’s most stunning waterfall amphitheaters, pride of Ixhuatán.',
-        tag: 'adventure'
+        timeLabel: '10:00',
+        title: 'Desayuno playero y viaje de vuelta a Ixhuatán',
+        titleEn: 'Beachside breakfast & scenic drive back to Ixhuatán',
+        description: 'Regreso tranquilo antes del calor del mediodía para llegar a descansar a casa.',
+        descriptionEn: 'Leisurely drive back before midday heat, arriving home to unpack and unwind.',
+        tag: 'logistics'
       },
       {
         id: 'act-8-2',
         timeOfDay: 'afternoon',
-        title: 'Almuerzo campestre junto al río y pozas cristalinas',
-        titleEn: 'Riverside country picnic by crystalline natural pools',
-        description: 'Comida familiar con música y sombra natural entre los cañones de roca.',
-        descriptionEn: 'Picnic lunch with fresh mountain breeze under natural canyon shade.',
-        tag: 'food'
+        title: 'Tarde de siesta en casa',
+        titleEn: 'Afternoon nap at home',
+        description: 'Descanso en hamacas tras el viaje a la costa.',
+        descriptionEn: 'Resting in hammocks after the beach trip.',
+        tag: 'relaxation'
       }
     ]
   },

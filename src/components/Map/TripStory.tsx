@@ -77,6 +77,8 @@ export const StopRow: React.FC<{ stop: StopView; onClick: () => void; compact?: 
             ? tr(`🛏 ${stop.nights} ${stop.nights === 1 ? 'noche' : 'noches'}`, `🛏 ${stop.nights} ${stop.nights === 1 ? 'night' : 'nights'}`)
             : `${stop.point.emoji} ${es ? ROLE_LABEL[stop.role][0] : ROLE_LABEL[stop.role][1]}`}
           {stop.lodging && ` · ${stop.lodging}`}
+          {stop.lodgingStatus === 'confirmed' && ' ✅'}
+          {stop.lodgingStatus === 'tentative' && ' ⏳'}
         </span>
         {!compact && stop.note && <span className="block text-xs text-slate-700 mt-0.5">{es ? stop.note[0] : stop.note[1]}</span>}
       </span>

@@ -1,4 +1,5 @@
 import { Photo, PHOTOS } from './photos';
+import { LodgingStatus } from '../types/trip';
 
 // What the Map tab draws. Every scenario (the home weeks, Thanksgiving and
 // December) is a list of stops plus the legs driven or sailed on each day.
@@ -37,6 +38,7 @@ export interface ScenarioStop {
   days: number[];
   nights?: number;
   lodging?: string;
+  lodgingStatus?: LodgingStatus;
   note?: Txt;
 }
 
@@ -68,7 +70,8 @@ export const MAP_POINTS: MapPoint[] = [
   { id: 'aeropuerto', name: 'Aeropuerto La Aurora', nameEn: 'La Aurora Airport', coordinates: [-90.5281, 14.5833], emoji: '✈️', kind: 'airport', destinationId: 'aeropuerto' },
   { id: 'pradera', name: 'Carretera a El Salvador', nameEn: 'Carretera a El Salvador', coordinates: [-90.4528, 14.5523], emoji: '🍽️', kind: 'town',
     blurb: ['Almuerzo de bienvenida con Karla: Portal del Ángel (km 11.2) o Pradera Concepción (km 15.5).', 'Welcome lunch with Karla: Portal del Ángel (km 11.2) or Pradera Concepción (km 15.5).'] },
-  { id: 'monterrico', name: 'Monterrico', nameEn: 'Monterrico', coordinates: [-90.4814, 13.8911], emoji: '🏖️', kind: 'water', destinationId: 'monterrico' },
+  // Pin is approximate: El Chapetón isn't in OpenStreetMap; it's on the coast by Las Lisas (Chiquimulilla).
+  { id: 'monterrico', name: 'El Chapetón', nameEn: 'El Chapetón', coordinates: [-90.2750, 13.8060], emoji: '🏖️', kind: 'water', destinationId: 'monterrico' },
   { id: 'los-amates', name: 'Cataratas Los Amates', nameEn: 'Los Amates Falls', coordinates: [-90.2135, 14.0515], emoji: '💦', kind: 'nature', destinationId: 'los-amates' },
 
   // Thanksgiving: El Salvador and back through the east
@@ -93,7 +96,9 @@ export const MAP_POINTS: MapPoint[] = [
   { id: 'antigua', name: 'Antigua Guatemala', nameEn: 'Antigua Guatemala', coordinates: [-90.7337, 14.5568], emoji: '🏛️', kind: 'town', destinationId: 'antigua' },
   { id: 'godinez', name: 'Mirador de Godínez', nameEn: 'Godínez lookout', coordinates: [-91.0991, 14.7045], emoji: '📸', kind: 'nature', photo: PHOTOS.godinez,
     blurb: ['Primera vista del lago y sus tres volcanes desde lo alto.', 'First view of the lake and its three volcanoes from above.'] },
-  { id: 'panajachel', name: 'Panajachel · Lago de Atitlán', nameEn: 'Panajachel · Lake Atitlán', coordinates: [-91.156, 14.7422], emoji: '🌋', kind: 'water', destinationId: 'atitlan' },
+  { id: 'panajachel', name: 'Panajachel', nameEn: 'Panajachel', coordinates: [-91.1584, 14.7418], emoji: '⛴️', kind: 'water',
+    blurb: ['Aquí se deja el carro en un parqueo vigilado y se toma la lancha a Santa Cruz La Laguna (~20 min).', 'Leave the car in a guarded lot here and take the boat to Santa Cruz La Laguna (~20 min).'] },
+  { id: 'santa-cruz', name: 'Santa Cruz La Laguna · Lago de Atitlán', nameEn: 'Santa Cruz La Laguna · Lake Atitlán', coordinates: [-91.2135, 14.7412], emoji: '🌋', kind: 'water', destinationId: 'atitlan' },
   { id: 'san-juan', name: 'San Juan La Laguna', nameEn: 'San Juan La Laguna', coordinates: [-91.2856, 14.6945], emoji: '🧶', kind: 'town', photo: PHOTOS.sanJuan,
     blurb: ['Pueblo de cooperativas de tejedoras y chocolate; tuc-tucs desde el muelle.', 'Village of weaving co-ops and chocolate; tuk-tuks from the dock.'] },
 ];
@@ -106,8 +111,14 @@ export const BOAT_PATHS: Record<string, [number, number][]> = {
     [-88.9913, 15.6583], [-88.975, 15.682], [-88.952, 15.712], [-88.93, 15.73], [-88.905, 15.745],
     [-88.87, 15.757], [-88.84, 15.768], [-88.815, 15.782], [-88.795, 15.8], [-88.775, 15.815], [-88.7508, 15.827],
   ],
-  'boat:panajachel>san-juan': [
-    [-91.156, 14.7422], [-91.175, 14.73], [-91.205, 14.716], [-91.24, 14.705], [-91.268, 14.698], [-91.2856, 14.6945],
+  'boat:panajachel>santa-cruz': [
+    [-91.1584, 14.7418], [-91.168, 14.738], [-91.183, 14.736], [-91.198, 14.738], [-91.2135, 14.7412],
+  ],
+  'boat:santa-cruz>san-juan': [
+    [-91.2135, 14.7412], [-91.226, 14.728], [-91.245, 14.713], [-91.265, 14.701], [-91.2856, 14.6945],
+  ],
+  'boat:santa-cruz>panajachel': [
+    [-91.2135, 14.7412], [-91.198, 14.738], [-91.183, 14.736], [-91.168, 14.738], [-91.1584, 14.7418],
   ],
 };
 
@@ -118,15 +129,15 @@ export const SCENARIOS: MapScenario[] = [
     stops: [
       { pointId: 'aeropuerto', role: 'visit', days: [1, 27], note: ['Llegada 14:30 el 15 Nov · vuelo de regreso el 11 Dic', 'Land 2:30 PM Nov 15 · flight home Dec 11'] },
       { pointId: 'pradera', role: 'visit', days: [1], note: ['Almuerzo con Karla', 'Lunch with Karla'] },
-      { pointId: 'ixhuatan', role: 'home', days: [1, 2, 3, 4, 7, 8, 9, 10, 17, 18, 24, 25, 26] },
-      { pointId: 'monterrico', role: 'stay', days: [5, 6, 7], nights: 2, lodging: 'Casa/Hotel frente al mar', note: ['Tortugas, manglares y playa', 'Turtles, mangroves and beach'] },
-      { pointId: 'los-amates', role: 'visit', days: [8], note: ['Aventura 4x4 a las cataratas', '4x4 adventure to the falls'] },
+      { pointId: 'ixhuatan', role: 'home', days: [1, 2, 3, 4, 5, 8, 9, 10, 17, 18, 24, 25, 26] },
+      { pointId: 'los-amates', role: 'visit', days: [5], note: ['Aventura 4x4 a las cataratas', '4x4 adventure to the falls'] },
+      { pointId: 'monterrico', role: 'stay', days: [6, 7, 8], nights: 2, lodging: 'Oceanfront Beach House (Airbnb)', lodgingStatus: 'confirmed', note: ['Casa frente al mar con piscina infinita', 'Oceanfront house with an infinity pool'] },
     ],
     legs: [
       { day: 1, from: 'aeropuerto', via: ['pradera'], to: 'ixhuatan', mode: 'drive', hours: 2.25, note: ['Almuerzo en la Carretera a El Salvador y a casa', 'Lunch on Carretera a El Salvador, then home'] },
-      { day: 5, from: 'ixhuatan', to: 'monterrico', mode: 'drive', hours: 1.8 },
-      { day: 7, from: 'monterrico', to: 'ixhuatan', mode: 'drive', hours: 1.8 },
-      { day: 8, from: 'ixhuatan', to: 'los-amates', mode: 'drive', hours: 1, roundTrip: true, note: ['Último tramo de terracería en 4x4', 'Last stretch on a 4x4 dirt road'] },
+      { day: 5, from: 'ixhuatan', to: 'los-amates', mode: 'drive', hours: 1, roundTrip: true, note: ['Último tramo de terracería en 4x4', 'Last stretch on a 4x4 dirt road'] },
+      { day: 6, from: 'ixhuatan', to: 'monterrico', mode: 'drive', hours: 2, note: ['Por El Garrobo y Las Lisas; preguntar el estado del camino antes de salir', 'Via El Garrobo and Las Lisas; ask about road conditions before leaving'] },
+      { day: 8, from: 'monterrico', to: 'ixhuatan', mode: 'drive', hours: 2 },
       { day: 27, from: 'ixhuatan', to: 'aeropuerto', mode: 'drive', hours: 2.2 },
     ],
   },
@@ -138,7 +149,7 @@ export const SCENARIOS: MapScenario[] = [
       { pointId: 'anda-mira', role: 'visit', days: [11], note: ['Pozas de agua azufrada y cueva', 'Sulfur-water pools and a cave'] },
       { pointId: 'border-chinamas', role: 'border', days: [11] },
       { pointId: 'ahuachapan', role: 'visit', days: [11], note: ['Almuerzo de pupusas', 'Pupusa lunch'] },
-      { pointId: 'coatepeque', role: 'stay', days: [11, 12], nights: 1, lodging: 'Cardedeu Hotel Coatepeque', note: ['🦃 Comida de Thanksgiving en La Pampa', '🦃 Thanksgiving meal at La Pampa'] },
+      { pointId: 'coatepeque', role: 'stay', days: [11, 12], nights: 1, lodging: 'Casa frente al lago (Airbnb)', lodgingStatus: 'tentative', note: ['🦃 Comida de Thanksgiving en La Pampa', '🦃 Thanksgiving meal at La Pampa'] },
       { pointId: 'border-anguiatu', role: 'border', days: [12] },
       { pointId: 'chiquimula', role: 'stay', days: [12, 13], nights: 1, lodging: 'Hotel Grand Caporal', note: ['Piscinas entre jardines', 'Pools among gardens'] },
       { pointId: 'rio-dulce', role: 'stay', days: [13, 14, 15], nights: 2, lodging: 'Nana Juana Marina & Resort' },
@@ -164,15 +175,18 @@ export const SCENARIOS: MapScenario[] = [
     color: '#2563eb',
     stops: [
       { pointId: 'ixhuatan', role: 'home', days: [19, 23] },
-      { pointId: 'antigua', role: 'stay', days: [19, 20, 21], nights: 2, lodging: 'Hotel Museo Casa Santo Domingo' },
+      { pointId: 'antigua', role: 'stay', days: [19, 20, 21], nights: 2, lodging: 'Casa con vista a los volcanes (Airbnb)', lodgingStatus: 'confirmed' },
       { pointId: 'godinez', role: 'visit', days: [21], note: ['Primera vista del lago', 'First view of the lake'] },
-      { pointId: 'panajachel', role: 'stay', days: [21, 22, 23], nights: 2, lodging: 'Hotel Atitlán' },
+      { pointId: 'panajachel', role: 'visit', days: [21, 23], note: ['Parqueo para el carro y lancha', 'Car park and boat'] },
+      { pointId: 'santa-cruz', role: 'stay', days: [21, 22, 23], nights: 2, lodging: 'Rustic Charm Cliffside Retreat (Airbnb)', lodgingStatus: 'confirmed', note: ['Solo se llega en lancha', 'Reachable only by boat'] },
       { pointId: 'san-juan', role: 'visit', days: [22], note: ['Lancha temprano, antes del viento Xocomil', 'Early boat, before the Xocomil wind'] },
     ],
     legs: [
       { day: 19, from: 'ixhuatan', to: 'antigua', mode: 'drive', hours: 2.25, note: ['Salida 18:30', 'Leave 6:30 PM'] },
       { day: 21, from: 'antigua', via: ['godinez'], to: 'panajachel', mode: 'drive', hours: 2, note: ['Por Tecpán y la bajada de Godínez, con los tres volcanes de frente', 'Via Tecpán and the Godínez descent, facing the three volcanoes'] },
-      { day: 22, from: 'panajachel', to: 'san-juan', mode: 'boat', hours: 0.5, roundTrip: true },
+      { day: 21, from: 'panajachel', to: 'santa-cruz', mode: 'boat', hours: 0.35, note: ['Cruzar antes del mediodía, con el lago en calma', 'Cross before noon, while the lake is calm'] },
+      { day: 22, from: 'santa-cruz', to: 'san-juan', mode: 'boat', hours: 0.35, roundTrip: true },
+      { day: 23, from: 'santa-cruz', to: 'panajachel', mode: 'boat', hours: 0.35 },
       { day: 23, from: 'panajachel', to: 'ixhuatan', mode: 'drive', hours: 4, note: ['Llegar antes de la Quema del Diablo (18:00)', 'Be home before the Burning of the Devil (6 PM)'] },
     ],
   },

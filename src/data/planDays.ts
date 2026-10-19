@@ -1,4 +1,4 @@
-import { ActivityBlock, ActivityTag, DayPhase, DayPlan } from '../types/trip';
+import { ActivityBlock, ActivityTag, DayPhase, DayPlan, LodgingStatus } from '../types/trip';
 import { dateForDay, formatIsoDate } from '../lib/dates';
 
 // Day-by-day for the two decided road trips: Thanksgiving (days 11–16) and
@@ -20,12 +20,18 @@ const act = (
   maps?: string,
 ): ActSeed => ({ timeOfDay, timeLabel, tag, title, desc, maps });
 
+interface Lodging {
+  name: string;
+  url?: string;
+  status?: LodgingStatus;
+}
+
 interface DaySeed {
   title: Txt;
   locationId: string;
   location: string;
   driveHours: number;
-  lodging?: string;
+  lodging?: string | Lodging;
   milestone?: Txt;
   activities: ActSeed[];
 }
@@ -36,6 +42,7 @@ const build = (prefix: string, phase: DayPhase, seeds: Record<number, DaySeed>):
   Object.entries(seeds).map(([n, s]) => {
     const dayNumber = Number(n);
     const date = dateForDay(dayNumber);
+    const lodging = typeof s.lodging === 'string' ? { name: s.lodging } : s.lodging;
     return {
       id: `${prefix}-day-${dayNumber}`,
       dayNumber,
@@ -46,7 +53,9 @@ const build = (prefix: string, phase: DayPhase, seeds: Record<number, DaySeed>):
       titleEn: s.title[1],
       locationId: s.locationId,
       locationName: s.location,
-      lodgingName: s.lodging,
+      lodgingName: lodging?.name,
+      lodgingUrl: lodging?.url,
+      lodgingStatus: lodging?.status,
       isKeyMilestone: !!s.milestone,
       milestoneBadge: s.milestone?.[0],
       milestoneBadgeEn: s.milestone?.[1],
@@ -68,7 +77,7 @@ const build = (prefix: string, phase: DayPhase, seeds: Record<number, DaySeed>):
 
 // ───────────────────────── Thanksgiving (days 11–16) ─────────────────────────
 
-const CARDEDEU = 'Cardedeu Hotel Coatepeque (ala frente al lago)';
+const CASA_LAGO: Lodging = { name: 'Casa frente al lago · El Congo (Airbnb)', url: 'https://www.airbnb.com/rooms/1040600020839502103', status: 'tentative' };
 const CAPORAL = 'Hotel Grand Caporal (Chiquimula)';
 const NANA_JUANA = 'Nana Juana Marina & Resort (Río Dulce)';
 const PARAGLIDING = 'Cabañas Paragliding Chiquimula (Saspán)';
@@ -79,7 +88,7 @@ const thanksgivingDays = build('tg', 'thanksgiving', {
     locationId: 'coatepeque',
     location: 'Ixhuatán → Jalpatagua → Las Chinamas → Ahuachapán → Lago de Coatepeque',
     driveHours: 2.5,
-    lodging: CARDEDEU,
+    lodging: CASA_LAGO,
     milestone: ['🚗 Salida 7:30 AM', '🚗 Leave 7:30 AM'],
     activities: [
       act('morning', '07:30', 'logistics',
@@ -105,13 +114,13 @@ const thanksgivingDays = build('tg', 'thanksgiving', {
         ['Ahuachapán → Lago de Coatepeque (~1 h)', 'Ahuachapán → Lake Coatepeque (~1 h)'],
         ['Por Santa Ana. La bajada al lago tiene curvas; llegar con luz para ver el cráter.', 'Via Santa Ana. The road down to the lake has curves; arrive in daylight to see the crater.']),
       act('afternoon', '15:30', 'family',
-        ['Check-in en Cardedeu Hotel Coatepeque', 'Check-in at Cardedeu Hotel Coatepeque'],
-        ['Pedir el ala frente al lago y habitaciones sin gradas cerca del parqueo para Doña Isabel. Atardecer sobre el lago (~17:25).',
-         'Ask for the lakefront wing and step-free rooms near the parking for Doña Isabel. Sunset over the lake (~5:25 PM).'],
-        'La Pampa Coatepeque'),
+        ['Check-in en la casa frente al lago (por confirmar)', 'Check-in at the lakefront house (tentative)'],
+        ['Casa familiar en El Congo con 6 habitaciones con baño propio, piscina, muelle privado y A/C. Tarifa base para 8 personas (+$20 por persona extra); piden identificación de cada huésped. Preguntar al anfitrión por una habitación sin gradas para Doña Isabel. Atardecer sobre el lago (~17:25).',
+         'Family house in El Congo with 6 bedrooms each with its own bathroom, a pool, private dock and A/C. Base rate covers 8 people (+$20 per extra guest); ID required for every guest. Ask the host for a step-free room for Doña Isabel. Sunset over the lake (~5:25 PM).'],
+        'Lago de Coatepeque El Congo'),
       act('evening', '19:00', 'food',
-        ['Cena en el complejo', 'Dinner at the hotel'],
-        ['Bistro del hotel o La Pampa (parrilla argentina, en el mismo complejo).', 'Hotel bistro or La Pampa (Argentine grill, same complex).']),
+        ['Cena en la casa', 'Dinner at the house'],
+        ['Carne asada en el asador de la casa, o cena en La Pampa (parrilla argentina, en la orilla del lago).', 'Grill dinner at the house, or La Pampa (Argentine grill on the lakeshore).']),
     ],
   },
   12: {
@@ -124,8 +133,8 @@ const thanksgivingDays = build('tg', 'thanksgiving', {
     activities: [
       act('morning', '07:30', 'adventure',
         ['Mañana en el lago', 'Morning on the lake'],
-        ['El agua está más calmada temprano: lancha o kayak desde el hotel, o piscina. Chalecos para todos (tallas infantiles para Emily e Isabella).',
-         'The water is calmest early: boat or kayak from the hotel, or the pool. Life jackets for all (child sizes for Emily & Isabella).']),
+        ['El agua está más calmada temprano: lancha o kayak desde el muelle de la casa, o piscina. Chalecos para todos (tallas infantiles para Emily e Isabella).',
+         'The water is calmest early: boat or kayak from the house’s dock, or the pool. Life jackets for all (child sizes for Emily & Isabella).']),
       act('afternoon', '11:30', 'thanksgiving',
         ['Comida de Acción de Gracias en La Pampa Coatepeque', 'Thanksgiving meal at La Pampa Coatepeque'],
         ['Reservar con anticipación (WhatsApp +503 7349 4582) una mesa para 10 sin gradas y preguntar si pueden preparar pavo. Brindis de las tres generaciones con vista al cráter.',
@@ -241,8 +250,8 @@ const thanksgivingDays = build('tg', 'thanksgiving', {
 
 // ───────────────────────── December (days 19–23) ─────────────────────────
 
-const SANTO_DOMINGO = 'Hotel Museo Casa Santo Domingo (Antigua)';
-const HOTEL_ATITLAN = 'Hotel Atitlán (Panajachel)';
+const AIRBNB_ANTIGUA: Lodging = { name: 'Casa con vista a los volcanes · Antigua (Airbnb)', url: 'https://www.airbnb.com/rooms/1715345514155837311', status: 'confirmed' };
+const AIRBNB_ATITLAN: Lodging = { name: 'Rustic Charm Cliffside Retreat · Santa Cruz La Laguna (Airbnb)', url: 'https://www.airbnb.com/rooms/53875229', status: 'confirmed' };
 
 const decemberDays = build('dec', 'december', {
   19: {
@@ -250,16 +259,17 @@ const decemberDays = build('dec', 'december', {
     locationId: 'antigua',
     location: 'Ixhuatán → Antigua Guatemala',
     driveHours: 2.25,
-    lodging: SANTO_DOMINGO,
+    lodging: AIRBNB_ANTIGUA,
     activities: [
       act('evening', '18:30', 'logistics',
         ['Salida por la autopista VAS', 'Depart via the VAS highway'],
         ['~2h15 esquivando el tráfico de la capital. Viajan Ever, Cori, Isabella, Emily, Bruce y Norma; Emily puede dormir en el camino.',
          '~2h15, skipping city traffic. Ever, Cori, Isabella, Emily, Bruce & Norma travel; Emily can sleep on the way.']),
       act('evening', '21:00', 'family',
-        ['Check-in en Casa Santo Domingo (2 noches)', 'Check-in at Casa Santo Domingo (2 nights)'],
-        ['Pedir habitaciones cerca de las rampas. Cena ligera en el hotel.', 'Ask for rooms near the ramps. Light dinner at the hotel.'],
-        'Hotel Museo Casa Santo Domingo Antigua'),
+        ['Check-in en la casa de Antigua (2 noches)', 'Check-in at the Antigua house (2 nights)'],
+        ['Casa de dos pisos en un condominio cerrado, a 10 min a pie del centro. Entrada con cerradura inteligente (las instrucciones llegan antes) y parqueo adentro. Las habitaciones están arriba: subir las maletas con calma.',
+         'Two-story house in a gated community, a 10-minute walk from the center. Smart-lock entry (instructions arrive beforehand) and parking inside. Bedrooms are upstairs: carry the bags up slowly.'],
+        'Antigua Guatemala'),
     ],
   },
   20: {
@@ -267,7 +277,7 @@ const decemberDays = build('dec', 'december', {
     locationId: 'antigua',
     location: 'Antigua Guatemala',
     driveHours: 0,
-    lodging: SANTO_DOMINGO,
+    lodging: AIRBNB_ANTIGUA,
     activities: [
       act('morning', '08:30', 'adventure',
         ['Arco y Parque Central', 'The Arch & Central Plaza'],
@@ -275,62 +285,69 @@ const decemberDays = build('dec', 'december', {
         'Arco de Santa Catalina Antigua Guatemala'),
       act('afternoon', '14:00', 'relaxation',
         ['Museos y jardines de Casa Santo Domingo', 'Casa Santo Domingo museums & gardens'],
-        ['Senderos planos con rampas, guacamayas y criptas. Ideal para la carriola y los abuelos.', 'Flat paths with ramps, macaws and crypts. Ideal for the stroller and grandparents.']),
-      act('evening', '19:00', 'food',
-        ['Cena en Antigua', 'Dinner in Antigua'],
-        ['Llevar chumpa: las noches bajan a 12–14 °C.', 'Bring a jacket: nights drop to 54–57 °F.']),
+        ['Senderos planos con rampas, guacamayas y criptas. Ideal para la carriola y los abuelos.', 'Flat paths with ramps, macaws and crypts. Ideal for the stroller and grandparents.'],
+        'Hotel Museo Casa Santo Domingo Antigua'),
+      act('evening', '17:30', 'family',
+        ['Atardecer en la terraza de la casa', 'Sunset on the house terrace'],
+        ['Vista a los volcanes de Agua, Fuego y Acatenango. Llevar chumpa: las noches bajan a 12–14 °C.', 'Views of the Agua, Fuego and Acatenango volcanoes. Bring a jacket: nights drop to 54–57 °F.']),
     ],
   },
   21: {
-    title: ['Mágico Lago de Atitlán: llegada a Panajachel', 'Magical Lake Atitlán: arrival in Panajachel'],
+    title: ['Al Lago de Atitlán: lancha a Santa Cruz La Laguna', 'To Lake Atitlán: boat to Santa Cruz La Laguna'],
     locationId: 'atitlan',
-    location: 'Antigua → Panajachel',
+    location: 'Antigua → Panajachel → (lancha) Santa Cruz La Laguna',
     driveHours: 2,
-    lodging: HOTEL_ATITLAN,
+    lodging: AIRBNB_ATITLAN,
     activities: [
-      act('morning', '09:00', 'adventure',
-        ['Ruta panorámica al lago (~2 h)', 'Scenic drive to the lake (~2 h)'],
-        ['Primera vista del lago desde el mirador de Godínez.', 'First view of the lake from the Godínez lookout.'],
+      act('morning', '08:30', 'adventure',
+        ['Ruta panorámica a Panajachel (~2 h)', 'Scenic drive to Panajachel (~2 h)'],
+        ['Primera vista del lago desde el mirador de Godínez. Salir temprano para cruzar el lago antes del mediodía.', 'First view of the lake from the Godínez lookout. Leave early to cross the lake before noon.'],
         'Mirador de Godinez Solola'),
-      act('afternoon', '13:00', 'relaxation',
-        ['Jardines del Hotel Atitlán', 'Hotel Atitlán gardens'],
-        ['Rosas, hortensias y aves junto a la orilla, todo plano.', 'Roses, hydrangeas and birds along the shore, all flat.'],
-        'Hotel Atitlan Panajachel'),
+      act('morning', '10:45', 'logistics',
+        ['Dejar el carro en Panajachel y lancha a Santa Cruz (~20 min)', 'Park in Panajachel and take the boat to Santa Cruz (~20 min)'],
+        ['Parqueo vigilado cerca del muelle (Calle Santander) por 2 noches. Maletas livianas: todo va en lancha. Chalecos para todos, tallas infantiles para Emily e Isabella. El viento Xocomil levanta oleaje después del mediodía.',
+         'Guarded parking near the dock (Calle Santander) for 2 nights. Pack light: everything goes by boat. Life jackets for all, child sizes for Emily & Isabella. The Xocomil wind kicks up waves after midday.'],
+        'Calle Santander Panajachel'),
+      act('afternoon', '11:30', 'family',
+        ['Check-in en la casa del acantilado (2 noches)', 'Check-in at the cliffside house (2 nights)'],
+        ['Entre Santa Cruz y Jaibalito, a unos 37 m sobre el agua, con muelle privado. Jenny y Clemens viven en la propiedad. Confirmar antes cuántas gradas hay del muelle a la casa: Bruce, Norma y Emily (en el fular) subiendo con calma.',
+         'Between Santa Cruz and Jaibalito, about 120 ft above the water, with a private dock. Jenny and Clemens live on the property. Ask beforehand how many steps there are from the dock: Bruce, Norma and Emily (in the carrier) climbing slowly.'],
+        'Santa Cruz La Laguna'),
       act('afternoon', '16:30', 'relaxation',
-        ['Piscina climatizada al atardecer', 'Heated pool at sunset'],
-        ['Abrigar bien a Emily al salir del agua: en diciembre sopla viento frío.', 'Bundle Emily up after the pool: December evenings are windy and cold.']),
+        ['Atardecer frente a los volcanes', 'Sunset facing the volcanoes'],
+        ['Terraza o kayak cerca del muelle si el lago está tranquilo. Noche fresca: abrigar a Emily.', 'Terrace, or kayaks near the dock if the lake is calm. Cool night: bundle Emily up.']),
     ],
   },
   22: {
-    title: ['Lancha privada a San Juan La Laguna', 'Private boat to San Juan La Laguna'],
+    title: ['Lancha a San Juan La Laguna: arte y tradición', 'Boat to San Juan La Laguna: art & tradition'],
     locationId: 'atitlan',
-    location: 'San Juan La Laguna, Sololá',
+    location: 'Santa Cruz La Laguna → San Juan La Laguna',
     driveHours: 0,
-    lodging: HOTEL_ATITLAN,
+    lodging: AIRBNB_ATITLAN,
     milestone: ['🚤 San Juan La Laguna', '🚤 San Juan La Laguna'],
     activities: [
       act('morning', '08:30', 'adventure',
-        ['Lancha con el lago en calma', 'Boat ride on calm morning water'],
-        ['Salir temprano: el viento Xocomil levanta oleaje después del mediodía.', 'Go early: the Xocomil wind kicks up waves after midday.']),
+        ['Lancha desde el muelle de la casa (~20 min)', 'Boat from the house’s dock (~20 min)'],
+        ['Salir temprano con el lago en calma. Los anfitriones pueden ayudar a conseguir lancha.', 'Leave early on calm water. The hosts can help arrange a boat.']),
       act('morning', '09:15', 'family',
         ['Tuc-tuc a las cooperativas de tejedoras', 'Tuk-tuk to the weaving co-ops'],
         ['Tuc-tuc desde el muelle (Q5–Q10) para no subir a pie. Teñido natural y chocolate artesanal.', 'Tuk-tuk from the dock (Q5–Q10) to skip the uphill walk. Natural dyes and artisan chocolate.'],
         'San Juan La Laguna'),
       act('afternoon', '12:00', 'logistics',
-        ['Regreso a Panajachel antes del viento', 'Back to Panajachel before the wind'],
-        ['Tarde libre en el hotel.', 'Free afternoon at the hotel.']),
+        ['Regreso a la casa antes del viento', 'Back to the house before the wind'],
+        ['Tarde tranquila en la terraza.', 'Quiet afternoon on the terrace.']),
     ],
   },
   23: {
     title: ['Regreso a Ixhuatán antes de la Quema del Diablo', 'Home to Ixhuatán before the Burning of the Devil'],
     locationId: 'ixhuatan',
-    location: 'Panajachel → Ixhuatán',
+    location: 'Santa Cruz → (lancha) Panajachel → Ixhuatán',
     driveHours: 4,
     milestone: ['🏡 Regreso a base', '🏡 Back to base'],
     activities: [
-      act('morning', '09:30', 'logistics',
-        ['Desayuno frente al lago y salida (~4 h)', 'Lakefront breakfast & departure (~4 h)'],
-        ['Llegada estimada 14:00–15:00, antes del tráfico de la tarde.', 'Estimated arrival 2:00–3:00 PM, ahead of evening traffic.']),
+      act('morning', '08:30', 'logistics',
+        ['Lancha a Panajachel y salida en carro (~4 h)', 'Boat to Panajachel and drive home (~4 h)'],
+        ['Cruzar temprano con el lago en calma, recoger el carro y salir a las 9:30. Llegada estimada 14:00–15:00.', 'Cross early on calm water, pick up the car and leave by 9:30. Estimated arrival 2:00–3:00 PM.']),
       act('evening', '18:00', 'family',
         ['🔥 Quema del Diablo (desde casa)', '🔥 Burning of the Devil (from home)'],
         ['Tradición guatemalteca: fogatas y cohetes a las 18:00 en todo el país. Bruce y Norma pueden verla de lejos; Emily adentro, lejos del humo y el ruido.',

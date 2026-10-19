@@ -137,11 +137,18 @@ export const DayCard: React.FC<DayCardProps> = ({ day, destination, isToday, acc
       </ol>
 
       <footer className="mt-3 pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2">
-        <div className="flex items-center gap-2 text-sm font-semibold text-slate-700 min-w-0">
+        <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm font-semibold text-slate-700 min-w-0">
           {day.lodgingName && (
             <>
-              <Bed className="w-4 h-4 text-emerald-700 shrink-0" aria-hidden />
-              <span className="truncate">{day.lodgingName}</span>
+              <span className="flex items-start gap-2">
+                <Bed className="w-4 h-4 mt-0.5 text-emerald-700 shrink-0" aria-hidden />
+                <span>{day.lodgingName}</span>
+              </span>
+              {day.lodgingStatus && (
+                <span className={`px-2 py-0.5 rounded-md text-xs font-extrabold ${day.lodgingStatus === 'confirmed' ? 'bg-emerald-100 text-emerald-900' : 'bg-amber-100 text-amber-900'}`}>
+                  {day.lodgingStatus === 'confirmed' ? tr('✅ Confirmado', '✅ Confirmed') : tr('⏳ Por confirmar', '⏳ Tentative')}
+                </span>
+              )}
               {day.lodgingUrl && (
                 <a href={day.lodgingUrl} target="_blank" rel="noopener noreferrer" className="text-emerald-800 underline font-bold shrink-0">
                   {t.viewLodging}

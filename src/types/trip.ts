@@ -117,6 +117,9 @@ export interface ActivityBlock {
   tag?: ActivityTag;
 }
 
+/** Whether a booking is done (✅) or still being arranged (⏳). */
+export type LodgingStatus = 'confirmed' | 'tentative';
+
 export type DayPhase = 'initial_base' | 'thanksgiving' | 'post_thanksgiving_base' | 'december' | 'farewell_base';
 
 export interface DayPlan {
@@ -131,6 +134,7 @@ export interface DayPlan {
   locationName: string;
   lodgingName?: string;
   lodgingUrl?: string;
+  lodgingStatus?: LodgingStatus;
   isRestDay?: boolean;
   isKeyMilestone?: boolean;
   milestoneBadge?: string;

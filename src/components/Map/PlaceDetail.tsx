@@ -76,6 +76,11 @@ export const PlaceDetail: React.FC<PlaceDetailProps> = ({ point, contexts, onOpe
               {stop.role === 'stay' && stop.nights && (
                 <span className="px-2 py-1 rounded-lg bg-slate-900 text-white">🛏 {stop.nights} {stop.nights === 1 ? tr('noche', 'night') : tr('noches', 'nights')}{stop.lodging ? ` · ${stop.lodging}` : ''}</span>
               )}
+              {stop.lodgingStatus && (
+                <span className={`px-2 py-1 rounded-lg ${stop.lodgingStatus === 'confirmed' ? 'bg-emerald-100 text-emerald-900' : 'bg-amber-100 text-amber-900'}`}>
+                  {stop.lodgingStatus === 'confirmed' ? tr('✅ Confirmado', '✅ Confirmed') : tr('⏳ Por confirmar', '⏳ Tentative')}
+                </span>
+              )}
               {stop.role === 'visit' && <span className="px-2 py-1 rounded-lg bg-slate-100 text-slate-800">📍 {tr('Visita', 'Visit')}</span>}
               {stop.role === 'border' && <span className="px-2 py-1 rounded-lg bg-amber-100 text-amber-900">🛂 {tr('Cruce de frontera', 'Border crossing')}</span>}
               {stop.role === 'home' && <span className="px-2 py-1 rounded-lg bg-emerald-100 text-emerald-900">🏡 {tr('La casa de la familia', 'The family home')}</span>}
