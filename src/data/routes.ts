@@ -70,8 +70,8 @@ export const MAP_POINTS: MapPoint[] = [
   { id: 'aeropuerto', name: 'Aeropuerto La Aurora', nameEn: 'La Aurora Airport', coordinates: [-90.5281, 14.5833], emoji: '✈️', kind: 'airport', destinationId: 'aeropuerto' },
   { id: 'pradera', name: 'Carretera a El Salvador', nameEn: 'Carretera a El Salvador', coordinates: [-90.4528, 14.5523], emoji: '🍽️', kind: 'town',
     blurb: ['Almuerzo de bienvenida con Karla: Portal del Ángel (km 11.2) o Pradera Concepción (km 15.5).', 'Welcome lunch with Karla: Portal del Ángel (km 11.2) or Pradera Concepción (km 15.5).'] },
-  // Pin is approximate: El Chapetón isn't in OpenStreetMap; it's on the coast by Las Lisas (Chiquimulilla).
-  { id: 'monterrico', name: 'El Chapetón', nameEn: 'El Chapetón', coordinates: [-90.2750, 13.8060], emoji: '🏖️', kind: 'water', destinationId: 'monterrico' },
+  // El Chapetón beach is at aldea San José Buena Vista (Chiquimulilla); pin on its shoreline.
+  { id: 'monterrico', name: 'El Chapetón', nameEn: 'El Chapetón', coordinates: [-90.3325, 13.8312], emoji: '🏖️', kind: 'water', destinationId: 'monterrico' },
   { id: 'los-amates', name: 'Cataratas Los Amates', nameEn: 'Los Amates Falls', coordinates: [-90.2135, 14.0515], emoji: '💦', kind: 'nature', destinationId: 'los-amates' },
 
   // Thanksgiving: El Salvador and back through the east
@@ -136,7 +136,7 @@ export const SCENARIOS: MapScenario[] = [
     legs: [
       { day: 1, from: 'aeropuerto', via: ['pradera'], to: 'ixhuatan', mode: 'drive', hours: 2.25, note: ['Almuerzo en la Carretera a El Salvador y a casa', 'Lunch on Carretera a El Salvador, then home'] },
       { day: 5, from: 'ixhuatan', to: 'los-amates', mode: 'drive', hours: 1, roundTrip: true, note: ['Último tramo de terracería en 4x4', 'Last stretch on a 4x4 dirt road'] },
-      { day: 6, from: 'ixhuatan', to: 'monterrico', mode: 'drive', hours: 2, note: ['Por El Garrobo y Las Lisas; preguntar el estado del camino antes de salir', 'Via El Garrobo and Las Lisas; ask about road conditions before leaving'] },
+      { day: 6, from: 'ixhuatan', to: 'monterrico', mode: 'drive', hours: 2, note: ['Por Chiquimulilla y la carretera San José Buena Vista – Las Lisas', 'Via Chiquimulilla and the San José Buena Vista – Las Lisas road'] },
       { day: 8, from: 'monterrico', to: 'ixhuatan', mode: 'drive', hours: 2 },
       { day: 27, from: 'ixhuatan', to: 'aeropuerto', mode: 'drive', hours: 2.2 },
     ],

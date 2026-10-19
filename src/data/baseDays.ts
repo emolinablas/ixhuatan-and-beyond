@@ -219,8 +219,8 @@ export const baseDays: DayPlan[] = [
         timeLabel: '09:00',
         title: 'Salida hacia El Chapetón (~2 h)',
         titleEn: 'Drive to El Chapetón (~2 h)',
-        description: 'Unos 64 km por El Garrobo y Las Lisas. Preguntar antes el estado del último tramo de camino.',
-        descriptionEn: 'About 64 km via El Garrobo and Las Lisas. Ask about the last stretch of road before leaving.',
+        description: 'Unos 61 km por Chiquimulilla y la carretera San José Buena Vista – Las Lisas, hasta la aldea San José Buena Vista.',
+        descriptionEn: 'About 61 km via Chiquimulilla and the San José Buena Vista – Las Lisas road, to San José Buena Vista village.',
         tag: 'logistics'
       },
       {
